@@ -1,0 +1,12 @@
+Package: rinat
+Type: Package
+Title: What the package does (short line)
+Version: 0.0.1
+Date: 2013-08-20
+Author: Vijay Barve <vijay.barve@gmail.com>
+Maintainer: Vijay Barve <vijay.barve@gmail.com>
+Description: A programmatic interface to the
+    API provided by the iNaturalist website.
+License: CC0
+Collate:
+    'observations.R'
