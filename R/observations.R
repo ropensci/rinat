@@ -1,6 +1,6 @@
-#'observations - Primary function to retrive observations form iNaturalist
+#'observations - Primary function to retrive observations from iNaturalist
 #'@param query Query string
-#'@param page page number
+#'@param page Page number
 #'@param per_page Records per page to download
 #'@param maxresults - yet to prgram this
 #'@examples \dontrun{
@@ -20,9 +20,7 @@ observations <- function(query=NA,page=NA,per_page=NA,maxresults=100)
   if(!is.na(per_page)){
     arg <- paste(arg, "&per_page=", per_page, sep="")
   }
-  #cat(arg)
   cat(paste(url,arg,sep=""))
   out <- read.csv(paste(url,arg,sep=""))
-  
   return(out)
 }

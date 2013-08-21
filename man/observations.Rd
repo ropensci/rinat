@@ -1,6 +1,6 @@
 \name{observations}
 \alias{observations}
-\title{observations - Primary function to retrive observations form iNaturalist}
+\title{observations - Primary function to retrive observations from iNaturalist}
 \usage{
   observations(query = NA, page = NA, per_page = NA,
     maxresults = 100)
@@ -8,7 +8,7 @@
 \arguments{
   \item{query}{Query string}
 
-  \item{page}{page number}
+  \item{page}{Page number}
 
   \item{per_page}{Records per page to download}
 
@@ -16,7 +16,7 @@
 }
 \description{
   observations - Primary function to retrive observations
-  form iNaturalist
+  from iNaturalist
 }
 \examples{
 \dontrun{
