@@ -20,7 +20,7 @@ Note:
 
 Windows users have to first install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
 
-### Packages `bdvis` depends on
+### Packages `riNat` depends on
 + [RCurl](http://cran.r-project.org/web/packages/RCurl/index.html)
 + [rjson](http://cran.r-project.org/web/packages/rjson/index.html)
 
