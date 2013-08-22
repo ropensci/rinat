@@ -20,8 +20,9 @@ Note:
 
 Windows users have to first install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
 
-### Packages `riNat` depends on
-+ nothing right now
+### Packages `bdvis` depends on
++ [RCurl](http://cran.r-project.org/web/packages/RCurl/index.html)
++ [rjson](http://cran.r-project.org/web/packages/rjson/index.html)
 
 
 ### Functions currently available
@@ -29,6 +30,6 @@ Windows users have to first install [Rtools](http://cran.r-project.org/bin/windo
 #### observations
 
 ```coffee
-observations(query="Monarch Butterfly",page=2,per_page=25)
+get_obs(query="Monarch Butterfly",page=2,per_page=25)
+get_obs_project("reptileindia") 
 ```
-
