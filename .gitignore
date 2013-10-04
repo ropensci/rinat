@@ -2,3 +2,5 @@
 .Rproj.user
 rinat.Rproj
 .Rbuildignore
+.RData
+.Rhistory

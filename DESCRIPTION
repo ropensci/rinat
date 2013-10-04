@@ -3,12 +3,12 @@ Type: Package
 Title: What the package does (short line)
 Version: 0.0.2
 Date: 2013-08-22
-Author: Vijay Barve <vijay.barve@gmail.com>
-Maintainer: Vijay Barve <vijay.barve@gmail.com>
+Author: Edmund Hart <edmund.m.hart@gmail.com>
+Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
 Description: A programmatic interface to the
     API provided by the iNaturalist website.
 License: CC0
-Imports: RCurl, rjson
+Imports: httr, plyr
 Collate:
     'get_obs.R'
     'get_obs_project.R'
