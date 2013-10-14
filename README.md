@@ -12,24 +12,18 @@ R wrapper for iNaturalist APIs for accessing the observations. The Detailed docu
 install.packages("devtools")
 require(devtools)
 
-install_github("rinat", "vijaybarve")
+install_github("rinat", "ropensci")
 require(rinat)
 ```
 
 Note: 
 
+This package is currently in development.
+
 Windows users have to first install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
-
-### Packages `riNat` depends on
-+ [RCurl](http://cran.r-project.org/web/packages/RCurl/index.html)
-+ [rjson](http://cran.r-project.org/web/packages/rjson/index.html)
-
-
-### Functions currently available
 
 #### observations
 
 ```coffee
-get_obs(query="Monarch Butterfly",page=2,per_page=25)
-get_obs_project("reptileindia") 
+get_obs(query="Monarch Butterfly")
 ```
