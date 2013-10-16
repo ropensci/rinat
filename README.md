@@ -27,3 +27,9 @@ Windows users have to first install [Rtools](http://cran.r-project.org/bin/windo
 ```coffee
 get_obs(query="Monarch Butterfly")
 ```
+
+#### Projects
+```coffee
+get_obs_project(354)
+get_obs_project("reptileindia") 
+```

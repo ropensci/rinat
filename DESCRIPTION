@@ -1,14 +1,17 @@
 Package: rinat
 Type: Package
-Title: What the package does (short line)
-Version: 0.0.2
-Date: 2013-08-22
-Author: Edmund Hart <edmund.m.hart@gmail.com>
+Title: Access iNaturalist data through APIs
+Version: 0.0.3
+Date: 2013-10-15
+Author: Vijay Barve<vijay.barve@gmail.com>,
+  Edmund Hart <edmund.m.hart@gmail.com>
 Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
 Description: A programmatic interface to the
     API provided by the iNaturalist website.
 License: CC0
-Imports: httr, plyr
+Imports: httr, plyr, RCurl, rjson
 Collate:
-    'get_obs.R'
     'get_obs_project.R'
+    'get_inat_obs_id.R'
+    'get_obs_inat.R'
+    'get_obs_inat_user.R'

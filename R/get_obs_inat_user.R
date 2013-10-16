@@ -1,5 +1,6 @@
 #' Get all the observations of a specific user
-#' @param id a single id for an inaturalist observation record
+#' @param username Username of  inaturalist user to fetch records
+#' @param maxresults the maximum number of results to return
 #' @return a list with full details on a given record
 #' @examples \dontrun{
 #'   m_obs <- get_obs_inat(query="Monarch Butterfly")
@@ -10,7 +11,7 @@
 
 
 ### Needs more work, there can be 1000's of results, need to implement pagination similar to the main observation query method.
-get_obs_inat_user <- function(username){
+get_obs_inat_user <- function(username,maxresults=100){
   
   base_url <- "http://www.inaturalist.org/"
   q_path <- "observations.csv"
@@ -25,9 +26,6 @@ get_obs_inat_user <- function(username){
   if(total_res == 0){
     stop("Your search returned zero results.  Either your species of interest has no records or you entered an invalid search")
   }
-  
-  
-  
   page_query <- paste(search,"&per_page=200&page=1",sep="")
   data <-  GET(base_url,path = q_path, query = page_query)
   data_out <-read.csv(textConnection(content(data)))
