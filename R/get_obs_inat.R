@@ -1,6 +1,7 @@
 #' Primary function to retrive observations from iNaturalist, allows users to search for data, or just filter results by a subset of what is offered by the API
 #' @param query Query string for a general search
-#' @param quality the quality grade to be used.  Must be either "casual" or "research"  If left blank both will be returned.
+#' @param quality the quality grade to be used.  Must be either "casual" or "research"  If left blank both will be returned.\
+#' @param taxon Filter by iNat taxon name. Note that this will also select observations of descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no observations may be returned.
 #' @param geo flag for returning only results that are georeferenced, TRUE will exclude non-georeferenced results, but they cannot be excluded.
 #' @param year return observations only in that year (can only be one year, not a range of years)
 #' @param month return observations only by month, must be numeric, 1...12
@@ -21,7 +22,7 @@
 
 
 
-get_obs_inat <- function(query=NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100) 
+get_obs_inat <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100) 
 {  
   
   ## Parsing and error-handling of input strings
@@ -36,6 +37,10 @@ get_obs_inat <- function(query=NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,d
     }
     
     search <- paste(search,"&quality_grade=",quality,sep="")
+  }
+  
+  if(!is.null(taxon)){
+    search <-  paste(search,"&taxon_name=",gsub(" ","+",taxon),sep="")
   }
   
   if(!is.null(geo) && geo){
