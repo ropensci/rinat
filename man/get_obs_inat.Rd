@@ -2,16 +2,21 @@
 \alias{get_obs_inat}
 \title{Primary function to retrive observations from iNaturalist, allows users to search for data, or just filter results by a subset of what is offered by the API}
 \usage{
-  get_obs_inat(query = NULL, quality = NULL, geo = NULL,
-    year = NULL, month = NULL, day = NULL, bounds = NULL,
-    maxresults = 100)
+  get_obs_inat(query = NULL, taxon = NULL, quality = NULL,
+    geo = NULL, year = NULL, month = NULL, day = NULL,
+    bounds = NULL, maxresults = 100)
 }
 \arguments{
   \item{query}{Query string for a general search}
 
   \item{quality}{the quality grade to be used.  Must be
   either "casual" or "research" If left blank both will be
-  returned.}
+  returned.\}
+
+  \item{taxon}{Filter by iNat taxon name. Note that this
+  will also select observations of descendant taxa. Note
+  that names are not unique, so if the name matches
+  multiple taxa, no observations may be returned.}
 
   \item{geo}{flag for returning only results that are
   georeferenced, TRUE will exclude non-georeferenced
@@ -42,6 +47,13 @@
   iNaturalist, allows users to search for data, or just
   filter results by a subset of what is offered by the API
 }
+\note{
+  Filtering doesn't always work with the query parameter
+  for some reason (a problem on the API end).  If you want
+  to filter by time, it's best to use the scientific name
+  and put it in the 'taxa' field, and not in the query
+  field.
+}
 \examples{
 \dontrun{
   ### Make a standard query
@@ -50,6 +62,11 @@
   ##Filter by a bounding box of Northern California
   bounds <- c(38.44047,-125,40.86652,-121.837)
   get_obs_inat(query="Mule Deer", bounds=bounds)
+
+  ## Filter with by just taxon, allows higher order filtering,
+  ## Here we can search for just stone flies (order plecoptera)
+  get_obs_inat(taxon="Plecoptera")
+
 }
 }
 

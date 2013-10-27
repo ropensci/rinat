@@ -1,4 +1,6 @@
-#' Get all the observations of a specific inaturalist user
+#' Download observations for a user
+#' 
+#' @description Get all the observations of a specific inaturalist user
 #' @param username Username of the inaturalist user to fetch records
 #' @param maxresults the maximum number of results to return
 #' @return a list with full details on a given record
@@ -10,7 +12,6 @@
 #' @export
 
 
-### Needs more work, there can be 1000's of results, need to implement pagination similar to the main observation query method.
 get_obs_inat_user <- function(username,maxresults=100){
   
   base_url <- "http://www.inaturalist.org/"
