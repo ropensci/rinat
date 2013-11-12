@@ -1,6 +1,6 @@
 \name{get_obs_inat_user}
 \alias{get_obs_inat_user}
-\title{Get all the observations of a specific inaturalist user}
+\title{Download observations for a user}
 \usage{
   get_obs_inat_user(username, maxresults = 100)
 }

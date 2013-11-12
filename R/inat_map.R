@@ -13,7 +13,7 @@
 #'   ### Now we can modify the returned map
 #'   salamander_map + borders("state") + theme_bw()
 #' }
-#' @import map ggplot2
+#' @import maps ggplot2
 #' @export
 
 inat_map <- function(data, map = "usa",subregion=".",plot=TRUE){

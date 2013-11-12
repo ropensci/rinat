@@ -1,6 +1,6 @@
 \name{get_obs_inat}
 \alias{get_obs_inat}
-\title{Primary function to retrive observations from iNaturalist, allows users to search for data, or just filter results by a subset of what is offered by the API}
+\title{Download inaturalist data}
 \usage{
   get_obs_inat(query = NULL, taxon = NULL, quality = NULL,
     geo = NULL, year = NULL, month = NULL, day = NULL,
@@ -11,7 +11,7 @@
 
   \item{quality}{the quality grade to be used.  Must be
   either "casual" or "research" If left blank both will be
-  returned.\}
+  returned.}
 
   \item{taxon}{Filter by iNat taxon name. Note that this
   will also select observations of descendant taxa. Note

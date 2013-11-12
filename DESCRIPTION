@@ -19,3 +19,5 @@ Collate:
     'get_inat_obs_id.R'
     'get_obs_inat.R'
     'get_obs_inat_user.R'
+    'inat_map.R'
+    'get_inat_taxon_stats.R'

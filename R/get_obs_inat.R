@@ -9,7 +9,7 @@
 #' @param day return observations only on a given day of the month,  1...31
 #' @param bounds a bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search within.  It is a vector in the form of southern latitude, western longitude, northern latitude, and easter longitude
 #' @param maxresults the maximum number of results to return
-#' @note Filtering doesn't always work with the query parameter for some reason (a problem on the API end).  If you want to filter by time, it's best to use the scientific name and put it in the 'taxa' field, and not in the query field.
+#' @note Filtering doesn't always work with the query parameter for some reason (a problem on the API end).  If you want to filter by time, it's best to use the scientific name and put it in the 'taxa' field, and not in the query field.  Another issue is that the query parameter will search the entire entry, so it is possible to get unintended results.  Depending on your use case it may be advisable to use the "taxon" field instead of the query field.
 #' @return a dataframe of the number of observations requestsed
 #' @examples \dontrun{
 #'   ### Make a standard query
