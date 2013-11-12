@@ -7,21 +7,20 @@
 #' @param project get taxon stats by project id
 #' @param uid get taxon stats by user id 
 #' 
-#' @return a dataframe with search results
+#' @return a vector listing counts of observations at each level of identification possible (species, genus, etc..)
 #' @examples \dontrun{
-#'   m_obs <- get_obs_inat(taxon="Ambystoma maculatum")
-#'   salamander_map <- inat_map(m_obs,plot=FALSE)
-#'   ### Now we can modify the returned map
-#'   salamander_map + borders("state") + theme_bw()
+#'  
 #' }
 #' @import map ggplot2
 #' @export
 
 
-get_inat_taxon_stats(date = NULL, date_range = NULL, place = NULL, project = NULL, uid=NULL){
+get_inat_taxon_stats <- function(date = NULL, date_range = NULL, place = NULL, project = NULL, uid=NULL){
+  
   base_url <- "http://www.inaturalist.org/"
   q_path <- "observations/taxon_stats.json"
   search = ""
+  
   if(!is.null(date)){
     search = paste(search,"&on=",date,sep="")
   }
@@ -39,6 +38,8 @@ get_inat_taxon_stats(date = NULL, date_range = NULL, place = NULL, project = NUL
   }
   
   data <-  content(GET(base_url,path = q_path, query = search))
-  return(data)
+  out <- unlist(llply(data$rank_counts,data.frame))
+  names(out) <- names(llply(data$rank_counts,data.frame))
+  return(out)
 }
 
