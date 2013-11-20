@@ -1,6 +1,7 @@
-#' Get stats on taxa 
+#' Get stats on taxon counts
 #' 
-#' @description get stats on taxa within a constrained range.  This range can be by user, place, project, day or date range.  
+#' 
+#' @description get stats on taxa within a constrained range.  This range can be by user, place, project, day or date range.  Output will be a count of the total number of taxa observed at each taxonomic level.
 #' @param date retrieve observations on a specific date, must be a string in the form YYYY-MM-DD
 #' @param date_range a vector of dates, in the form YYYY-MM-DD
 #' @param place get taxon stats by place, you can find place id's on the iNaturalist page: http://www.inaturalist.org/places, must be a numeric ID
@@ -9,9 +10,9 @@
 #' 
 #' @return a vector listing counts of observations at each level of identification possible (species, genus, etc..)
 #' @examples \dontrun{
-#'  
+#'  counts <- get_inat_taxon_stats(date="2010-06-14")
 #' }
-#' @import map ggplot2
+#' @import httr
 #' @export
 
 
