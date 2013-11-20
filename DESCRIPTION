@@ -21,3 +21,4 @@ Collate:
     'get_obs_inat_user.R'
     'inat_map.R'
     'get_inat_taxon_stats.R'
+    'get_inat_user_stats.R'
