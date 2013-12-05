@@ -41,19 +41,19 @@ get_inat_user_stats <- function(date = NULL, date_range = NULL, place = NULL, pr
   data <-  content(GET(base_url,path = q_path, query = search))
   out_sp_vec <- unlist(data$most_species)
   out_sp_vec <- out_sp_vec[which(names(out_sp_vec) !="user.user_icon_url")]
-  out_sp <- data.frame(t(matrix(out_sp_vec,ncol=5,nrow=4)))
+  out_sp <- data.frame(t(matrix(out_sp_vec,ncol=5,nrow=4)),stringsAsFactors = FALSE)
   colnames(out_sp) <- unique(names(out_sp_vec))
   out_sp$count <- as.numeric(as.character(out_sp$count))
   out_sp$user.id <- as.numeric(as.character(out_sp$user.id))
   
   out_obs_vec <- unlist(data$most_observations)
   out_obs_vec <- out_obs_vec[which(names(out_obs_vec) !="user.user_icon_url")]
-  out_obs <- data.frame(t(matrix(out_obs_vec,ncol=5,nrow=4)))
+  out_obs <- data.frame(t(matrix(out_obs_vec,ncol=5,nrow=4)),stringsAsFactors = FALSE)
   colnames(out_obs) <- unique(names(out_obs_vec))
   out_obs$count <- as.numeric(as.character(out_obs$count))
   out_obs$user.id <- as.numeric(as.character(out_obs$user.id))
   
-  out <- list(species = out_sp,observatinos=out_obs)
+  out <- list(species =out_sp,observations=out_obs)
   
   return(out)
 }

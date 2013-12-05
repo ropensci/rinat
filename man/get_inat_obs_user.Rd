@@ -1,0 +1,26 @@
+\name{get_inat_obs_user}
+\alias{get_inat_obs_user}
+\title{Download observations for a user}
+\usage{
+  get_inat_obs_user(username, maxresults = 100)
+}
+\arguments{
+  \item{username}{Username of the inaturalist user to fetch
+  records}
+
+  \item{maxresults}{the maximum number of results to
+  return}
+}
+\value{
+  a list with full details on a given record
+}
+\description{
+  Get all the observations of a specific inaturalist user
+}
+\examples{
+\dontrun{
+  m_obs <- get_inat_obs(query="Monarch Butterfly")
+  get_inat_obs_user(as.character(m_obs$User.login[1]))
+}
+}
+

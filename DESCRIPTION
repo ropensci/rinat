@@ -12,15 +12,13 @@ License: MIT
 Imports:
     httr,
     plyr,
-    RCurl,
-    rjson,
     ggplot2,
     maps
 Collate:
-    'get_obs_project.R'
     'get_inat_obs_id.R'
-    'get_obs_inat.R'
-    'get_obs_inat_user.R'
     'inat_map.R'
     'get_inat_taxon_stats.R'
     'get_inat_user_stats.R'
+    'get_inat_obs_project.R'
+    'get_inat_obs_user.R'
+    'get_inat_obs.R'

@@ -5,8 +5,8 @@
 #' @param date retrieve observations on a specific date, must be a string in the form YYYY-MM-DD
 #' @param date_range a vector of dates, in the form YYYY-MM-DD
 #' @param place get taxon stats by place, you can find place id's on the iNaturalist page: http://www.inaturalist.org/places, must be a numeric ID
-#' @param project get taxon stats by project id
-#' @param uid get taxon stats by user id 
+#' @param project get taxon stats by project id (numeric ID)
+#' @param uid get taxon stats by user id (string)
 #' 
 #' @return a vector listing counts of observations at each level of identification possible (species, genus, etc..)
 #' @examples \dontrun{
