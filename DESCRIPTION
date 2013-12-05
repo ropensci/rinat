@@ -13,7 +13,9 @@ Imports:
     httr,
     plyr,
     RCurl,
-    rjson
+    rjson,
+    ggplot2,
+    maps
 Collate:
     'get_obs_project.R'
     'get_inat_obs_id.R'

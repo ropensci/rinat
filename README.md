@@ -1,3 +1,5 @@
+ [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
+
 # `riNat`
 
 
