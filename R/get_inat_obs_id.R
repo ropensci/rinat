@@ -9,8 +9,8 @@
 #' @export
 
 get_inat_obs_id <- function(id){
-base_url <- "http://www.inaturalist.org/"
-q_path <- paste("observations/",as.character(id),".json",sep="")
-id_info <-  content(GET(base_url,path = q_path))
-return(id_info)
+  base_url <- "http://www.inaturalist.org/"
+  q_path <- paste("observations/",as.character(id),".json",sep="")
+  id_info <-  content(GET(base_url,path = q_path))
+  return(id_info)
 }

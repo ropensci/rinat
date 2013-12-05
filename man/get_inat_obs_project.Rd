@@ -1,9 +1,9 @@
 \name{get_inat_obs_project}
 \alias{get_inat_obs_project}
-\title{Download observations and info for a project}
+\title{Download observations or info from a project}
 \usage{
   get_inat_obs_project(grpid,
-    type = c("observations", "info"))
+    type = c("observations", "info"), raw = F)
 }
 \arguments{
   \item{grpid}{Name of the group as an iNaturalist slug or
@@ -13,11 +13,17 @@
   returns all observations, and "info" returns project
   details similar to what you can find on a project
   webpage.}
+
+  \item{raw}{True or False.  If TRUE and searching for
+  project info, returns the raw output of parsed JSON for
+  that project.  Otherwise just some basic information is
+  returned as a list}
 }
 \description{
   retrieve observations from a particular iNaturalist
   project.  This function can be used to get either
-  observations from a project, or info about a project
+  observations or information from a project by project
+  name or ID
 }
 \details{
   An iNaturalist slug is usually the project as single
@@ -31,7 +37,7 @@
 \examples{
 \dontrun{
  get_inat_obs_project(354, type = "observations")
- get_inat_obs_project("crows-in-vermont", type="info")
+ get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
 }
 }
 

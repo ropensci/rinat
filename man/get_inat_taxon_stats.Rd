@@ -16,9 +16,10 @@
   id's on the iNaturalist page:
   http://www.inaturalist.org/places, must be a numeric ID}
 
-  \item{project}{get taxon stats by project id}
+  \item{project}{get taxon stats by project id (numeric
+  ID)}
 
-  \item{uid}{get taxon stats by user id}
+  \item{uid}{get taxon stats by user id (string)}
 }
 \value{
   a vector listing counts of observations at each level of
