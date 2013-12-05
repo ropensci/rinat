@@ -12,10 +12,14 @@ R wrapper for iNaturalist APIs for accessing the observations. The Detailed docu
 
 ## Install
 
-### Install the development version using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
+Install the development version using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
+<<<<<<< HEAD
 
 ```r
+=======
+```coffee
+>>>>>>> 82804979c23aabf86553f7bf30fd355b11dbd073
 install.packages("devtools")
 require(devtools)
 
