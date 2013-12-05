@@ -1,14 +1,14 @@
 Package: rinat
 Type: Package
 Title: Access iNaturalist data through APIs
-Version: 0.0.3
+Version: 0.1.0
 Date: 2013-10-15
 Author: Vijay Barve<vijay.barve@gmail.com>,
     Edmund Hart <edmund.m.hart@gmail.com>
 Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
 Description: A programmatic interface to the
     API provided by the iNaturalist website.
-License: CC0
+License: MIT
 Imports:
     httr,
     plyr,
