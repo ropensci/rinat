@@ -138,7 +138,7 @@ place_counts
 
 Basic maps can be created as well to quickly visualize search results.  Maps can either be plotted automatically `plot = TRUE` or simply return a ggplot2 object with `plot = FALSE`.  This works well with single species data, but more complicated plots are best made from scratch.
 
-```{r, fig.align='center',fig.height=3,fig.width=5,fig.path='inst/'}
+```{r, fig.align='center',fig.height=5,fig.width=7,fig.path='inst/'}
 ## Map salamanders in the genuse Ambystoma
 m_obs <- get_obs_inat(taxon="Ambystoma maculatum")
 

@@ -12,14 +12,10 @@ R wrapper for iNaturalist APIs for accessing the observations. The Detailed docu
 
 ## Install
 
-Install the development version using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
+### Install the development version using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
-<<<<<<< HEAD
 
 ```r
-=======
-```coffee
->>>>>>> 82804979c23aabf86553f7bf30fd355b11dbd073
 install.packages("devtools")
 require(devtools)
 
@@ -139,7 +135,7 @@ head(get_inat_obs_id(m_obs$Id[1]))
 ## [1] 0
 ## 
 ## $created_at
-## [1] "2013-12-05T16:03:48+01:00"
+## [1] "2013-12-05T09:03:48-06:00"
 ## 
 ## $delta
 ## [1] FALSE
@@ -168,12 +164,12 @@ head(get_inat_obs_user(as.character(m_obs$User.login[1]), maxresults = 20))[,
 
 ```
 ##            Scientific.name                  Datetime
-## 1        Limenitis camilla 2013-08-31 16:18:43 +0000
-## 2         Danaus plexippus 2013-09-18 23:46:08 +0000
-## 3                          2013-08-31 14:48:50 +0000
-## 4     Sceloporus undulatus 2013-08-04 15:28:01 +0000
-## 5          Battus philenor 2013-08-03 21:16:45 +0000
-## 6 Macroglossum stellatarum 2013-07-20 19:30:20 +0000
+## 1        Limenitis camilla 2013-08-31 07:18:43 +0000
+## 2         Danaus plexippus 2013-09-18 14:46:08 +0000
+## 3                          2013-08-31 05:48:50 +0000
+## 4     Sceloporus undulatus 2013-08-04 06:28:01 +0000
+## 5          Battus philenor 2013-08-03 12:16:45 +0000
+## 6 Macroglossum stellatarum 2013-07-20 10:30:20 +0000
 ##                Description
 ## 1                         
 ## 2                         
