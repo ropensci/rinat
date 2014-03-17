@@ -113,7 +113,8 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
     page_query <- paste(search,"&per_page=200&page=1",sep="")
     data <-  GET(base_url,path = q_path, query = page_query)
     stop_for_status(data)
-    data_out <- content(data)
+    data_out <- read.csv(textConnection(content(data, as = "text")))
+  
   if(maxresults > 200){
       for(i in 2:ceiling(total_res/200)){
         page_query <- paste(search,"&per_page=200&page=",i,sep="")
