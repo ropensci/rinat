@@ -14,12 +14,3 @@ Imports:
     plyr,
     ggplot2,
     maps
-Collate:
-    'get_inat_obs_id.R'
-    'inat_map.R'
-    'get_inat_taxon_stats.R'
-    'get_inat_user_stats.R'
-    'get_inat_obs_project.R'
-    'get_inat_obs_user.R'
-    'get_inat_obs.R'
-    'globals.R'

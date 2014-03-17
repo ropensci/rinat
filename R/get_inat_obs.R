@@ -101,7 +101,7 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
   ### Make the first ping to the server to get the number of results
   ### easier to pull down if you make the query in json, but easier to arrange results
   ### that come down in CSV format
-  ping <-  GET(base_url,path = ping_path, query = ping_query)
+  ping <-  GET(base_url, path = ping_path, query = ping_query)
   total_res <- as.numeric(ping$headers$`x-total-entries`)
   
   if(total_res == 0){
@@ -112,12 +112,14 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
   
     page_query <- paste(search,"&per_page=200&page=1",sep="")
     data <-  GET(base_url,path = q_path, query = page_query)
-    data_out <- read.csv(textConnection(content(data)),stringsAsFactors = FALSE)
+    stop_for_status(data)
+    data_out <- content(data)
   if(maxresults > 200){
       for(i in 2:ceiling(total_res/200)){
         page_query <- paste(search,"&per_page=200&page=",i,sep="")
         data <-  GET(base_url,path = q_path, query = page_query)
-        data_out <- rbind(data_out, read.csv(textConnection(content(data))),stringsAsFactors = FALSE)
+        stop_for_status(data)
+        data_out <- rbind(data_out, content(data))
       }
     
   }

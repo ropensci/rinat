@@ -30,12 +30,12 @@ get_inat_obs_user <- function(username,maxresults=100){
   }
   page_query <-"&per_page=200&page=1"
   dat <-  GET(base_url,path = paste("observations/",q_path,sep=""), query = page_query)
-  data_out <-read.csv(textConnection(content(dat)),stringsAsFactors = FALSE)
+  data_out <- content(dat)
   if(maxresults > 200){
     for(i in 2:ceiling(total_res/200)){
       page_query <- paste("&per_page=200&page=",i,sep="")
       dat <-  GET(base_url,path = paste("observations/",q_path,sep=""), query = page_query)
-      data_out <- rbind(data_out, read.csv(textConnection(content(dat))),stringsAsFactors = FALSE)
+      data_out <- rbind(data_out, content(dat))
     }
     
   }
