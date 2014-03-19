@@ -12,7 +12,7 @@
 #' @examples \dontrun{
 #'  counts <- get_inat_taxon_stats(date="2010-06-14")
 #' }
-#' @import httr
+#' @import httr jsonlite
 #' @export
 
 
@@ -38,9 +38,7 @@ get_inat_taxon_stats <- function(date = NULL, date_range = NULL, place = NULL, p
     search = paste(search,"&user_id=",uid,sep="")
   }
   
-  data <-  content(GET(base_url,path = q_path, query = search))
-  out <- unlist(llply(data$rank_counts,data.frame))
-  names(out) <- names(llply(data$rank_counts,data.frame))
-  return(out)
+  data <-  fromJSON(content(GET(base_url,path = q_path, query = search),as = "text"))
+  return(data)
 }
 
