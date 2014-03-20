@@ -8,7 +8,7 @@ Author: Vijay Barve<vijay.barve@gmail.com>,
 Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
 Description: A programmatic interface to the
     API provided by the iNaturalist website.
-License: MIT
+License: MIT + file LICENSE
 Imports: httr, plyr, jsonlite, ggplot2, maps
 Collate: 'get_inat_obs_id.R' 'get_inat_obs_project.R'
         'get_inat_obs_user.R' 'get_inat_obs.R' 'get_inat_taxon_stats.R'

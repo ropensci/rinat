@@ -537,7 +537,7 @@ library(ggplot2)
 ## Map salamanders in the genuse Ambystoma
 m_obs <- get_inat_obs(taxon = "Ambystoma maculatum")
 
-salamander_map <- inat_map(m_obs, plot = FALSE)
+salamander_map <-  inat_map(m_obs, plot = FALSE)
 ### Now we can modify the returned map
 salamander_map + borders("state") + theme_bw()
 ```
