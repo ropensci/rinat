@@ -9,7 +9,7 @@
 #'  get_inat_obs_project(354, type = "observations")
 #'  get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE) 
 #'}
-#'@import httr
+#'@import httr jsonlite
 #'@export
 
 get_inat_obs_project <- function(grpid,type = c("observations","info"), raw = F){
@@ -17,8 +17,8 @@ get_inat_obs_project <- function(grpid,type = c("observations","info"), raw = F)
          observations = "obs",
          info = "info")
   url= paste("http://www.inaturalist.org/projects/",grpid,".json",sep="")
-  xx = content(GET(url))
-  recs = xx$project_observations_count
+  xx = fromJSON(content(GET(url),as="text"))
+  recs =xx$project_observations_count
  
   ### Error handling for empty projects
   dat = NULL

@@ -2,15 +2,15 @@ Package: rinat
 Type: Package
 Title: Access iNaturalist data through APIs
 Version: 0.1.1
-Date: 2013-10-15
+Date: 2014-03-20
 Author: Vijay Barve<vijay.barve@gmail.com>,
     Edmund Hart <edmund.m.hart@gmail.com>
 Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
 Description: A programmatic interface to the
     API provided by the iNaturalist website.
 License: MIT
-Imports:
-    httr,
-    plyr,
-    ggplot2,
-    maps
+Imports: httr, plyr, jsonlite, ggplot2, maps
+Collate: 'get_inat_obs_id.R' 'get_inat_obs_project.R'
+        'get_inat_obs_user.R' 'get_inat_obs.R' 'get_inat_taxon_stats.R'
+        'get_inat_user_stats.R' 'globals.R' 'inat_map.R'
+Packaged: 2014-03-20 19:41:38 UTC; thart

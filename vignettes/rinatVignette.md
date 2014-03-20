@@ -1,6 +1,5 @@
- [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
 
-# `riNat`
+# `rinat`
 
 
 ## Quickstart guide
@@ -144,7 +143,7 @@ head(get_inat_obs_id(m_obs$Id[1]))
 ## NULL
 ## 
 ## $created_at
-## [1] "2014-03-20T11:40:34-05:00"
+## [1] "2014-03-20T13:40:34-03:00"
 ## 
 ## $delta
 ## [1] TRUE
@@ -167,10 +166,10 @@ head(get_inat_obs_user(as.character(m_obs$User.login[1]), maxresults = 20))[,
 
 ```
 ##                 Scientific.name                  Datetime
-## 1              Danaus plexippus 2014-03-18 13:59:56 +0000
-## 2                Taricha torosa 2014-02-26 19:30:00 +0000
-## 3      Toxicoscordion fremontii 2014-03-09 12:21:50 +0000
-## 4 Coluber lateralis euryxanthus 2014-03-09 12:32:59 +0000
+## 1              Danaus plexippus 2014-03-18 15:59:56 +0000
+## 2                Taricha torosa 2014-02-26 22:30:00 +0000
+## 3      Toxicoscordion fremontii 2014-03-09 14:21:50 +0000
+## 4 Coluber lateralis euryxanthus 2014-03-09 14:32:59 +0000
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Description
 ## 1                                                                                                                                                                                                                                                                                                                                                                Two individuals flying around in the grassy margin of a large eucalyptus grove, adjacent to a salt marsh. 
 ## 2                                                                                                                                                                                                         In the first km along the Nimitz Way paved trail starting from the Inspiration Point parking lot, 109 newts were seen on or immediately next to the trail, between 17:30 and 18:00. It was raining, the ground was wet, with numerous puddles and standing water.
@@ -207,11 +206,11 @@ counts
 ## 4     1    24422 Ptychohyla spinipollex    species               10
 ## 5     1    11935    Tachycineta bicolor    species               10
 ##   taxon.default_name.created_at taxon.default_name.creator_id
-## 1     2010-04-01T15:12:20-04:00                            NA
-## 2     2011-10-22T07:37:44-04:00                          1392
-## 3     2008-03-12T23:33:21-04:00                            NA
-## 4     2008-03-17T20:43:27-04:00                            NA
-## 5     2008-03-12T23:10:45-04:00                            NA
+## 1     2010-04-01T14:12:20-05:00                            NA
+## 2     2011-10-22T06:37:44-05:00                          1392
+## 3     2008-03-12T22:33:21-05:00                            NA
+## 4     2008-03-17T19:43:27-05:00                            NA
+## 5     2008-03-12T22:10:45-05:00                            NA
 ##   taxon.default_name.id taxon.default_name.is_valid
 ## 1                 92809                        TRUE
 ## 2                211685                        TRUE
@@ -243,11 +242,11 @@ counts
 ## 4 http://www.catalogueoflife.org/annual-checklist/show_species_details.php?record_id=1569188
 ## 5 http://www.catalogueoflife.org/annual-checklist/show_species_details.php?record_id=1618023
 ##   taxon.default_name.taxon_id taxon.default_name.updated_at
-## 1                       58564     2010-04-01T15:12:20-04:00
-## 2                       81746     2011-10-22T07:37:44-04:00
-## 3                       17009     2008-03-12T23:33:21-04:00
-## 4                       24422     2008-03-17T20:43:27-04:00
-## 5                       11935     2008-03-12T23:10:45-04:00
+## 1                       58564     2010-04-01T14:12:20-05:00
+## 2                       81746     2011-10-22T06:37:44-05:00
+## 3                       17009     2008-03-12T22:33:21-05:00
+## 4                       24422     2008-03-17T19:43:27-05:00
+## 5                       11935     2008-03-12T22:10:45-05:00
 ##   taxon.default_name.updater_id
 ## 1                            NA
 ## 2                          1392
@@ -309,11 +308,11 @@ place_counts
 ## 4   233    48734  Tsuga canadensis    species               10
 ## 5   230     5212 Buteo jamaicensis    species               10
 ##   taxon.default_name.created_at taxon.default_name.creator_id
-## 1     2009-07-14T14:17:36-05:00                            NA
-## 2     2009-01-09T20:20:56-06:00                            NA
-## 3     2009-01-21T01:04:08-06:00                            NA
-## 4     2008-11-17T09:31:09-06:00                            NA
-## 5     2008-03-12T21:47:36-05:00                            NA
+## 1     2009-07-14T16:17:36-03:00                            NA
+## 2     2009-01-10T00:20:56-02:00                            NA
+## 3     2009-01-21T05:04:08-02:00                            NA
+## 4     2008-11-17T13:31:09-02:00                            NA
+## 5     2008-03-12T23:47:36-03:00                            NA
 ##   taxon.default_name.id taxon.default_name.is_valid
 ## 1                 83116                        TRUE
 ## 2                 78334                        TRUE
@@ -345,11 +344,11 @@ place_counts
 ## 4                                                 http://www.ubio.org/browser/details.php?namebankID=838136
 ## 5                http://www.catalogueoflife.org/annual-checklist/show_species_details.php?record_id=1615828
 ##   taxon.default_name.taxon_id taxon.default_name.updated_at
-## 1                       52391     2012-08-27T05:25:39-05:00
-## 2                       49005     2013-09-29T06:23:43-05:00
-## 3                       49202     2012-08-27T05:05:00-05:00
-## 4                       48734     2012-08-28T05:00:54-05:00
-## 5                        5212     2008-03-12T21:47:36-05:00
+## 1                       52391     2012-08-27T07:25:39-03:00
+## 2                       49005     2013-09-29T08:23:43-03:00
+## 3                       49202     2012-08-27T07:05:00-03:00
+## 4                       48734     2012-08-28T07:00:54-03:00
+## 5                        5212     2008-03-12T23:47:36-03:00
 ##   taxon.default_name.updater_id
 ## 1                          7996
 ## 2                          7996
@@ -547,6 +546,6 @@ salamander_map + borders("state") + theme_bw()
 ## Warning: Removed 4 rows containing missing values (geom_point).
 ```
 
-<img src="inst/map.png" title="plot of chunk map" alt="plot of chunk map" style="display: block; margin: auto;" />
+<img src="../inst/map.png" title="plot of chunk map" alt="plot of chunk map" style="display: block; margin: auto;" />
 
 
