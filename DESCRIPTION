@@ -9,18 +9,8 @@ Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
 Description: A programmatic interface to the
     API provided by the iNaturalist website.
 License: MIT
-Imports:
-    httr,
-    plyr,
-    jsonlite,
-    ggplot2,
-    maps
-Collate:
-    'get_inat_obs_id.R'
-    'get_inat_obs_project.R'
-    'get_inat_obs_user.R'
-    'get_inat_obs.R'
-    'get_inat_taxon_stats.R'
-    'get_inat_user_stats.R'
-    'globals.R'
-    'inat_map.R'
+Imports: httr, plyr, jsonlite, ggplot2, maps
+Collate: 'get_inat_obs_id.R' 'get_inat_obs_project.R'
+        'get_inat_obs_user.R' 'get_inat_obs.R' 'get_inat_taxon_stats.R'
+        'get_inat_user_stats.R' 'globals.R' 'inat_map.R'
+Packaged: 2014-03-20 19:41:38 UTC; thart

@@ -1,4 +1,3 @@
- [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
 
 # `rinat`
 
@@ -146,7 +145,7 @@ place_counts
 
 Basic maps can be created as well to quickly visualize search results.  Maps can either be plotted automatically `plot = TRUE` or simply return a ggplot2 object with `plot = FALSE`.  This works well with single species data, but more complicated plots are best made from scratch.
 
-```{r map, fig.align='center',fig.height=5,fig.width=7,fig.path='inst/'}
+```{r map, fig.align='center',fig.height=5,fig.width=7,fig.path='../inst/'}
 library(rinat)
 library(ggplot2)
 
