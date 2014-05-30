@@ -9,6 +9,8 @@
 #' @param day return observations only on a given day of the month,  1...31
 #' @param bounds a bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search within.  It is a vector in the form of southern latitude, western longitude, northern latitude, and easter longitude
 #' @param maxresults the maximum number of results to return
+#' @param meta (logical) If TRUE, the output of this function is a list with metadata on the output
+#' and a data.frame of the data. If FALSE (default), just the data.frame.
 #' @note Filtering doesn't always work with the query parameter for some reason (a problem on the API end).  If you want to filter by time, it's best to use the scientific name and put it in the 'taxa' field, and not in the query field.  Another issue is that the query parameter will search the entire entry, so it is possible to get unintended results.  Depending on your use case it may be advisable to use the "taxon" field instead of the query field.
 #' @return a dataframe of the number of observations requestsed
 #' @examples \dontrun{
@@ -23,13 +25,14 @@
 #'   ## Here we can search for just stone flies (order plecoptera)
 #'   get_inat_obs(taxon="Plecoptera")
 #'   
+#'   ## get metadata (the number of results found on the server)
+#'   out <- get_inat_obs(query="Monarch Butterfly", meta=TRUE)
+#'   out$meta
 #' }
 #' @import httr plyr
 #' @export
 
-
-
-get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100) 
+get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100,meta=FALSE)
 {  
   
   ## Parsing and error-handling of input strings
@@ -92,8 +95,6 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
     
   }
   
-  
-  
   base_url <- "http://www.inaturalist.org/"
   q_path <- "observations.csv"
   ping_path <- "observations.json"
@@ -108,29 +109,25 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
     stop("Your search returned zero results.  Either your species of interest has no records or you entered an invalid search")
   }
   
-  
-  
     page_query <- paste(search,"&per_page=200&page=1",sep="")
     data <-  GET(base_url,path = q_path, query = page_query)
     stop_for_status(data)
-    data_out <- read.csv(textConnection(content(data, as = "text")))
+    data_out <- read.csv(textConnection(content(data, as = "text")), stringsAsFactors = FALSE)
   
   if(maxresults > 200){
       for(i in 2:ceiling(total_res/200)){
         page_query <- paste(search,"&per_page=200&page=",i,sep="")
         data <-  GET(base_url,path = q_path, query = page_query)
         stop_for_status(data)
-        data_out <- rbind(data_out, read.csv(textConnection(content(data, as = "text"))))
+        data_out <- rbind(data_out, read.csv(textConnection(content(data, as = "text")), stringsAsFactors = FALSE))
       }
-    
   }
   
   if(maxresults < dim(data_out)[1]){
     data_out <- data_out[1:maxresults,]
   }
-  
-  
-  return(data_out)
+
+  if(meta){ 
+    return(list(meta=list(found=total_res, returned=nrow(data_out)), data=data_out)) 
+  } else { return(data_out) }
 }
-
-

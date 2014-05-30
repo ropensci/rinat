@@ -1,4 +1,3 @@
-
 # `rinat`
 
 
@@ -6,6 +5,7 @@
  
  
 ## About
+
 R wrapper for iNaturalist APIs for accessing the observations. The Detailed documentation of API is available on [iNaturlaist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc)
 
 
@@ -13,13 +13,19 @@ R wrapper for iNaturalist APIs for accessing the observations. The Detailed docu
 
 Install the development version using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
 
-```{r, eval=FALSE}
+```{r install, eval=FALSE}
 install.packages("devtools")
 require(devtools)
 
 install_github("rinat", "ropensci")
 library(rinat)
+```
 
+
+Load the package
+
+```{r load}
+library(rinat)
 ```
 
 
@@ -33,21 +39,18 @@ You can search for observations by either common or latin name.  It will search 
 
 ```{r, eval=FALSE}
 butterflies <- get_inat_obs(query="Monarch Butterfly")
+head(butterflies[,c(4:6)])
 ```
 
 
 
 ```{r load_lib,message=FALSE,warning=FALSE,echo=FALSE,cache=TRUE}
-library(rinat)
 library(ggplot2)
-
 ```
 
 
 Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool.  We can then see all the species names found.  
 ```{r}
-library(rinat)
-
 vp_obs <- get_inat_obs(query="vernal pool")
 head(vp_obs$Species.guess)
 ```
@@ -69,9 +72,9 @@ _Bounding box search_
 
 You can also search within a bounding box by giving a simple set of coordinates.
 
-```{r, eval = FALSE}
-## Search by area
+Search by area
 
+```{r, eval = FALSE}
 bounds <- c(38.44047,-125,40.86652,-121.837)
 deer <- get_inat_obs(query="Mule Deer", bounds=bounds)
 ```
@@ -84,11 +87,17 @@ _Get information and observations by project_
 
 You can get all the observations for a project if you know it's ID or name as an intaturalist slug
 
+Just get info about a project
+
 ```{r}
-## Just get info about a project
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE) 
-## Now get all the observations for that project
-vt_crows_obs <- get_inat_obs_project(vt_crows$id,type="observations")
+vt_crows <- get_inat_obs_project("crows-in-vermont", type="info", raw=FALSE) 
+```
+
+Now get all the observations for that project
+
+```{r}
+vt_crows_obs <- get_inat_obs_project(vt_crows$id, type="observations")
+head(vt_crows_obs[,c(1:4)])
 ```
 
 
@@ -115,46 +124,52 @@ _Stats by taxa_
 
 Basic statistics are available for taxa counts by date, date range, place ID (numeric ID), or user ID (string)
 
-```{r}
-## By date
-counts <- get_inat_taxon_stats(date="2010-06-14")
-counts
+By date
 
-## By place_ID
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE) 
+```{r}
+(counts <- get_inat_taxon_stats(date="2010-06-14"))
+```
+
+By place_ID
+
+```{r}
+vt_crows <- get_inat_obs_project("crows-in-vermont", type="info", raw=FALSE)
 place_counts <- get_inat_taxon_stats(place = vt_crows$place_id)
-place_counts
+place_counts$total
 ```
 
 _Stats by user_
 
 Similar statistics can be gotten for users.  The same input parameters can be used, but results are the top five users by species count and observation count.
 
-```{r}
-## By date
-counts <- get_inat_user_stats(date="2010-06-14")
-counts
+By date
 
-## By place_ID
+```{r}
+counts <- get_inat_user_stats(date="2010-06-14")
+counts$most_observations$user[,c(1:3)]
+```
+
+By place_ID
+
+```{r}
 vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE) 
 place_counts <- get_inat_user_stats(place = vt_crows$place_id)
-place_counts
+head(place_counts$most_species$user[,c(1:3)])
 ```
 
 ## Mapping.
 
 Basic maps can be created as well to quickly visualize search results.  Maps can either be plotted automatically `plot = TRUE` or simply return a ggplot2 object with `plot = FALSE`.  This works well with single species data, but more complicated plots are best made from scratch.
 
-```{r map, fig.align='center',fig.height=5,fig.width=7,fig.path='../inst/'}
-library(rinat)
-library(ggplot2)
+Map salamanders in the genuse Ambystoma
 
-## Map salamanders in the genuse Ambystoma
+```{r map1}
 m_obs <- get_inat_obs(taxon="Ambystoma maculatum")
-
 salamander_map <- inat_map(m_obs,plot=FALSE)
-### Now we can modify the returned map
-salamander_map + borders("state") + theme_bw()
-
 ```
 
+Now we can modify the returned map
+
+```{r map2, fig.align='center',fig.height=5,fig.width=7,fig.path='../inst/'}
+salamander_map + borders("state") + theme_grey(base_size = 18)
+```
