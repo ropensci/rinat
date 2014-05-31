@@ -1,17 +1,28 @@
 #' Download inaturalist data
-#' @description Primary function to retrieve observations from iNaturalist, allows users to search for data, or just filter results by a subset of what is offered by the API
+#' @description Primary function to retrieve observations from iNaturalist, allows users to search 
+#' for data, or just filter results by a subset of what is offered by the API
 #' @param query Query string for a general search
-#' @param quality the quality grade to be used.  Must be either "casual" or "research"  If left blank both will be returned.
-#' @param taxon Filter by iNat taxon name. Note that this will also select observations of descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no observations may be returned.
-#' @param geo flag for returning only results that are georeferenced, TRUE will exclude non-georeferenced results, but they cannot be excluded.
+#' @param quality the quality grade to be used.  Must be either "casual" or "research"  If left 
+#' blank both will be returned.
+#' @param taxon Filter by iNat taxon name. Note that this will also select observations of 
+#' descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no 
+#' observations may be returned.
+#' @param geo flag for returning only results that are georeferenced, TRUE will exclude 
+#' non-georeferenced results, but they cannot be excluded.
 #' @param year return observations only in that year (can only be one year, not a range of years)
 #' @param month return observations only by month, must be numeric, 1...12
 #' @param day return observations only on a given day of the month,  1...31
-#' @param bounds a bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search within.  It is a vector in the form of southern latitude, western longitude, northern latitude, and easter longitude
+#' @param bounds a bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search 
+#' within.  It is a vector in the form of southern latitude, western longitude, northern latitude, 
+#' and easter longitude
 #' @param maxresults the maximum number of results to return
 #' @param meta (logical) If TRUE, the output of this function is a list with metadata on the output
 #' and a data.frame of the data. If FALSE (default), just the data.frame.
-#' @note Filtering doesn't always work with the query parameter for some reason (a problem on the API end).  If you want to filter by time, it's best to use the scientific name and put it in the 'taxa' field, and not in the query field.  Another issue is that the query parameter will search the entire entry, so it is possible to get unintended results.  Depending on your use case it may be advisable to use the "taxon" field instead of the query field.
+#' @note Filtering doesn't always work with the query parameter for some reason (a problem on 
+#' the API end).  If you want to filter by time, it's best to use the scientific name and put it 
+#' in the 'taxa' field, and not in the query field.  Another issue is that the query parameter 
+#' will search the entire entry, so it is possible to get unintended results.  Depending on your 
+#' use case it may be advisable to use the "taxon" field instead of the query field.
 #' @return a dataframe of the number of observations requestsed
 #' @examples \dontrun{
 #'   ### Make a standard query
@@ -109,25 +120,45 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
     stop("Your search returned zero results.  Either your species of interest has no records or you entered an invalid search")
   }
   
-    page_query <- paste(search,"&per_page=200&page=1",sep="")
-    data <-  GET(base_url,path = q_path, query = page_query)
-    stop_for_status(data)
-    data_out <- read.csv(textConnection(content(data, as = "text")), stringsAsFactors = FALSE)
+  page_query <- paste(search,"&per_page=200&page=1",sep="")
+  data <-  GET(base_url, path = q_path, query = page_query)
+  data <- inat_handle(data)
+  data_out <- if(is.na(data)) NA else read.csv(textConnection(data), stringsAsFactors = FALSE)
   
   if(maxresults > 200){
-      for(i in 2:ceiling(total_res/200)){
-        page_query <- paste(search,"&per_page=200&page=",i,sep="")
-        data <-  GET(base_url,path = q_path, query = page_query)
-        stop_for_status(data)
-        data_out <- rbind(data_out, read.csv(textConnection(content(data, as = "text")), stringsAsFactors = FALSE))
-      }
+    for(i in 2:ceiling(total_res/200)){
+      page_query <- paste(search,"&per_page=200&page=",i,sep="")
+      data <-  GET(base_url,path = q_path, query = page_query)
+      data <- inat_handle(data)
+      data_out <- rbind(data_out, read.csv(textConnection(data), stringsAsFactors = FALSE))
+    }
   }
   
-  if(maxresults < dim(data_out)[1]){
-    data_out <- data_out[1:maxresults,]
+  if(is.data.frame(data_out)){
+    if(maxresults < dim(data_out)[1]){
+      data_out <- data_out[1:maxresults,]
+    }
   }
 
   if(meta){ 
     return(list(meta=list(found=total_res, returned=nrow(data_out)), data=data_out)) 
   } else { return(data_out) }
+}
+
+inat_handle <- function(x){
+  res <- content(x, as = "text")
+  if(!x$headers$`content-type` == 'text/csv; charset=utf-8' || x$status_code > 202 || nchar(res)==0 ){
+    if(!x$headers$`content-type` == 'text/csv; charset=utf-8'){
+      warning("Conent type incorrect, should be 'text/csv; charset=utf-8'")
+      NA
+    }
+    if(x$status_code > 202){
+      warning(sprintf("Error: HTTP Status %s", data$status_code))
+      NA
+    }
+    if(nchar(res)==0){
+      warning("No data found")
+      NA
+    }
+  } else { res }
 }

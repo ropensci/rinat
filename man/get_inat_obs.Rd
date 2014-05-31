@@ -10,11 +10,15 @@ get_inat_obs(query = NULL, taxon = NULL, quality = NULL, geo = NULL,
 \arguments{
 \item{query}{Query string for a general search}
 
-\item{quality}{the quality grade to be used.  Must be either "casual" or "research"  If left blank both will be returned.}
+\item{quality}{the quality grade to be used.  Must be either "casual" or "research"  If left
+blank both will be returned.}
 
-\item{taxon}{Filter by iNat taxon name. Note that this will also select observations of descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no observations may be returned.}
+\item{taxon}{Filter by iNat taxon name. Note that this will also select observations of
+descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no
+observations may be returned.}
 
-\item{geo}{flag for returning only results that are georeferenced, TRUE will exclude non-georeferenced results, but they cannot be excluded.}
+\item{geo}{flag for returning only results that are georeferenced, TRUE will exclude
+non-georeferenced results, but they cannot be excluded.}
 
 \item{year}{return observations only in that year (can only be one year, not a range of years)}
 
@@ -22,7 +26,9 @@ get_inat_obs(query = NULL, taxon = NULL, quality = NULL, geo = NULL,
 
 \item{day}{return observations only on a given day of the month,  1...31}
 
-\item{bounds}{a bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search within.  It is a vector in the form of southern latitude, western longitude, northern latitude, and easter longitude}
+\item{bounds}{a bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search
+within.  It is a vector in the form of southern latitude, western longitude, northern latitude,
+and easter longitude}
 
 \item{maxresults}{the maximum number of results to return}
 
@@ -33,10 +39,15 @@ and a data.frame of the data. If FALSE (default), just the data.frame.}
 a dataframe of the number of observations requestsed
 }
 \description{
-Primary function to retrieve observations from iNaturalist, allows users to search for data, or just filter results by a subset of what is offered by the API
+Primary function to retrieve observations from iNaturalist, allows users to search
+for data, or just filter results by a subset of what is offered by the API
 }
 \note{
-Filtering doesn't always work with the query parameter for some reason (a problem on the API end).  If you want to filter by time, it's best to use the scientific name and put it in the 'taxa' field, and not in the query field.  Another issue is that the query parameter will search the entire entry, so it is possible to get unintended results.  Depending on your use case it may be advisable to use the "taxon" field instead of the query field.
+Filtering doesn't always work with the query parameter for some reason (a problem on
+the API end).  If you want to filter by time, it's best to use the scientific name and put it
+in the 'taxa' field, and not in the query field.  Another issue is that the query parameter
+will search the entire entry, so it is possible to get unintended results.  Depending on your
+use case it may be advisable to use the "taxon" field instead of the query field.
 }
 \examples{
 \dontrun{
