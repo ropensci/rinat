@@ -1,11 +1,12 @@
- [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
+[![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
+[![Build status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 
 # `rinat`
 
 
 ## Quickstart guide
- 
- 
+
+
 ## About
 R wrapper for iNaturalist APIs for accessing the observations. The Detailed documentation of API is available on [iNaturlaist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc)
 
@@ -45,7 +46,7 @@ library(ggplot2)
 ```
 
 
-Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool.  We can then see all the species names found.  
+Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool.  We can then see all the species names found.
 ```{r}
 library(rinat)
 
@@ -87,7 +88,7 @@ You can get all the observations for a project if you know it's ID or name as an
 
 ```{r}
 ## Just get info about a project
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE) 
+vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
 ## Now get all the observations for that project
 vt_crows_obs <- get_inat_obs_project(vt_crows$id,type="observations")
 ```
@@ -122,7 +123,7 @@ counts <- get_inat_taxon_stats(date="2010-06-14")
 counts
 
 ## By place_ID
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE) 
+vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
 place_counts <- get_inat_taxon_stats(place = vt_crows$place_id)
 place_counts
 ```
@@ -137,7 +138,7 @@ counts <- get_inat_user_stats(date="2010-06-14")
 counts
 
 ## By place_ID
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE) 
+vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
 place_counts <- get_inat_user_stats(place = vt_crows$place_id)
 place_counts
 ```
@@ -158,4 +159,3 @@ salamander_map <- inat_map(m_obs,plot=FALSE)
 salamander_map + borders("state") + theme_bw()
 
 ```
-
