@@ -1,4 +1,5 @@
 #' Download inaturalist data
+#' 
 #' @description Primary function to retrieve observations from iNaturalist, allows users to search 
 #' for data, or just filter results by a subset of what is offered by the API
 #' @param query Query string for a general search
@@ -125,8 +126,9 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
   data <- inat_handle(data)
   data_out <- if(is.na(data)) NA else read.csv(textConnection(data), stringsAsFactors = FALSE)
   
+  if(total_res < maxresults) maxresults <- total_res
   if(maxresults > 200){
-    for(i in 2:ceiling(total_res/200)){
+    for(i in 2:ceiling(maxresults/200)){
       page_query <- paste(search,"&per_page=200&page=",i,sep="")
       data <-  GET(base_url,path = q_path, query = page_query)
       data <- inat_handle(data)
