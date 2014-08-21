@@ -1,11 +1,12 @@
  [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
+ [![Build status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 
 # `riNat`
 
 
 ## Quickstart guide
- 
- 
+
+
 ## About
 R wrapper for iNaturalist APIs for accessing the observations. The Detailed documentation of API is available on [iNaturlaist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc)
 
@@ -57,8 +58,8 @@ head(vp_obs$Species.guess)
 
 ```
 ## [1]                              Rails, Gallinules, and Coots
-## [3] Western Spadefoot            Western Spadefoot           
-## [5] Eupsilia                     upland chorus frog          
+## [3] Western Spadefoot            Western Spadefoot
+## [5] Eupsilia                     upland chorus frog
 ## 156 Levels:  Alisma lanceolatum Alisma plantago-aquatica ... Yellow Starthistle (Centaurea solstitialis)
 ```
 
@@ -136,19 +137,19 @@ head(get_inat_obs_id(m_obs$Id[1]))
 ```
 ## $captive
 ## [1] FALSE
-## 
+##
 ## $comments_count
 ## [1] 0
-## 
+##
 ## $community_taxon_id
 ## NULL
-## 
+##
 ## $created_at
 ## [1] "2014-03-20T11:40:34-05:00"
-## 
+##
 ## $delta
 ## [1] TRUE
-## 
+##
 ## $description
 ## [1] "Two individuals flying around in the grassy margin of a large eucalyptus grove, adjacent to a salt marsh. "
 ```
@@ -161,7 +162,7 @@ If you just want all the observations by a user you can download all their obser
 
 ```r
 m_obs <- get_inat_obs(query = "Monarch Butterfly")
-head(get_inat_obs_user(as.character(m_obs$User.login[1]), maxresults = 20))[, 
+head(get_inat_obs_user(as.character(m_obs$User.login[1]), maxresults = 20))[,
     1:5]
 ```
 
@@ -172,7 +173,7 @@ head(get_inat_obs_user(as.character(m_obs$User.login[1]), maxresults = 20))[,
 ## 3      Toxicoscordion fremontii 2014-03-09 12:21:50 +0000
 ## 4 Coluber lateralis euryxanthus 2014-03-09 12:32:59 +0000
 ##                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Description
-## 1                                                                                                                                                                                                                                                                                                                                                                Two individuals flying around in the grassy margin of a large eucalyptus grove, adjacent to a salt marsh. 
+## 1                                                                                                                                                                                                                                                                                                                                                                Two individuals flying around in the grassy margin of a large eucalyptus grove, adjacent to a salt marsh.
 ## 2                                                                                                                                                                                                         In the first km along the Nimitz Way paved trail starting from the Inspiration Point parking lot, 109 newts were seen on or immediately next to the trail, between 17:30 and 18:00. It was raining, the ground was wet, with numerous puddles and standing water.
 ## 3                                                                                                                                                                                                                                                                                                                                                        Growing on a gravel slope below an eroding outcrop of sandstone/mudstone. Site elevation is 270 m above sea level.
 ## 4 The snake was approximately 50 cm long. It was seen sitting motionless in a bare patch on a east-southeast facing slope, probably warming up. The weather was cloudy and the air temperature was 15 deg C. Elevation at the site was 300 meters above sea level. The immediate vegetation community was chaparral, near the interface with an oak woodland. The sighting was just off a trail, near the crest of a ridgeline with 60% slopes dropping off on either side.
@@ -198,7 +199,7 @@ counts
 ```
 ## $total
 ## [1] 49
-## 
+##
 ## $species_counts
 ##   count taxon.id             taxon.name taxon.rank taxon.rank_level
 ## 1     1    58564        Boloria bellona    species               10
@@ -266,17 +267,17 @@ counts
 ## 3                    Aves                  least_concern
 ## 4                Amphibia                     endangered
 ## 5                    Aves                  least_concern
-## 
+##
 ## $rank_counts
 ## $rank_counts$subspecies
 ## [1] 1
-## 
+##
 ## $rank_counts$genus
 ## [1] 3
-## 
+##
 ## $rank_counts$species
 ## [1] 44
-## 
+##
 ## $rank_counts$variety
 ## [1] 1
 ```
@@ -300,7 +301,7 @@ place_counts
 ```
 ## $total
 ## [1] 3772
-## 
+##
 ## $species_counts
 ##   count taxon.id        taxon.name taxon.rank taxon.rank_level
 ## 1   349    52391     Pinus strobus    species               10
@@ -368,65 +369,65 @@ place_counts
 ## 3                 Plantae                             NA
 ## 4                 Plantae                             NA
 ## 5                    Aves                             NA
-## 
+##
 ## $rank_counts
 ## $rank_counts$phylum
 ## [1] 10
-## 
+##
 ## $rank_counts$superfamily
 ## [1] 12
-## 
+##
 ## $rank_counts$class
 ## [1] 17
-## 
+##
 ## $rank_counts$infraorder
 ## [1] 1
-## 
+##
 ## $rank_counts$subfamily
 ## [1] 16
-## 
+##
 ## $rank_counts$stateofmatter
 ## [1] 1
-## 
+##
 ## $rank_counts$family
 ## [1] 150
-## 
+##
 ## $rank_counts$epifamily
 ## [1] 1
-## 
+##
 ## $rank_counts$genus
 ## [1] 513
-## 
+##
 ## $rank_counts$order
 ## [1] 46
-## 
+##
 ## $rank_counts$suborder
 ## [1] 10
-## 
+##
 ## $rank_counts$subspecies
 ## [1] 62
-## 
+##
 ## $rank_counts$subclass
 ## [1] 2
-## 
+##
 ## $rank_counts$variety
 ## [1] 25
-## 
+##
 ## $rank_counts$hybrid
 ## [1] 14
-## 
+##
 ## $rank_counts$kingdom
 ## [1] 5
-## 
+##
 ## $rank_counts$form
 ## [1] 4
-## 
+##
 ## $rank_counts$fo
 ## [1] 1
-## 
+##
 ## $rank_counts$species
 ## [1] 2873
-## 
+##
 ## $rank_counts$tribe
 ## [1] 9
 ```
@@ -446,11 +447,11 @@ counts
 ```
 ## $total
 ## [1] 25
-## 
+##
 ## $most_observations
 ##   count user.id user.login   user.name
 ## 1    10    9706 greglasley Greg Lasley
-## 2     4     357  annetanne            
+## 2     4     357  annetanne
 ## 3     4   10285    finatic   BJ Stacey
 ## 4     3     873   tapbirds   Scott Cox
 ## 5     3   18056   plantman        <NA>
@@ -460,13 +461,13 @@ counts
 ## 3 http://www.inaturalist.org/attachments/users/icons/10285-thumb.jpg?1350000458
 ## 4              http://www.inaturalist.org/attachments/users/icons/873-thumb.jpg
 ## 5                                                                          <NA>
-## 
+##
 ## $most_species
 ##   count user.id user.login   user.name
 ## 1    10    9706 greglasley Greg Lasley
 ## 2     4   10285    finatic   BJ Stacey
 ## 3     3    3403     davidr     David R
-## 4     3     382    tsoleau            
+## 4     3     382    tsoleau
 ## 5     3     873   tapbirds   Scott Cox
 ##                                                              user.user_icon_url
 ## 1  http://www.inaturalist.org/attachments/users/icons/9706-thumb.jpg?1389224786
@@ -495,7 +496,7 @@ place_counts
 ```
 ## $total
 ## [1] 285
-## 
+##
 ## $most_observations
 ##   count user.id   user.login      user.name
 ## 1  5571    2179      charlie   Charlie Hohn
@@ -509,7 +510,7 @@ place_counts
 ## 3   http://www.inaturalist.org/attachments/users/icons/317-thumb.jpg?1373935791
 ## 4 http://www.inaturalist.org/attachments/users/icons/11792-thumb.jpg?1394793142
 ## 5 http://www.inaturalist.org/attachments/users/icons/12036-thumb.jpg?1387504441
-## 
+##
 ## $most_species
 ##   count user.id   user.login      user.name
 ## 1  1215   12610 susanelliott  Susan Elliott
@@ -548,5 +549,3 @@ salamander_map + borders("state") + theme_bw()
 ```
 
 <img src="inst/map.png" title="plot of chunk map" alt="plot of chunk map" style="display: block; margin: auto;" />
-
-
