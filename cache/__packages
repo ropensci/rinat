@@ -1,0 +1,12 @@
+base
+datasets
+devtools
+ggplot2
+graphics
+grDevices
+knitr
+methods
+rinat
+rmarkdown
+stats
+utils
