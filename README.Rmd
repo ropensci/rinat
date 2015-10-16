@@ -140,7 +140,7 @@ counts
 ## By place_ID
 vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
 place_counts <- get_inat_user_stats(place = vt_crows$place_id)
-place_counts
+head(place_counts$most_observations)
 ```
 
 ## Mapping.
