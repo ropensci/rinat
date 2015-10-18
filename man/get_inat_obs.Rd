@@ -4,16 +4,18 @@
 \alias{get_inat_obs}
 \title{Download inaturalist data}
 \usage{
-get_inat_obs(query = NULL, taxon = NULL, quality = NULL, geo = NULL,
-  year = NULL, month = NULL, day = NULL, bounds = NULL,
-  maxresults = 100, meta = FALSE)
+get_inat_obs(query = NULL, taxon_name = NULL, taxon_id = NULL,
+  quality = NULL, geo = NULL, year = NULL, month = NULL, day = NULL,
+  bounds = NULL, maxresults = 100, meta = FALSE)
 }
 \arguments{
 \item{query}{Query string for a general search}
 
-\item{taxon}{Filter by iNat taxon name. Note that this will also select observations of
+\item{taxon_name}{Filter by iNat taxon name. Note that this will also select observations of
 descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no
 observations may be returned.}
+
+\item{taxon_id}{Filter by iNat taxon ID. Note that this will also select observations of descendant taxa.}
 
 \item{quality}{the quality grade to be used.  Must be either "casual" or "research"  If left
 blank both will be returned.}

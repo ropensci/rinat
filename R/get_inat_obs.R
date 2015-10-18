@@ -5,9 +5,10 @@
 #' @param query Query string for a general search
 #' @param quality the quality grade to be used.  Must be either "casual" or "research"  If left 
 #' blank both will be returned.
-#' @param taxon Filter by iNat taxon name. Note that this will also select observations of 
+#' @param taxon_name Filter by iNat taxon name. Note that this will also select observations of 
 #' descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no 
 #' observations may be returned.
+#' @param taxon_id Filter by iNat taxon ID. Note that this will also select observations of descendant taxa.
 #' @param geo flag for returning only results that are georeferenced, TRUE will exclude 
 #' non-georeferenced results, but they cannot be excluded.
 #' @param year return observations only in that year (can only be one year, not a range of years)
@@ -44,7 +45,7 @@
 #' @import httr plyr
 #' @export
 
-get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100,meta=FALSE)
+get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100,meta=FALSE)
 {  
   
   ## Parsing and error-handling of input strings
@@ -61,9 +62,14 @@ get_inat_obs <- function(query=NULL,taxon = NULL,quality=NULL,geo=NULL,year=NULL
     search <- paste(search,"&quality_grade=",quality,sep="")
   }
   
-  if(!is.null(taxon)){
-    search <-  paste(search,"&taxon_name=",gsub(" ","+",taxon),sep="")
+  if(!is.null(taxon_name)){
+    search <-  paste(search,"&taxon_name=",gsub(" ","+",taxon_name),sep="")
   }
+  
+  if(!is.null(taxon_id)){
+    search <-  paste(search,"&taxon_id=",gsub(" ","+",taxon_id),sep="")
+  }
+  
   
   if(!is.null(geo) && geo){
     search <- paste(search,"&has[]=geo",sep="")
