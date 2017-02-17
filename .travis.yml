@@ -5,6 +5,10 @@ before_script:
 - chmod 755 ./travis-tool.sh
 - "./travis-tool.sh bootstrap"
 - "./travis-tool.sh install_deps"
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+
 notifications:
   slack:
     secure: YYGw1ONNsTbfAXCNjJJk355lUXBo8YS56oJAwyXhWLRI/zx+1iydGKEWlteXBgyf3mTHz6DWkx2nq1dq+tGWSYoJL6x++K7wYSwAWuO6HZJ1lDBE8WvqY8zujYd35ptWsYHraeK9kUKwVijMRrX96thvjTWOHjYTydCfHp2B8ws=
