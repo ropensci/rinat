@@ -1,29 +1,13 @@
 [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
 [![Build status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
-
-# `rinat`
-
-
 ## Quickstart guide
-
-
+ 
+ 
 ## About
 R wrapper for iNaturalist APIs for accessing the observations. The Detailed documentation of API is available on [iNaturlaist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc)
 
 
-## Install
-
-Install the development version using `install_github` within Hadley's [devtools](https://github.com/hadley/devtools) package.
-
-```{r, eval=FALSE}
-install.packages("devtools")
-require(devtools)
-
-install_github("rinat", "ropensci")
-library(rinat)
-
-```
 
 
 ## Get observations
@@ -33,51 +17,61 @@ __Searching__
 _Fuzzy search_
 
 You can search for observations by either common or latin name.  It will search the entire iNaturalist entry, so the search below will return all entries that mention Monarch butterflies, not just entries for Monarchs.
-
-```{r, eval=FALSE}
-butterflies <- get_inat_obs(query="Monarch Butterfly")
+```{r,  message=FALSE,warning=FALSE,echo=FALSE}
+options(stringsAsFactors = FALSE)
 ```
 
 
 
-```{r load_lib,message=FALSE,warning=FALSE,echo=FALSE,cache=TRUE}
-library(rinat)
-library(ggplot2)
-
-```
-
-
-Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool.  We can then see all the species names found.
-```{r}
+```{r, message=FALSE,warning=FALSE}
 library(rinat)
 
-vp_obs <- get_inat_obs(query="vernal pool")
-head(vp_obs$Species.guess)
+butterflies <- get_inat_obs(query = "Monarch Butterfly")
 ```
+
+
+
+
+
+
+
+
+Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool.  We can then see all the species names found.  
+
+```{r, message=FALSE,warning=FALSE}
+vp_obs <- get_inat_obs(query = "vernal pool")
+head(vp_obs$species_guess)
+```
+
+
 
 
 _Taxon query_
 To return only records for a specific species or taxonomic group, use the taxon option.
 
-```{r,eval = FALSE}
+
+```{r}
 ## Return just observations in the family Plecoptera
-stone_flies <- get_inat_obs(taxon="Plecoptera")
+stone_flies <- get_inat_obs(taxon_name  = "Plecoptera", year = 2010)
 
 ## Return just Monarch Butterfly records
-just_butterflies <- get_inat_obs(taxon="Danaus plexippus")
+just_butterflies <- get_inat_obs(taxon_name = "Danaus plexippus")
 ```
+
 
 
 _Bounding box search_
 
 You can also search within a bounding box by giving a simple set of coordinates.
 
-```{r, eval = FALSE}
+
+```{r}
 ## Search by area
 
-bounds <- c(38.44047,-125,40.86652,-121.837)
-deer <- get_inat_obs(query="Mule Deer", bounds=bounds)
+bounds <- c(38.44047, -125, 40.86652, -121.837)
+deer <- get_inat_obs(query = "Mule Deer", bounds = bounds)
 ```
+
 
 __Other functions__
 
@@ -87,12 +81,18 @@ _Get information and observations by project_
 
 You can get all the observations for a project if you know it's ID or name as an intaturalist slug
 
+
 ```{r}
 ## Just get info about a project
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
-## Now get all the observations for that project
-vt_crows_obs <- get_inat_obs_project(vt_crows$id,type="observations")
+vt_crows <- get_inat_obs_project("crows-in-vermont", type = "info", raw = FALSE)
 ```
+
+```{r}
+## Now get all the observations for that project
+vt_crows_obs <- get_inat_obs_project(vt_crows$id, type = "observations")
+```
+
+
 
 
 
@@ -100,72 +100,81 @@ _Get observation details_
 
 Detailed information about a specific observation can be retrieved by observation ID.  The easiest way to get the ID is from a more general search.
 
+
 ```{r}
-m_obs <- get_inat_obs(query="Monarch Butterfly")
-head(get_inat_obs_id(m_obs$Id[1]))
+m_obs <- get_inat_obs(query = "Monarch Butterfly")
+head(get_inat_obs_id(m_obs$id[1]))
 ```
+
 
 _Get all observations by user_
 
 If you just want all the observations by a user you can download all their observations by user ID.  A word of warning though, this can be quite large (easily into the 1000's)
 
+
 ```{r}
-m_obs <- get_inat_obs(query="Monarch Butterfly")
-head(get_inat_obs_user(as.character(m_obs$User.login[1]),maxresults=20))[,1:5]
+m_obs <- get_inat_obs(query = "Monarch Butterfly")
+head(get_inat_obs_user(as.character(m_obs$user_login[1]), maxresults = 20))[,1:5]
 ```
 
 _Stats by taxa_
 
 Basic statistics are available for taxa counts by date, date range, place ID (numeric ID), or user ID (string)
 
+
 ```{r}
 ## By date
-counts <- get_inat_taxon_stats(date="2010-06-14")
-counts
-
-## By place_ID
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
-place_counts <- get_inat_taxon_stats(place = vt_crows$place_id)
-place_counts
+counts <- get_inat_taxon_stats(date = "2010-06-14")
+print(counts$total)
+print(counts$species_counts[1:5,])
+print(counts$rank_counts)
 ```
+
 
 _Stats by user_
 
 Similar statistics can be gotten for users.  The same input parameters can be used, but results are the top five users by species count and observation count.
 
+
 ```{r}
 ## By date
-counts <- get_inat_user_stats(date="2010-06-14")
-counts
+counts <- get_inat_user_stats(date = "2010-06-14")
+print(counts$total)
+print(counts$most_observations[1:10,])
+print(counts$most_species[1:10,])
+```
+
+
+```{r}
 
 ## By place_ID
-vt_crows <- get_inat_obs_project("crows-in-vermont", type="info",raw=FALSE)
-place_counts <- get_inat_user_stats(place = vt_crows$place_id)
-head(place_counts$most_observations)
+vt_crows <- get_inat_obs_project("crows-in-vermont", type = "info", raw = FALSE)
 ```
+
+
+```{r}
+place_counts <- get_inat_user_stats(place = vt_crows$place_id)
+print(place_counts$total)
+print(place_counts$most_observations[1:10,])
+print(place_counts$most_species[1:10,])
+
+```
+
+
 
 ## Mapping.
 
 Basic maps can be created as well to quickly visualize search results.  Maps can either be plotted automatically `plot = TRUE` or simply return a ggplot2 object with `plot = FALSE`.  This works well with single species data, but more complicated plots are best made from scratch.
 
-```{r map, fig.align='center',fig.height=5,fig.width=7,fig.path='inst/'}
-library(rinat)
+
+```{r fig.width=7,fig.height=4}
 library(ggplot2)
 
 ## Map salamanders in the genuse Ambystoma
-m_obs <- get_inat_obs(taxon="Ambystoma maculatum")
+m_obs <- get_inat_obs(taxon_name = "Ambystoma maculatum")
 
-salamander_map <- inat_map(m_obs,plot=FALSE)
+salamander_map <- inat_map(m_obs, plot = FALSE)
 ### Now we can modify the returned map
 salamander_map + borders("state") + theme_bw()
-
 ```
-
----
-  
-This package is part of a richer suite called [SPOCC Species Occurrence Data](https://github.com/ropensci/spocc), along with several other packages, that provide access to occurrence records from multiple databases. We recommend using SPOCC as the primary R interface to ecoengine unless your needs are limited to this single source.    
-
----
-
-[![ropensci footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
 
