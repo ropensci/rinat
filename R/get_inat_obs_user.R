@@ -8,7 +8,7 @@
 #'   m_obs <- get_inat_obs(query="Monarch Butterfly")
 #'   get_inat_obs_user(as.character(m_obs$User.login[1]))
 #' }
-#' @import httr plyr jsonlite
+#' @import httr jsonlite
 #' @export
 
 

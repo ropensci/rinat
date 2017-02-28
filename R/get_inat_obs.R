@@ -36,13 +36,13 @@
 #'   
 #'   ## Filter with by just taxon, allows higher order filtering, 
 #'   ## Here we can search for just stone flies (order plecoptera)
-#'   get_inat_obs(taxon="Plecoptera")
+#'   get_inat_obs(taxon_name="Plecoptera")
 #'   
 #'   ## get metadata (the number of results found on the server)
 #'   out <- get_inat_obs(query="Monarch Butterfly", meta=TRUE)
 #'   out$meta
 #' }
-#' @import httr plyr
+#' @import httr 
 #' @export
 
 get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100,meta=FALSE)

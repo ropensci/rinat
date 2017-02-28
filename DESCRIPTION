@@ -1,8 +1,8 @@
 Package: rinat
 Type: Package
 Title: Access iNaturalist data through APIs
-Version: 0.1.5.99
-Date: 2016-04-20
+Version: 0.1.5
+Date: 2017-02-27
 Author: Vijay Barve<vijay.barve@gmail.com>,
     Edmund Hart <edmund.m.hart@gmail.com>
 Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
@@ -15,4 +15,6 @@ Imports:
     jsonlite,
     ggplot2,
     maps
-Packaged: 2014-03-20 19:41:38 UTC; thart
+RoxygenNote: 6.0.1
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr

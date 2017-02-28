@@ -1,6 +1,14 @@
 
-# `rinat`
-
+---
+title: "Access iNaturalist data through APIs"
+author: "Edmund Hart"
+date: "2017-02-27"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Access iNaturalist data through APIs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 ## Quickstart guide
  
