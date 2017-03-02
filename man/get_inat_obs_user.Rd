@@ -20,6 +20,6 @@ Get all the observations of a specific inaturalist user
 \examples{
 \dontrun{
   m_obs <- get_inat_obs(query="Monarch Butterfly")
-  get_inat_obs_user(as.character(m_obs$User.login[1]))
+  get_inat_obs_user(as.character(m_obs$user_login[1]))
 }
 }

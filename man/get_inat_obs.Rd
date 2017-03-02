@@ -63,7 +63,7 @@ use case it may be advisable to use the "taxon" field instead of the query field
   
   ## Filter with by just taxon, allows higher order filtering, 
   ## Here we can search for just stone flies (order plecoptera)
-  get_inat_obs(taxon="Plecoptera")
+  get_inat_obs(taxon_name="Plecoptera")
   
   ## get metadata (the number of results found on the server)
   out <- get_inat_obs(query="Monarch Butterfly", meta=TRUE)

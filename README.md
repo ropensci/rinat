@@ -1,8 +1,7 @@
-[![Build
-Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
+[![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
+[![Build status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
+[![Downloads](http://cranlogs.r-pkg.org/badges/rinat](http://cranlogs.r-pkg.org/badges/rinat)
 
 Quickstart guide
 ----------------
@@ -38,9 +37,9 @@ vernal pool. We can then see all the species names found.
     vp_obs <- get_inat_obs(query = "vernal pool")
     head(vp_obs$species_guess)
 
-    ## [1] "Great Blue Skimmer"       "Wood Frog"               
-    ## [3] ""                         ""                        
-    ## [5] "Vernal Pool Fairy Shrimp" "Fairy Shrimp"
+    ## [1] "Eastern Hemlock"         ""                       
+    ## [3] "Longtail Tadpole Shrimp" "Great Blue Skimmer"     
+    ## [5] "Wood Frog"               ""
 
 *Taxon query* To return only records for a specific species or taxonomic
 group, use the taxon option.
@@ -90,22 +89,22 @@ search.
     head(get_inat_obs_id(m_obs$id[1]))
 
     ## $id
-    ## [1] 5196678
+    ## [1] 5209229
     ## 
     ## $observed_on
-    ## [1] "2017-02-28"
+    ## [1] "2016-12-12"
     ## 
     ## $description
-    ## [1] "One seen in the distance flying by."
+    ## NULL
     ## 
     ## $latitude
-    ## [1] "-43.646084"
+    ## [1] "-42.9071542023"
     ## 
     ## $longitude
-    ## [1] "172.467806"
+    ## [1] "172.6419067383"
     ## 
     ## $map_scale
-    ## [1] 15
+    ## NULL
 
 *Get all observations by user*
 
@@ -116,27 +115,27 @@ quite large (easily into the 1000's)
     m_obs <- get_inat_obs(query = "Monarch Butterfly")
     head(get_inat_obs_user(as.character(m_obs$user_login[1]), maxresults = 20))[,1:5]
 
-    ##          scientific_name                  datetime
-    ## 1       Buddleja davidii 2017-02-28 16:58:00 +1300
-    ## 2       Trifolium repens 2017-02-28 16:58:00 +1300
-    ## 3       Danaus plexippus 2017-02-28 16:58:00 +1300
-    ## 4           Vanessa itea 2017-02-28 15:14:00 +1300
-    ## 5           Urtica ferox 2017-02-28 15:14:00 +1300
-    ## 6 Muehlenbeckia complexa 2017-02-28 15:14:00 +1300
-    ##                                                                                                                                                                                                                                                         description
-    ## 1                                                                                                                 The butterfly bush was just about finished flowering. We didn't see butterflies on it other than a couple of visits by cabbage white butterflies.
-    ## 2                                                                     The only possible butterfly host plant we could find at this site. The clover, like the rest of the lawn, was very dry. Clover flowers can be fed on by southern blue butterfly caterpillars.
-    ## 3                                                                                                                                                                                                                               One seen in the distance flying by.
-    ## 4 We found three admiral pupae on the planted <em>Urtica ferox</em> plus one dead late instar larva. One pupa was mature so we collected it and it eclosed into an adult yellow admiral later the same afternoon. Our identification of the pupae is based on that.
-    ## 5                                                                                       One of the potential host plants for butterflies found in the garden outside the Landscape Architecture building. Admiral butterfly caterpillars can feed on these nettles.
-    ## 6                                                                                                                      One of the potential host plants for butterflies found in the garden outside the Landscape Architecture building. Coppers can feed on these.
-    ##                       place_guess  latitude
-    ## 1 Lincoln University, New Zealand -43.64608
-    ## 2 Lincoln University, New Zealand -43.64608
-    ## 3 Lincoln University, New Zealand -43.64608
-    ## 4 Lincoln University, New Zealand -43.64469
-    ## 5 Lincoln University, New Zealand -43.64469
-    ## 6 Lincoln University, New Zealand -43.64469
+    ##    scientific_name                  datetime
+    ## 1     Vanessa itea 2016-12-12 12:33:00 +1300
+    ## 2 Danaus plexippus 2016-12-12 12:30:00 +1300
+    ## 3 Danaus plexippus 2016-12-12 11:53:00 +1300
+    ## 4 Danaus plexippus 2016-12-12 11:52:00 +1300
+    ## 5 Danaus plexippus 2016-12-12 11:41:00 +1300
+    ## 6 Danaus plexippus 2016-12-12 11:43:00 +1300
+    ##                                             description
+    ## 1                                                      
+    ## 2                                                      
+    ## 3                                                      
+    ## 4                                                      
+    ## 5                                                      
+    ## 6 This Monarch appears to have slightly deformed wings.
+    ##             place_guess  latitude
+    ## 1 Hawarden, New Zealand -42.90615
+    ## 2 Hawarden, New Zealand -42.90715
+    ## 3 Hawarden, New Zealand -42.91621
+    ## 4 Hawarden, New Zealand -42.90816
+    ## 5 Hawarden, New Zealand -42.91319
+    ## 6                              NA
 
 *Stats by taxa*
 
@@ -147,7 +146,7 @@ place ID (numeric ID), or user ID (string)
     counts <- get_inat_taxon_stats(date = "2010-06-14")
     print(counts$total)
 
-    ## [1] 119
+    ## [1] 120
 
     print(counts$species_counts[1:5,])
 
@@ -156,13 +155,13 @@ place ID (numeric ID), or user ID (string)
     ## 2     2    17008       Sayornis phoebe    species               10
     ## 3     2    52589 Coenonympha pamphilus    species               10
     ## 4     2    55908         Lepus timidus    species               10
-    ## 5     2    58484    Thymelicus lineola    species               10
+    ## 5     2    56057  Leucanthemum vulgare    species               10
     ##   taxon.default_name.id taxon.default_name.name
     ## 1                 91278    Glanville Fritillary
     ## 2                 20369          Eastern Phoebe
     ## 3                114753             Small Heath
     ## 4                 88688           Mountain Hare
-    ## 5                455733           Essex Skipper
+    ## 5                 89055            Ox-eye Daisy
     ##   taxon.default_name.is_valid taxon.default_name.lexicon
     ## 1                        TRUE                    English
     ## 2                        TRUE                    English
@@ -170,34 +169,34 @@ place ID (numeric ID), or user ID (string)
     ## 4                        TRUE                    English
     ## 5                        TRUE                    English
     ##   taxon.default_name.taxon_id taxon.default_name.created_at
-    ## 1                       57495 2010-03-16T20:57:02.000-10:00
-    ## 2                       17008 2008-03-12T17:33:20.000-10:00
-    ## 3                       52589 2011-05-05T09:50:31.000-10:00
-    ## 4                       55908 2010-02-11T06:05:42.000-10:00
-    ## 5                       58484 2013-06-15T03:09:14.435-10:00
+    ## 1                       57495 2010-03-17T07:57:02.000+01:00
+    ## 2                       17008 2008-03-13T04:33:20.000+01:00
+    ## 3                       52589 2011-05-05T21:50:31.000+02:00
+    ## 4                       55908 2010-02-11T17:05:42.000+01:00
+    ## 5                       56057 2010-02-16T22:05:51.000+01:00
     ##   taxon.default_name.updated_at taxon.default_name.position
-    ## 1 2010-03-16T20:57:02.000-10:00                           0
-    ## 2 2008-03-12T17:33:20.000-10:00                           0
-    ## 3 2011-05-05T09:50:31.000-10:00                           0
-    ## 4 2010-02-11T06:05:42.000-10:00                           0
-    ## 5 2016-09-16T04:07:20.465-10:00                           6
-    ##                                                    taxon.image_url
-    ## 1  https://farm6.staticflickr.com/5206/5309980832_01c907d2f9_s.jpg
-    ## 2  https://farm6.staticflickr.com/5009/5346970195_d0eac9966b_s.jpg
-    ## 3  https://farm5.staticflickr.com/4005/4624300321_d1a46ff97e_s.jpg
-    ## 4 https://farm6.staticflickr.com/5483/11718223795_b05531bbf6_s.jpg
-    ## 5     https://farm1.staticflickr.com/72/186298101_13518924fe_s.jpg
+    ## 1 2010-03-17T07:57:02.000+01:00                           0
+    ## 2 2008-03-13T04:33:20.000+01:00                           0
+    ## 3 2011-05-05T21:50:31.000+02:00                           0
+    ## 4 2010-02-11T17:05:42.000+01:00                           0
+    ## 5 2017-01-05T00:57:29.655+01:00                           0
+    ##                                                     taxon.image_url
+    ## 1   https://farm6.staticflickr.com/5206/5309980832_01c907d2f9_s.jpg
+    ## 2   https://farm6.staticflickr.com/5009/5346970195_d0eac9966b_s.jpg
+    ## 3   https://farm5.staticflickr.com/4005/4624300321_d1a46ff97e_s.jpg
+    ## 4  https://farm6.staticflickr.com/5483/11718223795_b05531bbf6_s.jpg
+    ## 5 https://static.inaturalist.org/photos/10419/square.jpg?1444278709
     ##   taxon.iconic_taxon_name taxon.conservation_status_name
     ## 1                 Insecta                           <NA>
     ## 2                    Aves                  least_concern
     ## 3                 Insecta                           <NA>
     ## 4                Mammalia                  least_concern
-    ## 5                 Insecta                           <NA>
+    ## 5                 Plantae                           <NA>
 
     print(counts$rank_counts)
 
     ## $species
-    ## [1] 101
+    ## [1] 102
     ## 
     ## $genus
     ## [1] 8
@@ -227,7 +226,7 @@ observation count.
     counts <- get_inat_user_stats(date = "2010-06-14")
     print(counts$total)
 
-    ## [1] 60
+    ## [1] 61
 
     print(counts$most_observations[1:10,])
 
@@ -293,14 +292,14 @@ observation count.
     print(place_counts$most_observations[1:10,])
 
     ##    count user.id    user.login      user.name
-    ## 1  18170   12158 erikamitchell Erika Mitchell
+    ## 1  18329   12158 erikamitchell Erika Mitchell
     ## 2  15800    2179       charlie   Charlie Hohn
     ## 3   8046   12610  susanelliott  Susan Elliott
     ## 4   5924   12036       zaccota       Zac Cota
-    ## 5   4387   11792     kylejones     Kyle Jones
-    ## 6   4317   12045      larry522 Larry Clarfeld
+    ## 5   4388   11792     kylejones     Kyle Jones
+    ## 6   4324   12045      larry522 Larry Clarfeld
     ## 7   4308     317   kpmcfarland Kent McFarland
-    ## 8   3833   28921         rwp84    roy pilcher
+    ## 8   3835   28921         rwp84    roy pilcher
     ## 9   3065   18303   marvelliott   Marv Elliott
     ## 10  2761   12049 gaudettelaura Laura Gaudette
     ##                                                                    user.user_icon_url
@@ -318,16 +317,16 @@ observation count.
     print(place_counts$most_species[1:10,])
 
     ##    count user.id    user.login      user.name
-    ## 1   1856   12158 erikamitchell Erika Mitchell
+    ## 1   1869   12158 erikamitchell Erika Mitchell
     ## 2   1833   12610  susanelliott  Susan Elliott
-    ## 3   1676   12045      larry522 Larry Clarfeld
+    ## 3   1677   12045      larry522 Larry Clarfeld
     ## 4   1350   11792     kylejones     Kyle Jones
     ## 5   1235    2179       charlie   Charlie Hohn
     ## 6   1108    6624   joannerusso               
     ## 7   1062     317   kpmcfarland Kent McFarland
     ## 8    998   12049 gaudettelaura Laura Gaudette
     ## 9    833    3847        rpayne      Ron Payne
-    ## 10   795   28921         rwp84    roy pilcher
+    ## 10   793   28921         rwp84    roy pilcher
     ##                                                                    user.user_icon_url
     ## 1  https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpeg?1475533280
     ## 2   https://static.inaturalist.org/attachments/users/icons/12610/thumb.jpg?1475533475
