@@ -127,6 +127,8 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
     stop("Your search returned zero results.  Either your species of interest has no records or you entered an invalid search")
   } else if(total_res >= 200000) {
     stop("Your search returned too many results, please consider breaking it up into smaller chunks by year or month")
+  } else if(!is.null(bounds) && total_res >=100000) {
+    stop("Your search returned too many results, please consider breaking it up into smaller chunks by year or month")
   }
   
   page_query <- paste(search,"&per_page=200&page=1",sep="")
