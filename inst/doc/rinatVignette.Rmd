@@ -176,7 +176,7 @@ print(place_counts$most_species[1:10,])
 Basic maps can be created as well to quickly visualize search results.  Maps can either be plotted automatically `plot = TRUE` or simply return a ggplot2 object with `plot = FALSE`.  This works well with single species data, but more complicated plots are best made from scratch.
 
 
-```{r fig.width=7.5,fig.height=4}
+```{r fig.width=7,fig.height=4}
 library(ggplot2)
 
 ## Map salamanders in the genuse Ambystoma

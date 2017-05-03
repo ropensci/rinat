@@ -65,7 +65,7 @@ print(place_counts$most_observations[1:10,])
 print(place_counts$most_species[1:10,])
 
 
-## ----fig.width=7.5,fig.height=4------------------------------------------
+## ----fig.width=7,fig.height=4--------------------------------------------
 library(ggplot2)
 
 ## Map salamanders in the genuse Ambystoma
