@@ -121,7 +121,7 @@ head(get_inat_obs_id(m_obs$id[1]))
 
 _Get all observations by user_
 
-If you just want all the observations by a user you can download all their observations by user ID.  A word of warning though, this can be quite large (easily into the 1000's)
+If you just want all the observations by a user you can download all their observations by user ID.  A word of warning though, this can be quite large (easily into the 1000's).
 
 
 ```{r}
@@ -131,7 +131,7 @@ head(get_inat_obs_user(as.character(m_obs$user_login[1]), maxresults = 20))[,1:5
 
 _Stats by taxa_
 
-Basic statistics are available for taxa counts by date, date range, place ID (numeric ID), or user ID (string)
+Basic statistics are available for taxa counts by date, date range, place ID (numeric ID), or user ID (string).
 
 
 ```{r}
