@@ -16,7 +16,7 @@ output: md_document
  
  
 ## About
-R wrapper for iNaturalist APIs for accessing the observations. The Detailed documentation of API is available on [iNaturlaist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc)
+R wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of API is available on [iNaturalist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc).
 
 
 
@@ -58,6 +58,7 @@ head(vp_obs$species_guess)
 
 
 _Taxon query_
+
 To return only records for a specific species or taxonomic group, use the taxon option.
 
 
@@ -90,7 +91,7 @@ __Other functions__
 
 _Get information and observations by project_
 
-You can get all the observations for a project if you know it's ID or name as an intaturalist slug
+You can get all the observations for a project if you know it's ID or name as an iNaturalist slug.
 
 
 ```{r}
