@@ -3,7 +3,7 @@ Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/rop
 [![Build
 status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
-[\[Downloads\](http://cranlogs.r-pkg.org/badges/rinat](http://cranlogs.r-pkg.org/badges/rinat)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/rinat)](http://cran.rstudio.com/web/packages/rinat/index.html)
 
 Quickstart guide
 ----------------
@@ -114,7 +114,7 @@ search.
 
 If you just want all the observations by a user you can download all
 their observations by user ID. A word of warning though, this can be
-quite large (easily into the 1000’s)
+quite large (easily into the 1000’s).
 
     m_obs <- get_inat_obs(query = "Monarch Butterfly")
     head(get_inat_obs_user(as.character(m_obs$user_login[1]), maxresults = 20))[,1:5]
@@ -137,7 +137,7 @@ quite large (easily into the 1000’s)
 *Stats by taxa*
 
 Basic statistics are available for taxa counts by date, date range,
-place ID (numeric ID), or user ID (string)
+place ID (numeric ID), or user ID (string).
 
     ## By date
     counts <- get_inat_taxon_stats(date = "2010-06-14")
