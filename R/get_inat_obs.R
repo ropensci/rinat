@@ -51,7 +51,7 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
   ## Parsing and error-handling of input strings
   search <- ""
   if(!is.null(query)){
-    search <- paste(search,"&q=",gsub(" ","+",query),sep="")
+    search <- paste0(search,"&q=",gsub(" ","+",query))
   }
 
   if(!is.null(quality)){
@@ -59,27 +59,27 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
       stop("Please enter a valid quality flag,'casual' or 'research'.")
     }
 
-    search <- paste(search,"&quality_grade=",quality,sep="")
+    search <- paste0(search,"&quality_grade=",quality)
   }
 
   if(!is.null(taxon_name)){
-    search <-  paste(search,"&taxon_name=",gsub(" ","+",taxon_name),sep="")
+    search <-  paste0(search,"&taxon_name=",gsub(" ","+",taxon_name))
   }
 
   if(!is.null(taxon_id)){
-    search <-  paste(search,"&taxon_id=",gsub(" ","+",taxon_id),sep="")
+    search <-  paste0(search,"&taxon_id=",gsub(" ","+",taxon_id))
   }
 
 
   if(!is.null(geo) && geo){
-    search <- paste(search,"&has[]=geo",sep="")
+    search <- paste0(search,"&has[]=geo")
   }
 
   if(!is.null(year)){
     if(length(year) > 1){
       stop("You can only filter results by one year, please enter only one value for year.")
     }
-    search <- paste(search,"&year=",year,sep="")
+    search <- paste0(search,"&year=",year)
   }
 
   if(!is.null(month)){
@@ -91,7 +91,7 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
       stop("You can only filter results by one month, please enter only one value for month.")
     }
     if(month < 1 || month > 12){ stop("Please enter a valid month between 1 and 12")}
-    search <- paste(search,"&month=",month,sep="")
+    search <- paste0(search,"&month=",month)
   }
 
   if(!is.null(day)){
@@ -104,19 +104,19 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
     }
     if(day < 1 || day > 31){ stop("Please enter a valid day between 1 and 31")}
 
-    search <- paste(search,"&day=",day,sep="")
+    search <- paste0(search,"&day=",day)
   }
 
   if(!is.null(bounds)){
     if(length(bounds) != 4){stop("Bounding box specifications must have 4 coordinates.")}
-    search <- paste(search,"&swlat=",bounds[1],"&swlng=",bounds[2],"&nelat=",bounds[3],"&nelng=",bounds[4],sep="")
+    search <- paste0(search,"&swlat=",bounds[1],"&swlng=",bounds[2],"&nelat=",bounds[3],"&nelng=",bounds[4])
 
   }
 
   base_url <- "http://www.inaturalist.org/"
   q_path <- "observations.csv"
   ping_path <- "observations.json"
-  ping_query <- paste(search,"&per_page=1&page=1",sep="")
+  ping_query <- paste0(search,"&per_page=1&page=1")
   ### Make the first ping to the server to get the number of results
   ### easier to pull down if you make the query in json, but easier to arrange results
   ### that come down in CSV format
@@ -131,7 +131,7 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
     stop("Your search returned too many results, please consider breaking it up into smaller chunks by year or month.")
   }
 
-  page_query <- paste(search,"&per_page=200&page=1",sep="")
+  page_query <- paste0(search,"&per_page=200&page=1")
   data <-  GET(base_url, path = q_path, query = page_query)
   data <- inat_handle(data)
   data_out <- if(is.na(data)) NA else read.csv(textConnection(data), stringsAsFactors = FALSE)
@@ -139,7 +139,7 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
   if(total_res < maxresults) maxresults <- total_res
   if(maxresults > 200){
     for(i in 2:ceiling(maxresults/200)){
-      page_query <- paste(search,"&per_page=200&page=",i,sep="")
+      page_query <- paste0(search,"&per_page=200&page=",i)
       data <-  GET(base_url,path = q_path, query = page_query)
       data <- inat_handle(data)
       data_out <- rbind(data_out, read.csv(textConnection(data), stringsAsFactors = FALSE))
