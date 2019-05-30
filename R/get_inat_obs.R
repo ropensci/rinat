@@ -45,10 +45,18 @@
 #' @import httr
 #' @export
 
-get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NULL,geo=NULL,year=NULL,month=NULL,day=NULL,bounds=NULL,maxresults=100,meta=FALSE)
+get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
+                         quality = NULL, geo = NULL, year = NULL, month = NULL,
+                         day = NULL, bounds = NULL, maxresults = 100, meta = FALSE)
 {
 
   ## Parsing and error-handling of input strings
+  arg_list <- list(query, taxon_name, taxon_id, quality, geo,
+                year, month, day, bounds)
+  arg_vals <- lapply(arg_list, is.null)
+  if (all(unlist(arg_vals))) {
+    stop("All search parameters NULL. Please provide at least one.")
+  }
   search <- ""
   if(!is.null(query)){
     search <- paste0(search,"&q=",gsub(" ","+",query))
