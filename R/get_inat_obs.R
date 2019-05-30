@@ -28,18 +28,18 @@
 #' @return A dataframe of the number of observations requested.
 #' @examples \dontrun{
 #'   ### Make a standard query
-#'   get_inat_obs(query="Monarch Butterfly")
+#'   get_inat_obs(query = "Monarch Butterfly")
 #'
 #'   ##Filter by a bounding box of Northern California
-#'   bounds <- c(38.44047,-125,40.86652,-121.837)
-#'   get_inat_obs(query="Mule Deer", bounds=bounds)
+#'   bounds <- c(38.44047, -125, 40.86652, -121.837)
+#'   get_inat_obs(query = "Mule Deer", bounds = bounds)
 #'
 #'   ## Filter with by just taxon, allows higher order filtering,
-#'   ## Here we can search for just stone flies (order plecoptera)
-#'   get_inat_obs(taxon_name="Plecoptera")
+#'   ## Here we can search for just stone flies (order Plecoptera)
+#'   get_inat_obs(taxon_name = "Plecoptera")
 #'
 #'   ## get metadata (the number of results found on the server)
-#'   out <- get_inat_obs(query="Monarch Butterfly", meta=TRUE)
+#'   out <- get_inat_obs(query = "Monarch Butterfly", meta = TRUE)
 #'   out$meta
 #' }
 #' @import httr
@@ -59,35 +59,35 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
   }
   search <- ""
   if(!is.null(query)){
-    search <- paste0(search,"&q=",gsub(" ","+",query))
+    search <- paste0(search,"&q=", gsub(" ","+", query))
   }
 
   if(!is.null(quality)){
-    if(!sum(grepl(quality,c("casual","research")))){
+    if(!sum(grepl(quality, c("casual", "research")))){
       stop("Please enter a valid quality flag,'casual' or 'research'.")
     }
 
-    search <- paste0(search,"&quality_grade=",quality)
+    search <- paste0(search, "&quality_grade=", quality)
   }
 
   if(!is.null(taxon_name)){
-    search <-  paste0(search,"&taxon_name=",gsub(" ","+",taxon_name))
+    search <-  paste0(search, "&taxon_name=", gsub(" ","+", taxon_name))
   }
 
   if(!is.null(taxon_id)){
-    search <-  paste0(search,"&taxon_id=",gsub(" ","+",taxon_id))
+    search <-  paste0(search, "&taxon_id=", gsub(" ","+", taxon_id))
   }
 
 
   if(!is.null(geo) && geo){
-    search <- paste0(search,"&has[]=geo")
+    search <- paste0(search, "&has[]=geo")
   }
 
   if(!is.null(year)){
     if(length(year) > 1){
       stop("You can only filter results by one year, please enter only one value for year.")
     }
-    search <- paste0(search,"&year=",year)
+    search <- paste0(search, "&year=", year)
   }
 
   if(!is.null(month)){
@@ -99,7 +99,7 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
       stop("You can only filter results by one month, please enter only one value for month.")
     }
     if(month < 1 || month > 12){ stop("Please enter a valid month between 1 and 12")}
-    search <- paste0(search,"&month=",month)
+    search <- paste0(search, "&month=", month)
   }
 
   if(!is.null(day)){
@@ -112,19 +112,20 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
     }
     if(day < 1 || day > 31){ stop("Please enter a valid day between 1 and 31")}
 
-    search <- paste0(search,"&day=",day)
+    search <- paste0(search, "&day=", day)
   }
 
   if(!is.null(bounds)){
     if(length(bounds) != 4){stop("Bounding box specifications must have 4 coordinates.")}
-    search <- paste0(search,"&swlat=",bounds[1],"&swlng=",bounds[2],"&nelat=",bounds[3],"&nelng=",bounds[4])
+    search <- paste0(search, "&swlat=", bounds[1], "&swlng=", bounds[2],
+                     "&nelat=", bounds[3], "&nelng=", bounds[4])
 
   }
 
   base_url <- "http://www.inaturalist.org/"
   q_path <- "observations.csv"
   ping_path <- "observations.json"
-  ping_query <- paste0(search,"&per_page=1&page=1")
+  ping_query <- paste0(search, "&per_page=1&page=1")
   ### Make the first ping to the server to get the number of results
   ### easier to pull down if you make the query in json, but easier to arrange results
   ### that come down in CSV format
@@ -139,7 +140,7 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
     stop("Your search returned too many results, please consider breaking it up into smaller chunks by year or month.")
   }
 
-  page_query <- paste0(search,"&per_page=200&page=1")
+  page_query <- paste0(search, "&per_page=200&page=1")
   data <-  GET(base_url, path = q_path, query = page_query)
   data <- inat_handle(data)
   data_out <- if(is.na(data)) NA else read.csv(textConnection(data), stringsAsFactors = FALSE)
@@ -147,8 +148,8 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
   if(total_res < maxresults) maxresults <- total_res
   if(maxresults > 200){
     for(i in 2:ceiling(maxresults/200)){
-      page_query <- paste0(search,"&per_page=200&page=",i)
-      data <-  GET(base_url,path = q_path, query = page_query)
+      page_query <- paste0(search, "&per_page=200&page=", i)
+      data <-  GET(base_url, path = q_path, query = page_query)
       data <- inat_handle(data)
       data_out <- rbind(data_out, read.csv(textConnection(data), stringsAsFactors = FALSE))
     }
@@ -161,13 +162,13 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
   }
 
   if(meta){
-    return(list(meta=list(found=total_res, returned=nrow(data_out)), data=data_out))
+    return(list(meta = list(found = total_res, returned = nrow(data_out)), data = data_out))
   } else { return(data_out) }
 }
 
 inat_handle <- function(x){
   res <- content(x, as = "text")
-  if(!x$headers$`content-type` == 'text/csv; charset=utf-8' || x$status_code > 202 || nchar(res)==0 ){
+  if(!x$headers$`content-type` == 'text/csv; charset=utf-8' || x$status_code > 202 || nchar(res) == 0 ){
     if(!x$headers$`content-type` == 'text/csv; charset=utf-8'){
       warning("Content type incorrect, should be 'text/csv; charset=utf-8'")
       NA
@@ -176,7 +177,7 @@ inat_handle <- function(x){
       warning(sprintf("Error: HTTP Status %s", data$status_code))
       NA
     }
-    if(nchar(res)==0){
+    if(nchar(res) == 0){
       warning("No data found")
       NA
     }
