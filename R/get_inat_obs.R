@@ -17,7 +17,8 @@
 #' @param bounds A bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search
 #' within.  It is a vector in the form of southern latitude, western longitude, northern latitude,
 #' and eastern longitude.
-#' @param maxresults The maximum number of results to return.
+#' @param maxresults The maximum number of results to return. Should not be
+#' a number higher than 10000.
 #' @param meta (logical) If TRUE, the output of this function is a list with metadata on the output
 #' and a data.frame of the data. If FALSE (default), just the data.frame.
 #' @note Filtering doesn't always work with the query parameter for some reason (a problem on
@@ -121,6 +122,9 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
                      "&nelat=", bounds[3], "&nelng=", bounds[4])
 
   }
+  if (maxresults > 10000) {
+    stop("Please provide a maxresults value <= 10000.")
+  }
 
   base_url <- "http://www.inaturalist.org/"
   q_path <- "observations.csv"
@@ -136,7 +140,7 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
     stop("Your search returned zero results. Either your species of interest has no records or you entered an invalid search.")
   } else if(total_res >= 200000) {
     stop("Your search returned too many results, please consider breaking it up into smaller chunks by year or month.")
-  } else if(!is.null(bounds) && total_res >=100000) {
+  } else if(!is.null(bounds) && total_res >= 100000) {
     stop("Your search returned too many results, please consider breaking it up into smaller chunks by year or month.")
   }
 
@@ -174,7 +178,7 @@ inat_handle <- function(x){
       NA
     }
     if(x$status_code > 202){
-      warning(sprintf("Error: HTTP Status %s", data$status_code))
+      warning(sprintf("Error: HTTP Status %s", x$status_code))
       NA
     }
     if(nchar(res) == 0){
