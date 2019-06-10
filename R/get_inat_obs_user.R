@@ -44,5 +44,9 @@ get_inat_obs_user <- function(username,maxresults=100){
     data_out <- data_out[1:maxresults,]
   }
   
+  if(length(grep("X..DOCTYPE.html.",names(data_out)))>0){
+    data_out <- data_out[,ncol(data_out)] ## take off end
+  }
+  
   return(data_out)
 }

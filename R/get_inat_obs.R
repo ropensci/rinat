@@ -142,7 +142,7 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
       page_query <- paste(search,"&per_page=200&page=",i,sep="")
       data <-  GET(base_url,path = q_path, query = page_query)
       data <- inat_handle(data)
-      data_out <- rbind(data_out, read.csv(textConnection(data), stringsAsFactors = FALSE))
+      data_out <- plyr::rbind.fill(data_out, read.csv(textConnection(data), stringsAsFactors = FALSE))
     }
   }
   
@@ -150,7 +150,11 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
     if(maxresults < dim(data_out)[1]){
       data_out <- data_out[1:maxresults,]
     }
+    if(length(grep("X..DOCTYPE.html.",names(data_out)))>0){
+      data_out <- data_out[,ncol(data_out)] ## take off end
+    }
   }
+  
 
   if(meta){ 
     return(list(meta=list(found=total_res, returned=nrow(data_out)), data=data_out)) 
