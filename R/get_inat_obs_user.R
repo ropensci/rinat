@@ -35,7 +35,7 @@ get_inat_obs_user <- function(username,maxresults=100){
     for(i in 2:ceiling(total_res/200)){
       page_query <- paste("&per_page=200&page=",i,sep="")
       dat <-  GET(base_url,path = paste("observations/",q_path,sep=""), query = page_query)
-      data_out <- rbind.fill(data_out, read.csv(textConnection(content(dat, as = "text"))))
+      data_out <- plyr::rbind.fill(data_out, read.csv(textConnection(content(dat, as = "text"))))
     }
     
   }
