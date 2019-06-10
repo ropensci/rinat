@@ -150,9 +150,7 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
     if(maxresults < dim(data_out)[1]){
       data_out <- data_out[1:maxresults,]
     }
-    if(length(grep("X..DOCTYPE.html.",names(data_out)))>0){
-      data_out <- data_out[,ncol(data_out)] ## take off end
-    }
+    
   }
   
 
