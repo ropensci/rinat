@@ -1,7 +1,9 @@
-[![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
-[![Build status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
+[![Build
+Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
+[![Build
+status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
-[![Downloads](http://cranlogs.r-pkg.org/badges/rinat](http://cranlogs.r-pkg.org/badges/rinat)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/rinat)](http://cran.rstudio.com/web/packages/rinat/index.html)
 
 Quickstart guide
 ----------------
@@ -10,10 +12,10 @@ About
 -----
 
 R wrapper for iNaturalist APIs for accessing the observations. The
-Detailed documentation of API is available on [iNaturlaist
+detailed documentation of API is available on [iNaturalist
 website](http://www.inaturalist.org/pages/api+reference) and is part of
 our larger species occurence searching packages
-[SPOCC](http://github.com/ropensci/spocc)
+[SPOCC](http://github.com/ropensci/spocc).
 
 Get observations
 ----------------
@@ -31,18 +33,20 @@ entries that mention Monarch butterflies, not just entries for Monarchs.
     butterflies <- get_inat_obs(query = "Monarch Butterfly")
 
 Another use for a fuzzy search is searching for a common name or
-habitat, e.g. searching for all observations that might happen in a
+habitat, e.g. searching for all observations that might happen in a
 vernal pool. We can then see all the species names found.
 
     vp_obs <- get_inat_obs(query = "vernal pool")
     head(vp_obs$species_guess)
 
-    ## [1] "Eastern Hemlock"         ""                       
-    ## [3] "Longtail Tadpole Shrimp" "Great Blue Skimmer"     
-    ## [5] "Wood Frog"               ""
+    ## [1] "Taper-leaved Earth-Moss" "Purple Crystalwort"     
+    ## [3] ""                        ""                       
+    ## [5] "Green Dragon"            "Blue Dasher"
 
-*Taxon query* To return only records for a specific species or taxonomic
-group, use the taxon option.
+*Taxon query*
+
+To return only records for a specific species or taxonomic group, use
+the taxon option.
 
     ## Return just observations in the family Plecoptera
     stone_flies <- get_inat_obs(taxon_name  = "Plecoptera", year = 2010)
@@ -64,19 +68,19 @@ coordinates.
 
 *Get information and observations by project*
 
-You can get all the observations for a project if you know it's ID or
-name as an intaturalist slug
+You can get all the observations for a project if you know it’s ID or
+name as an iNaturalist slug.
 
     ## Just get info about a project
     vt_crows <- get_inat_obs_project("crows-in-vermont", type = "info", raw = FALSE)
 
-    ## 137  Records
+    ## 164  Records
     ## 0
 
     ## Now get all the observations for that project
     vt_crows_obs <- get_inat_obs_project(vt_crows$id, type = "observations")
 
-    ## 137  Records
+    ## 164  Records
     ## 0-100-200
 
 *Get observation details*
@@ -89,19 +93,19 @@ search.
     head(get_inat_obs_id(m_obs$id[1]))
 
     ## $id
-    ## [1] 5209229
+    ## [1] 25931124
     ## 
     ## $observed_on
-    ## [1] "2016-12-12"
+    ## [1] "2019-05-28"
     ## 
     ## $description
     ## NULL
     ## 
     ## $latitude
-    ## [1] "-42.9071542023"
+    ## [1] "22.9890791803"
     ## 
     ## $longitude
-    ## [1] "172.6419067383"
+    ## [1] "87.0069527811"
     ## 
     ## $map_scale
     ## NULL
@@ -110,58 +114,51 @@ search.
 
 If you just want all the observations by a user you can download all
 their observations by user ID. A word of warning though, this can be
-quite large (easily into the 1000's)
+quite large (easily into the 1000’s).
 
     m_obs <- get_inat_obs(query = "Monarch Butterfly")
     head(get_inat_obs_user(as.character(m_obs$user_login[1]), maxresults = 20))[,1:5]
 
-    ##    scientific_name                  datetime
-    ## 1     Vanessa itea 2016-12-12 12:33:00 +1300
-    ## 2 Danaus plexippus 2016-12-12 12:30:00 +1300
-    ## 3 Danaus plexippus 2016-12-12 11:53:00 +1300
-    ## 4 Danaus plexippus 2016-12-12 11:52:00 +1300
-    ## 5 Danaus plexippus 2016-12-12 11:41:00 +1300
-    ## 6 Danaus plexippus 2016-12-12 11:43:00 +1300
-    ##                                             description
-    ## 1                                                      
-    ## 2                                                      
-    ## 3                                                      
-    ## 4                                                      
-    ## 5                                                      
-    ## 6 This Monarch appears to have slightly deformed wings.
-    ##             place_guess  latitude
-    ## 1 Hawarden, New Zealand -42.90615
-    ## 2 Hawarden, New Zealand -42.90715
-    ## 3 Hawarden, New Zealand -42.91621
-    ## 4 Hawarden, New Zealand -42.90816
-    ## 5 Hawarden, New Zealand -42.91319
-    ## 6                              NA
+    ##       scientific_name                  datetime description
+    ## 1   Danaus chrysippus 2019-05-28 09:23:00 +0530          NA
+    ## 2      Junonia almana 2019-05-28 09:20:00 +0530          NA
+    ## 3      Junonia almana 2019-05-28 09:20:00 +0530          NA
+    ## 4 Catopsilia pyranthe 2019-05-28 09:19:00 +0530          NA
+    ## 5 Catopsilia pyranthe 2019-05-28 09:19:00 +0530          NA
+    ## 6       Crematogaster 2019-05-28 09:17:00 +0530          NA
+    ##                        place_guess latitude
+    ## 1 Kadma, West Bengal 722151, India 22.98908
+    ## 2 Kadma, West Bengal 722151, India 22.98908
+    ## 3 Kadma, West Bengal 722151, India 22.98908
+    ## 4 Kadma, West Bengal 722151, India 22.98908
+    ## 5 Kadma, West Bengal 722151, India 22.98908
+    ## 6 Kadma, West Bengal 722151, India 22.98908
 
 *Stats by taxa*
 
 Basic statistics are available for taxa counts by date, date range,
-place ID (numeric ID), or user ID (string)
+place ID (numeric ID), or user ID (string).
 
     ## By date
     counts <- get_inat_taxon_stats(date = "2010-06-14")
     print(counts$total)
 
-    ## [1] 120
+    ## [1] 363
 
     print(counts$species_counts[1:5,])
 
-    ##   count taxon.id            taxon.name taxon.rank taxon.rank_level
-    ## 1     5    57495       Melitaea cinxia    species               10
-    ## 2     2    17008       Sayornis phoebe    species               10
-    ## 3     2    52589 Coenonympha pamphilus    species               10
-    ## 4     2    55908         Lepus timidus    species               10
-    ## 5     2    56057  Leucanthemum vulgare    species               10
+    ##   count taxon.id           taxon.name taxon.rank taxon.rank_level
+    ## 1     5    41708       Phoca vitulina    species               10
+    ## 2     5    57495      Melitaea cinxia    species               10
+    ## 3     3    48662     Danaus plexippus    species               10
+    ## 4     3    56057 Leucanthemum vulgare    species               10
+    ## 5     3    58484   Thymelicus lineola    species               10
     ##   taxon.default_name.id taxon.default_name.name
-    ## 1                 91278    Glanville Fritillary
-    ## 2                 20369          Eastern Phoebe
-    ## 3                114753             Small Heath
-    ## 4                 88688           Mountain Hare
-    ## 5                 89055            Ox-eye Daisy
+    ## 1                 67153             Harbor Seal
+    ## 2                 91278    Glanville Fritillary
+    ## 3                586653                 Monarch
+    ## 4                924783             oxeye daisy
+    ## 5                455733           Essex Skipper
     ##   taxon.default_name.is_valid taxon.default_name.lexicon
     ## 1                        TRUE                    English
     ## 2                        TRUE                    English
@@ -169,51 +166,72 @@ place ID (numeric ID), or user ID (string)
     ## 4                        TRUE                    English
     ## 5                        TRUE                    English
     ##   taxon.default_name.taxon_id taxon.default_name.created_at
-    ## 1                       57495 2010-03-17T07:57:02.000+01:00
-    ## 2                       17008 2008-03-13T04:33:20.000+01:00
-    ## 3                       52589 2011-05-05T21:50:31.000+02:00
-    ## 4                       55908 2010-02-11T17:05:42.000+01:00
-    ## 5                       56057 2010-02-16T22:05:51.000+01:00
-    ##   taxon.default_name.updated_at taxon.default_name.position
-    ## 1 2010-03-17T07:57:02.000+01:00                           0
-    ## 2 2008-03-13T04:33:20.000+01:00                           0
-    ## 3 2011-05-05T21:50:31.000+02:00                           0
-    ## 4 2010-02-11T17:05:42.000+01:00                           0
-    ## 5 2017-01-05T00:57:29.655+01:00                           0
-    ##                                                     taxon.image_url
-    ## 1   https://farm6.staticflickr.com/5206/5309980832_01c907d2f9_s.jpg
-    ## 2   https://farm6.staticflickr.com/5009/5346970195_d0eac9966b_s.jpg
-    ## 3   https://farm5.staticflickr.com/4005/4624300321_d1a46ff97e_s.jpg
-    ## 4  https://farm6.staticflickr.com/5483/11718223795_b05531bbf6_s.jpg
-    ## 5 https://static.inaturalist.org/photos/10419/square.jpg?1444278709
+    ## 1                       41708      2008-03-19T00:35:25.000Z
+    ## 2                       57495      2010-03-17T06:57:02.000Z
+    ## 3                       48662      2014-09-11T06:50:44.683Z
+    ## 4                       56057      2017-06-08T19:00:12.460Z
+    ## 5                       58484      2013-06-15T13:09:14.435Z
+    ##   taxon.default_name.updated_at taxon.default_name.creator_id
+    ## 1      2019-03-25T06:53:47.770Z                            NA
+    ## 2      2010-03-17T06:57:02.000Z                            NA
+    ## 3      2015-07-22T12:00:15.313Z                            NA
+    ## 4      2018-01-10T00:03:27.724Z                        498994
+    ## 5      2016-09-16T14:07:20.465Z                          4079
+    ##   taxon.default_name.position
+    ## 1                           0
+    ## 2                           0
+    ## 3                           1
+    ## 4                          17
+    ## 5                           6
+    ##                                                       taxon.image_url
+    ## 1 https://static.inaturalist.org/photos/3238907/square.jpg?1459150554
+    ## 2 https://static.inaturalist.org/photos/5403994/square.jpg?1545659971
+    ## 3    https://static.inaturalist.org/photos/1477/square.jpg?1545368454
+    ## 4  https://static.inaturalist.org/photos/361971/square.jpg?1444643087
+    ## 5 https://static.inaturalist.org/photos/2023400/square.jpg?1434765467
     ##   taxon.iconic_taxon_name taxon.conservation_status_name
-    ## 1                 Insecta                           <NA>
-    ## 2                    Aves                  least_concern
+    ## 1                Mammalia                  least_concern
+    ## 2                 Insecta                           <NA>
     ## 3                 Insecta                           <NA>
-    ## 4                Mammalia                  least_concern
-    ## 5                 Plantae                           <NA>
+    ## 4                 Plantae                           <NA>
+    ## 5                 Insecta                           <NA>
 
     print(counts$rank_counts)
 
     ## $species
-    ## [1] 102
+    ## [1] 307
     ## 
     ## $genus
-    ## [1] 8
+    ## [1] 18
     ## 
     ## $subspecies
-    ## [1] 4
+    ## [1] 18
     ## 
     ## $family
-    ## [1] 2
-    ## 
-    ## $variety
-    ## [1] 2
+    ## [1] 6
     ## 
     ## $order
-    ## [1] 1
+    ## [1] 3
+    ## 
+    ## $variety
+    ## [1] 3
+    ## 
+    ## $class
+    ## [1] 2
+    ## 
+    ## $kingdom
+    ## [1] 2
     ## 
     ## $phylum
+    ## [1] 1
+    ## 
+    ## $subclass
+    ## [1] 1
+    ## 
+    ## $subfamily
+    ## [1] 1
+    ## 
+    ## $tribe
     ## [1] 1
 
 *Stats by user*
@@ -226,118 +244,118 @@ observation count.
     counts <- get_inat_user_stats(date = "2010-06-14")
     print(counts$total)
 
-    ## [1] 61
+    ## [1] 147
 
     print(counts$most_observations[1:10,])
 
-    ##    count user.id            user.login        user.name
-    ## 1     12  357375           richardling     Richard Ling
-    ## 2     10    9706            greglasley      Greg Lasley
-    ## 3      8  109098 leannewallisbiologist                 
-    ## 4      8  362446              pwdeacon                 
-    ## 5      7  317332        mortenddhansen Morten DD Hansen
-    ## 6      4     357             annetanne                 
-    ## 7      4    3499               bryanto                 
-    ## 8      4   10285               finatic        BJ Stacey
-    ## 9      3     382               tsoleau                 
-    ## 10     3     873              tapbirds        Scott Cox
+    ##    count user.id       user.login              user.name
+    ## 1     53  811118      sandbankspp                       
+    ## 2     24  761669  kathleenfspicer                   <NA>
+    ## 3     20  922078         hakai470 ES470: Hakai Institute
+    ## 4     12  357375      richardling           Richard Ling
+    ## 5     10    9706       greglasley            Greg Lasley
+    ## 6      9 1422334           adriao                   <NA>
+    ## 7      8  109098     leannewallis          Leanne Wallis
+    ## 8      8  362446         pwdeacon             Pat Deacon
+    ## 9      8  677594           nakarb              Robin Bad
+    ## 10     8 1167914 guillaume_papuga                       
     ##                                                                     user.user_icon_url
-    ## 1   https://static.inaturalist.org/attachments/users/icons/357375/thumb.jpg?1484462740
-    ## 2     https://static.inaturalist.org/attachments/users/icons/9706/thumb.jpg?1475532223
-    ## 3   https://static.inaturalist.org/attachments/users/icons/109098/thumb.jpg?1475547611
-    ## 4   https://static.inaturalist.org/attachments/users/icons/362446/thumb.jpg?1478142809
-    ## 5  https://static.inaturalist.org/attachments/users/icons/317332/thumb.jpeg?1475532800
-    ## 6      https://static.inaturalist.org/attachments/users/icons/357/thumb.jpg?1475527524
-    ## 7     https://static.inaturalist.org/attachments/users/icons/3499/thumb.jpg?1475528879
-    ## 8    https://static.inaturalist.org/attachments/users/icons/10285/thumb.jpg?1475532519
-    ## 9      https://static.inaturalist.org/attachments/users/icons/382/thumb.jpg?1475527539
-    ## 10     https://static.inaturalist.org/attachments/users/icons/873/thumb.jpg?1475527722
+    ## 1  https://static.inaturalist.org/attachments/users/icons/811118/thumb.jpeg?1535236899
+    ## 2                                                                                 <NA>
+    ## 3                                                                                 <NA>
+    ## 4   https://static.inaturalist.org/attachments/users/icons/357375/thumb.jpg?1484462740
+    ## 5     https://static.inaturalist.org/attachments/users/icons/9706/thumb.jpg?1533329961
+    ## 6                                                                                 <NA>
+    ## 7   https://static.inaturalist.org/attachments/users/icons/109098/thumb.jpg?1475547611
+    ## 8   https://static.inaturalist.org/attachments/users/icons/362446/thumb.jpg?1546674469
+    ## 9                                                                                 <NA>
+    ## 10 https://static.inaturalist.org/attachments/users/icons/1167914/thumb.jpg?1545502057
 
     print(counts$most_species[1:10,])
 
-    ##    count user.id            user.login    user.name
-    ## 1     10    9706            greglasley  Greg Lasley
-    ## 2     10  357375           richardling Richard Ling
-    ## 3      8  362446              pwdeacon             
-    ## 4      7  109098 leannewallisbiologist             
-    ## 5      4   10285               finatic    BJ Stacey
-    ## 6      3     382               tsoleau             
-    ## 7      3    3403                davidr      David R
-    ## 8      3    3499               bryanto             
-    ## 9      3   18056              plantman         <NA>
-    ## 10     3   38530           kevinhintsa             
-    ##                                                                    user.user_icon_url
-    ## 1    https://static.inaturalist.org/attachments/users/icons/9706/thumb.jpg?1475532223
-    ## 2  https://static.inaturalist.org/attachments/users/icons/357375/thumb.jpg?1484462740
-    ## 3  https://static.inaturalist.org/attachments/users/icons/362446/thumb.jpg?1478142809
-    ## 4  https://static.inaturalist.org/attachments/users/icons/109098/thumb.jpg?1475547611
-    ## 5   https://static.inaturalist.org/attachments/users/icons/10285/thumb.jpg?1475532519
-    ## 6     https://static.inaturalist.org/attachments/users/icons/382/thumb.jpg?1475527539
-    ## 7    https://static.inaturalist.org/attachments/users/icons/3403/thumb.jpg?1475528831
-    ## 8    https://static.inaturalist.org/attachments/users/icons/3499/thumb.jpg?1475528879
-    ## 9                                                                                <NA>
-    ## 10  https://static.inaturalist.org/attachments/users/icons/38530/thumb.jpg?1475547495
+    ##    count user.id      user.login              user.name
+    ## 1     47  811118     sandbankspp                       
+    ## 2     22  761669 kathleenfspicer                   <NA>
+    ## 3     14  922078        hakai470 ES470: Hakai Institute
+    ## 4     10    9706      greglasley            Greg Lasley
+    ## 5     10  357375     richardling           Richard Ling
+    ## 6      9 1422334          adriao                   <NA>
+    ## 7      8  362446        pwdeacon             Pat Deacon
+    ## 8      8 1519122       steven307          Steven Joyner
+    ## 9      7  109098    leannewallis          Leanne Wallis
+    ## 10     7  393321          tylerh                       
+    ##                                                                      user.user_icon_url
+    ## 1   https://static.inaturalist.org/attachments/users/icons/811118/thumb.jpeg?1535236899
+    ## 2                                                                                  <NA>
+    ## 3                                                                                  <NA>
+    ## 4      https://static.inaturalist.org/attachments/users/icons/9706/thumb.jpg?1533329961
+    ## 5    https://static.inaturalist.org/attachments/users/icons/357375/thumb.jpg?1484462740
+    ## 6                                                                                  <NA>
+    ## 7    https://static.inaturalist.org/attachments/users/icons/362446/thumb.jpg?1546674469
+    ## 8  https://static.inaturalist.org/attachments/users/icons/1519122/thumb.jpeg?1555274551
+    ## 9    https://static.inaturalist.org/attachments/users/icons/109098/thumb.jpg?1475547611
+    ## 10   https://static.inaturalist.org/attachments/users/icons/393321/thumb.jpg?1538142473
 
     ## By place_ID
     vt_crows <- get_inat_obs_project("crows-in-vermont", type = "info", raw = FALSE)
 
-    ## 137  Records
+    ## 164  Records
     ## 0
 
     place_counts <- get_inat_user_stats(place = vt_crows$place_id)
     print(place_counts$total)
 
-    ## [1] 1421
+    ## [1] 4931
 
     print(place_counts$most_observations[1:10,])
 
     ##    count user.id    user.login      user.name
-    ## 1  18329   12158 erikamitchell Erika Mitchell
-    ## 2  15800    2179       charlie   Charlie Hohn
-    ## 3   8046   12610  susanelliott  Susan Elliott
-    ## 4   5924   12036       zaccota       Zac Cota
-    ## 5   4388   11792     kylejones     Kyle Jones
-    ## 6   4324   12045      larry522 Larry Clarfeld
-    ## 7   4308     317   kpmcfarland Kent McFarland
-    ## 8   3835   28921         rwp84    roy pilcher
-    ## 9   3065   18303   marvelliott   Marv Elliott
-    ## 10  2761   12049 gaudettelaura Laura Gaudette
+    ## 1  41369   12158 erikamitchell Erika Mitchell
+    ## 2  27782    2179       charlie   Charlie Hohn
+    ## 3  12341   12610  susanelliott  Susan Elliott
+    ## 4   7598   12045      larry522 Larry Clarfeld
+    ## 5   7553   12036       zaccota       Zac Cota
+    ## 6   6357     317   kpmcfarland Kent McFarland
+    ## 7   5838   28921         rwp84    roy pilcher
+    ## 8   5700  108365     judywelna               
+    ## 9   5250   11792     kylejones     Kyle Jones
+    ## 10  4634    6624   joannerusso               
     ##                                                                    user.user_icon_url
-    ## 1  https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpeg?1475533280
+    ## 1   https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpg?1558486310
     ## 2    https://static.inaturalist.org/attachments/users/icons/2179/thumb.jpg?1475528361
     ## 3   https://static.inaturalist.org/attachments/users/icons/12610/thumb.jpg?1475533475
-    ## 4   https://static.inaturalist.org/attachments/users/icons/12036/thumb.jpg?1475533232
-    ## 5   https://static.inaturalist.org/attachments/users/icons/11792/thumb.jpg?1475533125
-    ## 6   https://static.inaturalist.org/attachments/users/icons/12045/thumb.jpg?1475533238
-    ## 7     https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
-    ## 8   https://static.inaturalist.org/attachments/users/icons/28921/thumb.jpg?1475542431
-    ## 9   https://static.inaturalist.org/attachments/users/icons/18303/thumb.jpg?1475537232
-    ## 10  https://static.inaturalist.org/attachments/users/icons/12049/thumb.jpg?1475533241
+    ## 4   https://static.inaturalist.org/attachments/users/icons/12045/thumb.jpg?1475533238
+    ## 5   https://static.inaturalist.org/attachments/users/icons/12036/thumb.jpg?1475533232
+    ## 6     https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
+    ## 7   https://static.inaturalist.org/attachments/users/icons/28921/thumb.jpg?1475542431
+    ## 8  https://static.inaturalist.org/attachments/users/icons/108365/thumb.jpg?1475547470
+    ## 9   https://static.inaturalist.org/attachments/users/icons/11792/thumb.jpg?1475533125
+    ## 10   https://static.inaturalist.org/attachments/users/icons/6624/thumb.jpg?1557081365
 
     print(place_counts$most_species[1:10,])
 
-    ##    count user.id    user.login      user.name
-    ## 1   1869   12158 erikamitchell Erika Mitchell
-    ## 2   1833   12610  susanelliott  Susan Elliott
-    ## 3   1677   12045      larry522 Larry Clarfeld
-    ## 4   1350   11792     kylejones     Kyle Jones
-    ## 5   1235    2179       charlie   Charlie Hohn
-    ## 6   1108    6624   joannerusso               
-    ## 7   1062     317   kpmcfarland Kent McFarland
-    ## 8    998   12049 gaudettelaura Laura Gaudette
-    ## 9    833    3847        rpayne      Ron Payne
-    ## 10   793   28921         rwp84    roy pilcher
+    ##    count user.id          user.login           user.name
+    ## 1   2448   12158       erikamitchell      Erika Mitchell
+    ## 2   2013   12045            larry522      Larry Clarfeld
+    ## 3   1986   12610        susanelliott       Susan Elliott
+    ## 4   1666    2179             charlie        Charlie Hohn
+    ## 5   1489 1088797 montpelierbioblitz1 Montpelier BioBlitz
+    ## 6   1449   11792           kylejones          Kyle Jones
+    ## 7   1443    6624         joannerusso                    
+    ## 8   1283     317         kpmcfarland      Kent McFarland
+    ## 9   1211  108365           judywelna                    
+    ## 10  1073   12049       gaudettelaura      Laura Gaudette
     ##                                                                    user.user_icon_url
-    ## 1  https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpeg?1475533280
-    ## 2   https://static.inaturalist.org/attachments/users/icons/12610/thumb.jpg?1475533475
-    ## 3   https://static.inaturalist.org/attachments/users/icons/12045/thumb.jpg?1475533238
-    ## 4   https://static.inaturalist.org/attachments/users/icons/11792/thumb.jpg?1475533125
-    ## 5    https://static.inaturalist.org/attachments/users/icons/2179/thumb.jpg?1475528361
-    ## 6    https://static.inaturalist.org/attachments/users/icons/6624/thumb.jpg?1475530731
-    ## 7     https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
-    ## 8   https://static.inaturalist.org/attachments/users/icons/12049/thumb.jpg?1475533241
-    ## 9    https://static.inaturalist.org/attachments/users/icons/3847/thumb.jpg?1475529084
-    ## 10  https://static.inaturalist.org/attachments/users/icons/28921/thumb.jpg?1475542431
+    ## 1   https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpg?1558486310
+    ## 2   https://static.inaturalist.org/attachments/users/icons/12045/thumb.jpg?1475533238
+    ## 3   https://static.inaturalist.org/attachments/users/icons/12610/thumb.jpg?1475533475
+    ## 4    https://static.inaturalist.org/attachments/users/icons/2179/thumb.jpg?1475528361
+    ## 5                                                                                <NA>
+    ## 6   https://static.inaturalist.org/attachments/users/icons/11792/thumb.jpg?1475533125
+    ## 7    https://static.inaturalist.org/attachments/users/icons/6624/thumb.jpg?1557081365
+    ## 8     https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
+    ## 9  https://static.inaturalist.org/attachments/users/icons/108365/thumb.jpg?1475547470
+    ## 10  https://static.inaturalist.org/attachments/users/icons/12049/thumb.jpg?1475533241
 
 Mapping.
 --------

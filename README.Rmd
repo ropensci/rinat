@@ -7,8 +7,8 @@ output: md_document
 [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
 [![Build status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
-[![Downloads](http://cranlogs.r-pkg.org/badges/rinat
-](http://cranlogs.r-pkg.org/badges/rinat)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/rinat)](http://cran.rstudio.com/web/packages/rinat/index.html)
+
 
 
 
@@ -16,7 +16,7 @@ output: md_document
  
  
 ## About
-R wrapper for iNaturalist APIs for accessing the observations. The Detailed documentation of API is available on [iNaturlaist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc)
+R wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of API is available on [iNaturalist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc).
 
 
 
@@ -58,6 +58,7 @@ head(vp_obs$species_guess)
 
 
 _Taxon query_
+
 To return only records for a specific species or taxonomic group, use the taxon option.
 
 
@@ -90,7 +91,7 @@ __Other functions__
 
 _Get information and observations by project_
 
-You can get all the observations for a project if you know it's ID or name as an intaturalist slug
+You can get all the observations for a project if you know it's ID or name as an iNaturalist slug.
 
 
 ```{r}
@@ -120,7 +121,7 @@ head(get_inat_obs_id(m_obs$id[1]))
 
 _Get all observations by user_
 
-If you just want all the observations by a user you can download all their observations by user ID.  A word of warning though, this can be quite large (easily into the 1000's)
+If you just want all the observations by a user you can download all their observations by user ID.  A word of warning though, this can be quite large (easily into the 1000's).
 
 
 ```{r}
@@ -130,7 +131,7 @@ head(get_inat_obs_user(as.character(m_obs$user_login[1]), maxresults = 20))[,1:5
 
 _Stats by taxa_
 
-Basic statistics are available for taxa counts by date, date range, place ID (numeric ID), or user ID (string)
+Basic statistics are available for taxa counts by date, date range, place ID (numeric ID), or user ID (string).
 
 
 ```{r}
