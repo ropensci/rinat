@@ -51,7 +51,7 @@ get_inat_obs_project <- function(grpid,type = c("observations","info"), raw = F)
     url1=paste("http://www.inaturalist.org/observations/project/",grpid,".csv?page=",i,"&per_page=100",sep="")
     cat(paste("-",i*100,sep=""))
     newdat=read.csv(url1,stringsAsFactors = FALSE)
-    dat=rbind(dat,newdat)
+    dat=plyr::rbind.fill(dat,newdat)
   }
   return(dat)
 }
