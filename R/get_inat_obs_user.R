@@ -44,6 +44,7 @@ get_inat_obs_user <- function(username,maxresults=100){
     data_out <- data_out[1:maxresults,]
   }
   
+  data_out <- data_out[,1:38] ## remove the extra column if one is added by the fill
   
   return(data_out)
 }

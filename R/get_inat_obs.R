@@ -153,7 +153,8 @@ get_inat_obs <- function(query=NULL,taxon_name = NULL,taxon_id = NULL,quality=NU
     
   }
   
-
+  data_out <- data_out[,1:38] ## remove the extra column if one is added by the fill
+  
   if(meta){ 
     return(list(meta=list(found=total_res, returned=nrow(data_out)), data=data_out)) 
   } else { return(data_out) }
