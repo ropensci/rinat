@@ -377,4 +377,4 @@ species data, but more complicated plots are best made from scratch.
 
     ## Warning: Removed 2 rows containing missing values (geom_point).
 
-![](README_files/figure-markdown_strict/unnamed-chunk-14-1.png)
+<img src="README_files/figure-markdown_strict/unnamed-chunk-14-1.png" width="672" />
