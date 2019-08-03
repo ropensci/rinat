@@ -117,6 +117,10 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
   }
 
   if(!is.null(bounds)){
+    if(inherits(bounds,"sf")){
+      bounds_prep <- as.vector(sf::st_bbox(bounds))
+      bounds <- c(swlat = bounds_prep[2], swlng = bounds_prep[1], nelat = bounds_prep[4], nelng = bounds_prep[3] );rm(bounds_prep)
+    }
     if(length(bounds) != 4){stop("Bounding box specifications must have 4 coordinates.")}
     search <- paste0(search, "&swlat=", bounds[1], "&swlng=", bounds[2],
                      "&nelat=", bounds[3], "&nelng=", bounds[4])
