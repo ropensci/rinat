@@ -16,7 +16,7 @@
 #' @param day Return observations only on a given day of the month,  1...31
 #' @param bounds A bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search
 #' within.  It is a vector in the form of southern latitude, western longitude, northern latitude,
-#' and eastern longitude.
+#' and eastern longitude. Alternatively supply a sf object.
 #' @param maxresults The maximum number of results to return. Should not be
 #' a number higher than 10000.
 #' @param meta (logical) If TRUE, the output of this function is a list with metadata on the output
