@@ -9,6 +9,7 @@
 #' descendant taxa. Note that names are not unique, so if the name matches multiple taxa, no
 #' observations may be returned.
 #' @param taxon_id Filter by iNat taxon ID. Note that this will also select observations of descendant taxa.
+#' @param place_id Filter by iNat place ID.
 #' @param geo Flag for returning only results that are georeferenced, TRUE will exclude
 #' non-georeferenced results, but they cannot be excluded.
 #' @param year Return observations only in that year (can only be one year, not a range of years).
@@ -47,13 +48,14 @@
 #' @export
 
 get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
-                         quality = NULL, geo = NULL, year = NULL, month = NULL,
-                         day = NULL, bounds = NULL, maxresults = 100, meta = FALSE)
+                         place_id, quality = NULL, geo = NULL, year = NULL,
+                         month = NULL, day = NULL, bounds = NULL, 
+                         maxresults = 100, meta = FALSE)
 {
 
   ## Parsing and error-handling of input strings
-  arg_list <- list(query, taxon_name, taxon_id, quality, geo,
-                year, month, day, bounds)
+  arg_list <- list(query, taxon_name, taxon_id, place_id, quality, geo,
+                   year, month, day, bounds)
   arg_vals <- lapply(arg_list, is.null)
   if (all(unlist(arg_vals))) {
     stop("All search parameters NULL. Please provide at least one.")
@@ -77,6 +79,10 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
 
   if(!is.null(taxon_id)){
     search <-  paste0(search, "&taxon_id=", gsub(" ","+", taxon_id))
+  }
+  
+  if(!is.null(place_id)){
+    search <-  paste0(search, "&place_id=", gsub(" ","+", place_id))
   }
 
 
