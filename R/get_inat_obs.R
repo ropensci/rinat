@@ -48,8 +48,8 @@
 #' @export
 
 get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
-                         place_id, quality = NULL, geo = NULL, year = NULL,
-                         month = NULL, day = NULL, bounds = NULL, 
+                         place_id = NULL, quality = NULL, geo = NULL,
+                         year = NULL, month = NULL, day = NULL, bounds = NULL,
                          maxresults = 100, meta = FALSE)
 {
 
@@ -80,7 +80,7 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
   if(!is.null(taxon_id)){
     search <-  paste0(search, "&taxon_id=", gsub(" ","+", taxon_id))
   }
-  
+
   if(!is.null(place_id)){
     search <-  paste0(search, "&place_id=", gsub(" ","+", place_id))
   }
