@@ -5,8 +5,9 @@
 \title{Download iNaturalist data}
 \usage{
 get_inat_obs(query = NULL, taxon_name = NULL, taxon_id = NULL,
-  quality = NULL, geo = NULL, year = NULL, month = NULL,
-  day = NULL, bounds = NULL, maxresults = 100, meta = FALSE)
+  place_id = NULL, quality = NULL, geo = NULL, year = NULL,
+  month = NULL, day = NULL, bounds = NULL, maxresults = 100,
+  meta = FALSE)
 }
 \arguments{
 \item{query}{Query string for a general search.}
@@ -16,6 +17,8 @@ descendant taxa. Note that names are not unique, so if the name matches multiple
 observations may be returned.}
 
 \item{taxon_id}{Filter by iNat taxon ID. Note that this will also select observations of descendant taxa.}
+
+\item{place_id}{Filter by iNat place ID.}
 
 \item{quality}{The quality grade to be used.  Must be either "casual" or "research".  If left
 blank both will be returned.}
