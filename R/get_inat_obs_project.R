@@ -72,7 +72,7 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
       obs_list[[i]] <-
         fromJSON(content(GET(url1), as = "text"), flatten = TRUE)
     }
-    project_obs <- do.call("rbind", obs_list)
+    project_obs <- do.call("rbind.fill", obs_list)
     return(project_obs)
   }
 }

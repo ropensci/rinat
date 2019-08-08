@@ -16,7 +16,7 @@
 #' @param day Return observations only on a given day of the month,  1...31
 #' @param bounds A bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search
 #' within.  It is a vector in the form of southern latitude, western longitude, northern latitude,
-#' and eastern longitude.
+#' and eastern longitude. Alternatively supply a sf object.
 #' @param maxresults The maximum number of results to return. Should not be
 #' a number higher than 10000.
 #' @param meta (logical) If TRUE, the output of this function is a list with metadata on the output
@@ -117,6 +117,10 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
   }
 
   if(!is.null(bounds)){
+    if(inherits(bounds,"sf")){
+      bounds_prep <- as.vector(sf::st_bbox(bounds))
+      bounds <- c(swlat = bounds_prep[2], swlng = bounds_prep[1], nelat = bounds_prep[4], nelng = bounds_prep[3] );rm(bounds_prep)
+    }
     if(length(bounds) != 4){stop("Bounding box specifications must have 4 coordinates.")}
     search <- paste0(search, "&swlat=", bounds[1], "&swlng=", bounds[2],
                      "&nelat=", bounds[3], "&nelng=", bounds[4])
