@@ -34,7 +34,8 @@ non-georeferenced results, but they cannot be excluded.}
 
 \item{bounds}{A bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search
 within.  It is a vector in the form of southern latitude, western longitude, northern latitude,
-and eastern longitude.}
+and eastern longitude. Alternatively supply an sf or sp object from which the bounding box will 
+be derived.}
 
 \item{maxresults}{The maximum number of results to return. Should not be
 a number higher than 10000.}
