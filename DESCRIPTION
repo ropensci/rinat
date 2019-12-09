@@ -15,5 +15,7 @@ Imports:
     ggplot2,
     maps
 RoxygenNote: 6.1.1
+URL: https://docs.ropensci.org/rinat (website)
+    https://github.com/ropensci/rinat (devel)
 Suggests: knitr, rmarkdown, testthat
 VignetteBuilder: knitr
