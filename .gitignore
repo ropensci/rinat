@@ -4,3 +4,4 @@ rinat.Rproj
 .Rbuildignore
 .RData
 .Rhistory
+server.pass.key

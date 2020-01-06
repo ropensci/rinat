@@ -1,17 +1,21 @@
 Package: rinat
 Type: Package
-Title: Access iNaturalist data through APIs
-Version: 0.0.3
-Date: 2013-10-15
+Title: Access iNaturalist Data Through APIs
+Version: 0.1.5
+Date: 2017-03-09
 Author: Vijay Barve<vijay.barve@gmail.com>,
-  Edmund Hart <edmund.m.hart@gmail.com>
+    Edmund Hart <edmund.m.hart@gmail.com>
 Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
-Description: A programmatic interface to the
-    API provided by the iNaturalist website.
-License: CC0
-Imports: httr, plyr, RCurl, rjson
-Collate:
-    'get_obs_project.R'
-    'get_inat_obs_id.R'
-    'get_obs_inat.R'
-    'get_obs_inat_user.R'
+Description: A programmatic interface to the API provided by the iNaturalist website <http://inaturalist.org> to download species occurrence data submitted by citizen scientists.
+License: MIT + file LICENSE
+Imports:
+    httr,
+    plyr,
+    jsonlite,
+    ggplot2,
+    maps
+RoxygenNote: 6.1.1
+URL: https://docs.ropensci.org/rinat (website)
+    https://github.com/ropensci/rinat (devel)
+Suggests: knitr, rmarkdown, testthat
+VignetteBuilder: knitr

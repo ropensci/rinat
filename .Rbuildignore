@@ -1,2 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+.travis.yml
+README.Rmd
+Makefile
+README.html
+^appveyor\.yml$
+README_files
+^rinat\.Rproj$
