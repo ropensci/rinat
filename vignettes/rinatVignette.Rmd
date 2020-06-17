@@ -1,4 +1,3 @@
-
 ---
 title: "Access iNaturalist data through APIs"
 author: "Edmund Hart"
@@ -47,8 +46,8 @@ To return only records for a specific species or taxonomic group, use the taxon 
 
 
 ```{r}
-## Return just observations in the family Plecoptera
-stone_flies <- get_inat_obs(taxon_name  = "Plecoptera", year = 2010)
+## Return just observations in the family Nymphalidae
+Nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2020)
 
 ## Return just Monarch Butterfly records
 just_butterflies <- get_inat_obs(taxon_name = "Danaus plexippus")
