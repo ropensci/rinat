@@ -1,11 +1,14 @@
 Package: rinat
 Type: Package
 Title: Access iNaturalist Data Through APIs
-Version: 0.1.5
-Date: 2017-03-09
-Author: Vijay Barve<vijay.barve@gmail.com>,
-    Edmund Hart <edmund.m.hart@gmail.com>
-Maintainer: Edmund Hart <edmund.m.hart@gmail.com>
+Version: 0.1.6
+Date: 2020-01-06
+Authors@R: c(
+    person("Vijay", "Barve", role = "aut", email = "vijay.barve@gmail.com",
+            comment = c(ORCID = "0000-0002-4852-2567")),
+    person("Edmund", "Hart", role = c("aut", "cre"), 
+            email = "edmund.m.hart@gmail.com")
+    )
 Description: A programmatic interface to the API provided by the iNaturalist website <http://inaturalist.org> to download species occurrence data submitted by citizen scientists.
 License: MIT + file LICENSE
 Imports:
