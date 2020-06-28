@@ -1,8 +1,8 @@
 Package: rinat
 Type: Package
 Title: Access iNaturalist Data Through APIs
-Version: 0.1.5
-Date: 2017-03-09
+Version: 0.2.0
+Date: 2019-06-28
 Author: Vijay Barve<vijay.barve@gmail.com>,
     Edmund Hart <edmund.m.hart@gmail.com>
 Maintainer: Stéphane Guillou <stephane.guillou@member.fsf.org>
