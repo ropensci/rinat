@@ -6,7 +6,7 @@ Date: 2020-06-28
 Authors@R: c(
     person("Vijay", "Barve", role = "aut", email = "vijay.barve@gmail.com",
             comment = c(ORCID = "0000-0002-4852-2567")),
-    person("Edmund", "Hart", role = c("aut", "cre"), 
+    person("Edmund", "Hart", role = "aut",
             email = "edmund.m.hart@gmail.com"),
     person("Stéphane", "Guillou", role = "cre", email = "stephane.guillou@member.fsf.org",
             comment = c(ORCID = "0000-0001-8992-0951"))
