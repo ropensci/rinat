@@ -18,10 +18,11 @@ Imports:
     plyr,
     jsonlite,
     ggplot2,
-    maps
+    maps,
+    sp
 RoxygenNote: 7.1.1
 URL: https://docs.ropensci.org/rinat (website)
     https://github.com/ropensci/rinat (devel)
-Suggests: knitr, rmarkdown, testthat
+Suggests: knitr, rmarkdown, testthat, sf
 VignetteBuilder: knitr
 Encoding: UTF-8
