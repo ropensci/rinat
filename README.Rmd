@@ -10,29 +10,21 @@ output: md_document
 [![](https://cranlogs.r-pkg.org/badges/grand-total/rinat)](http://cran.rstudio.com/web/packages/rinat/index.html)
 
 
+## About
+
+R wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of API is available on [iNaturalist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurrence searching packages [SPOCC](http://github.com/ropensci/spocc).
 
 
 ## Quickstart guide
- 
- 
-## About
-R wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of API is available on [iNaturalist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurence searching packages [SPOCC](http://github.com/ropensci/spocc).
 
+### Get observations
 
+#### Fuzzy search
 
-
-## Get observations
-
-__Searching__
-
-_Fuzzy search_
-
-You can search for observations by either common or latin name.  It will search the entire iNaturalist entry, so the search below will return all entries that mention Monarch butterflies, not just entries for Monarchs.
+You can search for observations by either common or latin name. It will search the entire iNaturalist entry, so the search below will return all entries that mention Monarch butterflies, not just entries for Monarchs.
 ```{r,  message=FALSE,warning=FALSE,echo=FALSE}
 options(stringsAsFactors = FALSE)
 ```
-
-
 
 ```{r, message=FALSE,warning=FALSE}
 library(rinat)
@@ -40,14 +32,7 @@ library(rinat)
 butterflies <- get_inat_obs(query = "Monarch Butterfly")
 ```
 
-
-
-
-
-
-
-
-Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool.  We can then see all the species names found.  
+Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool. We can then see all the species names found.
 
 ```{r, message=FALSE,warning=FALSE}
 vp_obs <- get_inat_obs(query = "vernal pool")
@@ -55,27 +40,22 @@ head(vp_obs$species_guess)
 ```
 
 
-
-
-_Taxon query_
+#### Taxon query
 
 To return only records for a specific species or taxonomic group, use the taxon option.
 
-
 ```{r}
-## Return just observations in the family Plecoptera
-stone_flies <- get_inat_obs(taxon_name  = "Plecoptera", year = 2010)
+## Return just observations in the family Nymphalidae
+nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2020)
 
 ## Return just Monarch Butterfly records
 just_butterflies <- get_inat_obs(taxon_name = "Danaus plexippus")
 ```
 
 
-
-_Bounding box search_
+#### Bounding box search
 
 You can also search within a bounding box by giving a simple set of coordinates.
-
 
 ```{r}
 ## Search by area
@@ -85,14 +65,11 @@ deer <- get_inat_obs(query = "Mule Deer", bounds = bounds)
 ```
 
 
-__Other functions__
+### Other functions
 
+#### Get information and observations by project
 
-
-_Get information and observations by project_
-
-You can get all the observations for a project if you know it's ID or name as an iNaturalist slug.
-
+You can get all the observations for a project if you know its ID or name as an iNaturalist slug.
 
 ```{r}
 ## Just get info about a project
@@ -105,12 +82,9 @@ vt_crows_obs <- get_inat_obs_project(vt_crows$id, type = "observations")
 ```
 
 
+#### Get observation details
 
-
-
-_Get observation details_
-
-Detailed information about a specific observation can be retrieved by observation ID.  The easiest way to get the ID is from a more general search.
+Detailed information about a specific observation can be retrieved by observation ID. The easiest way to get the ID is from a more general search.
 
 
 ```{r}
@@ -119,9 +93,9 @@ head(get_inat_obs_id(m_obs$id[1]))
 ```
 
 
-_Get all observations by user_
+#### Get all observations by user
 
-If you just want all the observations by a user you can download all their observations by user ID.  A word of warning though, this can be quite large (easily into the 1000's).
+If you just want all the observations by a user you can download all their observations by user ID. A word of warning though, this can be quite large (easily into the 1000's).
 
 
 ```{r}
@@ -129,7 +103,7 @@ m_obs <- get_inat_obs(query = "Monarch Butterfly")
 head(get_inat_obs_user(as.character(m_obs$user_login[1]), maxresults = 20))[,1:5]
 ```
 
-_Stats by taxa_
+#### Stats by taxa
 
 Basic statistics are available for taxa counts by date, date range, place ID (numeric ID), or user ID (string).
 
@@ -142,10 +116,9 @@ print(counts$species_counts[1:5,])
 print(counts$rank_counts)
 ```
 
+#### Stats by user
 
-_Stats by user_
-
-Similar statistics can be gotten for users.  The same input parameters can be used, but results are the top five users by species count and observation count.
+Similar statistics can be gotten for users. The same input parameters can be used, but results are the top five users by species count and observation count.
 
 
 ```{r}
@@ -174,7 +147,7 @@ print(place_counts$most_species[1:10,])
 
 
 
-## Mapping
+### Mapping
 
 Basic maps can be created as well to quickly visualize search results.  Maps can either be plotted automatically `plot = TRUE` or simply return a ggplot2 object with `plot = FALSE`.  This works well with single species data, but more complicated plots are best made from scratch.
 
@@ -190,3 +163,6 @@ salamander_map <- inat_map(m_obs, plot = FALSE)
 salamander_map + borders("state") + theme_bw()
 ```
 
+---
+
+[![](http://ropensci.org/public_images/github_footer.png)](https://ropensci.org/)

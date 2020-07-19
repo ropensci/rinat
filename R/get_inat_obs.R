@@ -46,6 +46,7 @@
 #'   out$meta
 #' }
 #' @import httr
+#' @importFrom utils read.csv
 #' @export
 
 get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,

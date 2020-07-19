@@ -4,10 +4,20 @@
 \alias{get_inat_obs}
 \title{Download iNaturalist data}
 \usage{
-get_inat_obs(query = NULL, taxon_name = NULL, taxon_id = NULL,
-  place_id = NULL, quality = NULL, geo = NULL, year = NULL,
-  month = NULL, day = NULL, bounds = NULL, maxresults = 100,
-  meta = FALSE)
+get_inat_obs(
+  query = NULL,
+  taxon_name = NULL,
+  taxon_id = NULL,
+  place_id = NULL,
+  quality = NULL,
+  geo = NULL,
+  year = NULL,
+  month = NULL,
+  day = NULL,
+  bounds = NULL,
+  maxresults = 100,
+  meta = FALSE
+)
 }
 \arguments{
 \item{query}{Query string for a general search.}
