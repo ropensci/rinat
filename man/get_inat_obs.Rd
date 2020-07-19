@@ -4,10 +4,20 @@
 \alias{get_inat_obs}
 \title{Download iNaturalist data}
 \usage{
-get_inat_obs(query = NULL, taxon_name = NULL, taxon_id = NULL,
-  place_id = NULL, quality = NULL, geo = NULL, year = NULL,
-  month = NULL, day = NULL, bounds = NULL, maxresults = 100,
-  meta = FALSE)
+get_inat_obs(
+  query = NULL,
+  taxon_name = NULL,
+  taxon_id = NULL,
+  place_id = NULL,
+  quality = NULL,
+  geo = NULL,
+  year = NULL,
+  month = NULL,
+  day = NULL,
+  bounds = NULL,
+  maxresults = 100,
+  meta = FALSE
+)
 }
 \arguments{
 \item{query}{Query string for a general search.}
@@ -34,7 +44,7 @@ non-georeferenced results, but they cannot be excluded.}
 
 \item{bounds}{A bounding box of longitude (-180 to 180) and latitude (-90 to 90) to search
 within.  It is a vector in the form of southern latitude, western longitude, northern latitude,
-and eastern longitude.}
+and eastern longitude. Alternatively supply a sf object.}
 
 \item{maxresults}{The maximum number of results to return. Should not be
 a number higher than 10000.}

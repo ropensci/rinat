@@ -4,8 +4,13 @@
 \alias{get_inat_taxon_stats}
 \title{Get stats on taxon counts}
 \usage{
-get_inat_taxon_stats(date = NULL, date_range = NULL, place = NULL,
-  project = NULL, uid = NULL)
+get_inat_taxon_stats(
+  date = NULL,
+  date_range = NULL,
+  place = NULL,
+  project = NULL,
+  uid = NULL
+)
 }
 \arguments{
 \item{date}{retrieve observations on a specific date, must be a string in the form YYYY-MM-DD}

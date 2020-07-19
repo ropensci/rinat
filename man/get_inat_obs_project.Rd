@@ -4,8 +4,7 @@
 \alias{get_inat_obs_project}
 \title{Download observations or info from a project}
 \usage{
-get_inat_obs_project(grpid, type = c("observations", "info"),
-  raw = FALSE)
+get_inat_obs_project(grpid, type = c("observations", "info"), raw = FALSE)
 }
 \arguments{
 \item{grpid}{Name of the group as an iNaturalist slug or group id}

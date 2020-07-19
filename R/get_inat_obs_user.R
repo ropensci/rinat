@@ -9,6 +9,7 @@
 #'   get_inat_obs_user(as.character(m_obs$user_login[1]))
 #' }
 #' @import httr jsonlite
+#' @importFrom utils read.csv
 #' @export
 
 
