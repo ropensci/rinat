@@ -2,6 +2,7 @@
 
 * New maintainer: Stéphane Guillou (@stragu)
 * Improve documentation
+* Note that 0.1.x versions of rinat will only fix existing issues, before a move to the new iNaturalist API with version 0.2 (which is likely to introduce breaking changes).
 
 ## New features
 
