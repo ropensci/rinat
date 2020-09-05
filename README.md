@@ -42,8 +42,9 @@ vp_obs <- get_inat_obs(query = "vernal pool")
 head(vp_obs$species_guess)
 ```
 
-    ## [1] "Mollisia ventosa" ""                 "water plantain"   "Plants"          
-    ## [5] "Common Cudweed"   "Flowering Plants"
+    ## [1] "Oxalis dregei"               "Appalachian Brown"          
+    ## [3] "Navarretia prostrata"        "Orbweavers"                 
+    ## [5] "Common Witch-Hazel"          "Hawkers and Typical Darners"
 
 #### Taxon query
 
@@ -51,10 +52,10 @@ To return only records for a specific species or taxonomic group, use
 the taxon option.
 
 ``` r
-## Return just 2020 observations in the family Nymphalidae
-nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2020)
+## Return observations in the family Nymphalidae, for 2015 only
+nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
 
-## Return just Monarch Butterfly records
+## Return just Monarch Butterfly records, all years
 monarchs <- get_inat_obs(taxon_name = "Danaus plexippus")
 ```
 
@@ -106,19 +107,19 @@ head(get_inat_obs_id(m_obs$id[1]))
 ```
 
     ## $id
-    ## [1] 53695185
+    ## [1] 58575393
     ## 
     ## $observed_on
-    ## [1] "2020-07-19"
+    ## [1] "2011-10-11"
     ## 
     ## $description
     ## NULL
     ## 
     ## $latitude
-    ## [1] "41.36618333"
+    ## [1] "39.9786833998"
     ## 
     ## $longitude
-    ## [1] "-73.81943667"
+    ## [1] "-74.1293848743"
     ## 
     ## $map_scale
     ## NULL
@@ -134,20 +135,20 @@ user_obs <- get_inat_obs_user(m_obs$user_login[1], maxresults = 20)
 head(user_obs)[,1:5]
 ```
 
-    ##          scientific_name                  datetime  description
-    ## 1       Danaus plexippus 2020-07-19 17:58:29 -0400             
-    ## 2      Myodocha serripes 2020-07-19 11:52:37 -0400             
-    ## 3          Juncus tenuis 2020-07-17 13:48:34 -0400             
-    ## 4 Capnoides sempervirens 2020-07-17 14:02:54 -0400             
-    ## 5        Verbena hastata 2020-07-16 10:22:10 -0400             
-    ## 6      Prunella vulgaris 2020-07-16 09:20:22 -0400 Photo by Kay
-    ##                                place_guess latitude
-    ## 1 Piano Mountain Rd, Putnam Valley, NY, US 41.36618
-    ## 2 Piano Mountain Rd, Putnam Valley, NY, US 41.36616
-    ## 3 Piano Mountain Rd, Putnam Valley, NY, US 41.36598
-    ## 4 Piano Mountain Rd, Putnam Valley, NY, US 41.36583
-    ## 5 Piano Mountain Rd, Putnam Valley, NY, US 41.36638
-    ## 6       Rochdale Rd, Putnam Valley, NY, US 41.36364
+    ##               scientific_name                  datetime description
+    ## 1 Somatochlora semicircularis 2012-08-05 00:00:00 +0000            
+    ## 2     Somatochlora albicincta 2012-08-05 00:00:00 +0000            
+    ## 3      Leucorrhinia hudsonica 2012-08-05 00:00:00 +0000            
+    ## 4          Sympetrum pallipes   2012-08-04 12:03:00 UTC            
+    ## 5             Sympetrum danae 2012-08-04 00:00:00 +0000            
+    ## 6           Aeshna interrupta 2012-08-04 00:00:00 +0000            
+    ##                place_guess latitude
+    ## 1 Okanogan County, WA, USA 48.52200
+    ## 2 Okanogan County, WA, USA 48.52210
+    ## 3 Okanogan County, WA, USA 48.50607
+    ## 4 Okanogan County, WA, USA 48.44887
+    ## 5 Okanogan County, WA, USA 48.44877
+    ## 6 Okanogan County, WA, USA 48.44486
 
 #### Stats by taxa
 
@@ -161,7 +162,7 @@ counts <- get_inat_taxon_stats(date = "2020-06-14")
 counts$total
 ```
 
-    ## [1] 23712
+    ## [1] 24232
 
 ``` r
 ### Top 5 species
@@ -169,47 +170,53 @@ counts$species_counts
 ```
 
     ##   count taxon.id           taxon.name taxon.rank taxon.rank_level
-    ## 1   308    52821 Achillea millefolium    species               10
-    ## 2   299    51875   Trifolium pratense    species               10
-    ## 3   299    56057 Leucanthemum vulgare    species               10
-    ## 4   297    55745     Trifolium repens    species               10
-    ## 5   288    48484    Harmonia axyridis    species               10
+    ## 1   314    52821 Achillea millefolium    species               10
+    ## 2   306    56057 Leucanthemum vulgare    species               10
+    ## 3   302    51875   Trifolium pratense    species               10
+    ## 4   299    48484    Harmonia axyridis    species               10
+    ## 5   299    55745     Trifolium repens    species               10
     ##   taxon.default_name.id taxon.default_name.name taxon.default_name.is_valid
     ## 1                942097           common yarrow                        TRUE
-    ## 2                942055              red clover                        TRUE
-    ## 3                924783             oxeye daisy                        TRUE
-    ## 4                943715            white clover                        TRUE
-    ## 5                 89147       Asian Lady Beetle                        TRUE
+    ## 2                924783             oxeye daisy                        TRUE
+    ## 3                942055              red clover                        TRUE
+    ## 4                 89147       Asian Lady Beetle                        TRUE
+    ## 5                943715            white clover                        TRUE
     ##   taxon.default_name.lexicon taxon.default_name.taxon_id
     ## 1                    English                       52821
-    ## 2                    English                       51875
-    ## 3                    English                       56057
-    ## 4                    English                       55745
-    ## 5                    English                       48484
+    ## 2                    English                       56057
+    ## 3                    English                       51875
+    ## 4                    English                       48484
+    ## 5                    English                       55745
     ##   taxon.default_name.created_at taxon.default_name.updated_at
     ## 1      2017-08-07T02:40:53.003Z      2019-09-17T18:12:58.008Z
-    ## 2      2017-08-07T01:27:15.421Z      2018-01-02T15:59:53.501Z
-    ## 3      2017-06-08T19:00:12.460Z      2018-01-10T00:03:27.724Z
-    ## 4      2017-08-13T16:25:49.758Z      2019-12-25T11:01:09.924Z
-    ## 5      2010-02-17T12:47:07.000Z      2020-04-19T20:53:55.647Z
+    ## 2      2017-06-08T19:00:12.460Z      2018-01-10T00:03:27.724Z
+    ## 3      2017-08-07T01:27:15.421Z      2018-01-02T15:59:53.501Z
+    ## 4      2010-02-17T12:47:07.000Z      2020-04-19T20:53:55.647Z
+    ## 5      2017-08-13T16:25:49.758Z      2019-12-25T11:01:09.924Z
     ##   taxon.default_name.creator_id taxon.default_name.position
     ## 1                        516268                           0
-    ## 2                        516268                           0
-    ## 3                        498994                          17
-    ## 4                        516268                           0
-    ## 5                           357                           0
+    ## 2                        498994                          17
+    ## 3                        516268                           0
+    ## 4                           357                           0
+    ## 5                        516268                           0
+    ##   taxon.default_name.parameterized_lexicon
+    ## 1                                  english
+    ## 2                                  english
+    ## 3                                  english
+    ## 4                                  english
+    ## 5                                  english
     ##                                                                                                                  taxon.image_url
     ## 1                                                               https://static.inaturalist.org/photos/4902/square.jpg?1545379591
-    ## 2 https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trifolium_pratense_-_Keila2.jpg/75px-Trifolium_pratense_-_Keila2.jpg
-    ## 3                                                            https://static.inaturalist.org/photos/8923230/square.jpg?1499562261
-    ## 4                                                                https://live.staticflickr.com/5604/30763110446_8a33878c19_s.jpg
-    ## 5                                                            https://static.inaturalist.org/photos/4163058/square.jpg?1467490585
+    ## 2                                                           https://static.inaturalist.org/photos/76240424/square.jpg?1590969241
+    ## 3 https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trifolium_pratense_-_Keila2.jpg/75px-Trifolium_pratense_-_Keila2.jpg
+    ## 4                                                           https://static.inaturalist.org/photos/30978499/square.jpg?1549228178
+    ## 5                                                                https://live.staticflickr.com/5604/30763110446_8a33878c19_s.jpg
     ##   taxon.iconic_taxon_name taxon.conservation_status_name
     ## 1                 Plantae                           <NA>
-    ## 2                 Plantae                  least_concern
-    ## 3                 Plantae                           <NA>
-    ## 4                 Plantae                           <NA>
-    ## 5                 Insecta                           <NA>
+    ## 2                 Plantae                           <NA>
+    ## 3                 Plantae                  least_concern
+    ## 4                 Insecta                           <NA>
+    ## 5                 Plantae                           <NA>
 
 ``` r
 ### Most common taxon ranks
@@ -217,61 +224,61 @@ counts$rank_counts
 ```
 
     ## $species
-    ## [1] 17235
+    ## [1] 17651
     ## 
     ## $genus
-    ## [1] 3626
+    ## [1] 3643
     ## 
     ## $subspecies
-    ## [1] 619
+    ## [1] 652
     ## 
     ## $family
-    ## [1] 615
+    ## [1] 624
     ## 
     ## $subfamily
-    ## [1] 345
+    ## [1] 342
     ## 
     ## $tribe
-    ## [1] 327
+    ## [1] 337
     ## 
     ## $variety
-    ## [1] 183
+    ## [1] 195
     ## 
     ## $order
-    ## [1] 135
+    ## [1] 138
     ## 
     ## $subgenus
-    ## [1] 102
+    ## [1] 109
     ## 
     ## $superfamily
-    ## [1] 83
+    ## [1] 87
     ## 
     ## $hybrid
-    ## [1] 74
+    ## [1] 76
     ## 
     ## $subtribe
-    ## [1] 68
+    ## [1] 69
     ## 
     ## $section
-    ## [1] 41
+    ## [1] 48
     ## 
     ## $class
-    ## [1] 39
+    ## [1] 41
     ## 
     ## $complex
-    ## [1] 37
+    ## [1] 40
     ## 
     ## $suborder
-    ## [1] 29
+    ## [1] 32
     ## 
     ## $infraorder
-    ## [1] 25
+    ## [1] 26
     ## 
     ## $phylum
-    ## [1] 23
+    ## [1] 24
     ## 
     ## $subclass
-    ## [1] 13
+    ## [1] 14
     ## 
     ## $form
     ## [1] 11
@@ -279,14 +286,17 @@ counts$rank_counts
     ## $subphylum
     ## [1] 7
     ## 
+    ## $subsection
+    ## [1] 6
+    ## 
     ## $infraclass
     ## [1] 5
     ## 
     ## $kingdom
     ## [1] 5
     ## 
-    ## $subsection
-    ## [1] 4
+    ## $genushybrid
+    ## [1] 3
     ## 
     ## $superorder
     ## [1] 3
@@ -294,7 +304,7 @@ counts$rank_counts
     ## $epifamily
     ## [1] 2
     ## 
-    ## $genushybrid
+    ## $parvorder
     ## [1] 2
     ## 
     ## $zoosection
@@ -302,9 +312,6 @@ counts$rank_counts
     ## 
     ## $zoosubsection
     ## [1] 2
-    ## 
-    ## $parvorder
-    ## [1] 1
 
 #### Stats by user
 
@@ -317,7 +324,7 @@ counts <- get_inat_user_stats(date = "2010-06-14")
 counts$total
 ```
 
-    ## [1] 226
+    ## [1] 238
 
 ``` r
 counts$most_observations[1:10,]
@@ -385,23 +392,23 @@ place_counts <- get_inat_user_stats(place = vt_crows$place_id)
 place_counts$total
 ```
 
-    ## [1] 9831
+    ## [1] 10793
 
 ``` r
 place_counts$most_observations[1:10,]
 ```
 
     ##    count user.id    user.login      user.name
-    ## 1  52571   12158 erikamitchell Erika Mitchell
-    ## 2  35047    2179       charlie   Charlie Hohn
-    ## 3  16461   12610  susanelliott  Susan Elliott
-    ## 4  10108   12045      larry522 Larry Clarfeld
-    ## 5   8743   12036       zaccota       Zac Cota
-    ## 6   8016  108365     judywelna               
-    ## 7   7573     317   kpmcfarland Kent McFarland
-    ## 8   7527    6624   joannerusso               
-    ## 9   7355   13355        beeboy  Spencer Hardy
-    ## 10  7252   28921         rwp84    roy pilcher
+    ## 1  53703   12158 erikamitchell Erika Mitchell
+    ## 2  36061    2179       charlie   Charlie Hohn
+    ## 3  17339   12610  susanelliott  Susan Elliott
+    ## 4  10456   12045      larry522 Larry Clarfeld
+    ## 5   8821   12036       zaccota       Zac Cota
+    ## 6   8414  108365     judywelna               
+    ## 7   8020    6624   joannerusso               
+    ## 8   7905     317   kpmcfarland Kent McFarland
+    ## 9   7780   13355        beeboy  Spencer Hardy
+    ## 10  7457   28921         rwp84    roy pilcher
     ##                                                                    user.user_icon_url
     ## 1   https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpg?1586465563
     ## 2    https://static.inaturalist.org/attachments/users/icons/2179/thumb.jpg?1569109298
@@ -409,8 +416,8 @@ place_counts$most_observations[1:10,]
     ## 4   https://static.inaturalist.org/attachments/users/icons/12045/thumb.jpg?1475533238
     ## 5   https://static.inaturalist.org/attachments/users/icons/12036/thumb.jpg?1475533232
     ## 6  https://static.inaturalist.org/attachments/users/icons/108365/thumb.jpg?1475547470
-    ## 7     https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
-    ## 8   https://static.inaturalist.org/attachments/users/icons/6624/thumb.jpeg?1562532360
+    ## 7   https://static.inaturalist.org/attachments/users/icons/6624/thumb.jpeg?1562532360
+    ## 8     https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
     ## 9   https://static.inaturalist.org/attachments/users/icons/13355/thumb.jpg?1475533838
     ## 10  https://static.inaturalist.org/attachments/users/icons/28921/thumb.jpg?1588726887
 
@@ -419,27 +426,27 @@ place_counts$most_species[1:10,]
 ```
 
     ##    count user.id          user.login           user.name
-    ## 1   2700   12158       erikamitchell      Erika Mitchell
-    ## 2   2217   12045            larry522      Larry Clarfeld
-    ## 3   2207   12610        susanelliott       Susan Elliott
-    ## 4   1829    2179             charlie        Charlie Hohn
-    ## 5   1677    6624         joannerusso                    
-    ## 6   1491 1088797 montpelierbioblitz1 Montpelier BioBlitz
-    ## 7   1481   13355              beeboy       Spencer Hardy
-    ## 8   1474   11792           kylejones          Kyle Jones
-    ## 9   1357  108365           judywelna                    
-    ## 10  1356     317         kpmcfarland      Kent McFarland
+    ## 1   2710   12158       erikamitchell      Erika Mitchell
+    ## 2   2261   12610        susanelliott       Susan Elliott
+    ## 3   2245   12045            larry522      Larry Clarfeld
+    ## 4   1847    2179             charlie        Charlie Hohn
+    ## 5   1715    6624         joannerusso                    
+    ## 6   1539   13355              beeboy       Spencer Hardy
+    ## 7   1484   11792           kylejones          Kyle Jones
+    ## 8   1483 1088797 montpelierbioblitz1 Montpelier BioBlitz
+    ## 9   1379     317         kpmcfarland      Kent McFarland
+    ## 10  1370  108365           judywelna                    
     ##                                                                    user.user_icon_url
     ## 1   https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpg?1586465563
-    ## 2   https://static.inaturalist.org/attachments/users/icons/12045/thumb.jpg?1475533238
-    ## 3   https://static.inaturalist.org/attachments/users/icons/12610/thumb.jpg?1475533475
+    ## 2   https://static.inaturalist.org/attachments/users/icons/12610/thumb.jpg?1475533475
+    ## 3   https://static.inaturalist.org/attachments/users/icons/12045/thumb.jpg?1475533238
     ## 4    https://static.inaturalist.org/attachments/users/icons/2179/thumb.jpg?1569109298
     ## 5   https://static.inaturalist.org/attachments/users/icons/6624/thumb.jpeg?1562532360
-    ## 6                                                                                <NA>
-    ## 7   https://static.inaturalist.org/attachments/users/icons/13355/thumb.jpg?1475533838
-    ## 8   https://static.inaturalist.org/attachments/users/icons/11792/thumb.jpg?1475533125
-    ## 9  https://static.inaturalist.org/attachments/users/icons/108365/thumb.jpg?1475547470
-    ## 10    https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
+    ## 6   https://static.inaturalist.org/attachments/users/icons/13355/thumb.jpg?1475533838
+    ## 7   https://static.inaturalist.org/attachments/users/icons/11792/thumb.jpg?1475533125
+    ## 8                                                                                <NA>
+    ## 9     https://static.inaturalist.org/attachments/users/icons/317/thumb.jpg?1475527502
+    ## 10 https://static.inaturalist.org/attachments/users/icons/108365/thumb.jpg?1475547470
 
 ### Mapping
 

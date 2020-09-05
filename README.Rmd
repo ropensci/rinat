@@ -46,10 +46,10 @@ head(vp_obs$species_guess)
 To return only records for a specific species or taxonomic group, use the taxon option.
 
 ```{r}
-## Return just 2020 observations in the family Nymphalidae
-nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2020)
+## Return observations in the family Nymphalidae, for 2015 only
+nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
 
-## Return just Monarch Butterfly records
+## Return just Monarch Butterfly records, all years
 monarchs <- get_inat_obs(taxon_name = "Danaus plexippus")
 ```
 
