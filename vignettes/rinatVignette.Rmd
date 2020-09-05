@@ -57,7 +57,7 @@ monarchs <- get_inat_obs(taxon_name = "Danaus plexippus")
 
 You can also search within a bounding box by giving a simple set of coordinates.
 
-```{r}
+```{r fig.width=7, fig.height=4, fig.retina=3}
 ## Search by area
 bounds <- c(38.44047, -125, 40.86652, -121.837)
 deer <- get_inat_obs(query = "Mule Deer", bounds = bounds)
@@ -172,5 +172,4 @@ ggplot(data = colibri, aes(x = longitude,
               ylim = range(colibri$latitude, na.rm = TRUE)) +
   theme_bw()
 ```
-
 
