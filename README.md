@@ -7,13 +7,13 @@ Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/rop
 [![Build
 status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/rinat)](http://cran.rstudio.com/web/packages/rinat/index.html)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/rinat)](https://cran.rstudio.com/web/packages/rinat/index.html)
 
 R wrapper for iNaturalist APIs for accessing the observations. The
 detailed documentation of the API is available on [iNaturalist
-website](http://www.inaturalist.org/pages/api+reference) and is part of
+website](https://www.inaturalist.org/pages/api+reference) and is part of
 our larger species occurrence searching packages
-[SPOCC](http://github.com/ropensci/spocc).
+[SPOCC](https://github.com/ropensci/spocc).
 
 ## Installation
 
@@ -46,7 +46,7 @@ monarchs <- get_inat_obs(query = "Monarch Butterfly")
 unique(monarchs$scientific_name)
 ```
 
-    ## [1] "Danaus plexippus" "Bombus"
+    ## [1] "Danaus plexippus" "Nymphalidae"
 
 > Note that `get_inat_obs()` will return 100 observations by default.
 > This can be controlled with the `maxresults` argument.
@@ -61,8 +61,8 @@ vp_obs <- get_inat_obs(query = "vernal pool")
 head(vp_obs$scientific_name)
 ```
 
-    ## [1] "Oxalis dregei"        "Oxalis dregei"        "Lethe appalachia"    
-    ## [4] "Navarretia prostrata" "Araneidae"            "Hamamelis virginiana"
+    ## [1] "Oxalis dregei"        "Oxalis dregei"        "Oxalis dregei"       
+    ## [4] "Oxalis dregei"        "Lethe appalachia"     "Navarretia prostrata"
 
 #### Taxon search
 
@@ -77,7 +77,7 @@ nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
 length(unique(nymphalidae$scientific_name))
 ```
 
-    ## [1] 77
+    ## [1] 81
 
 And to return only the Monarch butterfly observations that also mention
 the term “chrysalis”:
