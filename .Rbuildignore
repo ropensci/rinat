@@ -8,3 +8,4 @@ README.html
 README_files
 ^rinat\.Rproj$
 cran-comments.md
+^CRAN-RELEASE$
