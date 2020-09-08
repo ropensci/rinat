@@ -3,7 +3,7 @@
 #'@param grpid Name of the group as an iNaturalist slug or group id
 #'@param type character Either "observations" or "info"  Observations returns all observations, and "info" returns project details similar to what you can find on a project webpage.
 #'@param raw logical TRUE or FALSE. If TRUE and searching for project info, returns the raw output of parsed JSON for that project. Otherwise just some basic information is returned as a list
-#'@details An iNaturalist slug is usually the project as single string with words seperated by hyphens. For instance, the project "State Flowers of the United States" has a slug of "state-flowers-of-the-united-states-eol-collection".  This can be extracted from the URL for the project usually. The state flowers project has the following URL http://www.inaturalist.org/projects/state-flowers-of-the-united-states-eol-collection
+#'@details An iNaturalist slug is usually the project as single string with words separated by hyphens. For instance, the project "State Flowers of the United States" has a slug of "state-flowers-of-the-united-states-eol-collection".  This can be extracted from the URL for the project usually. The state flowers project has the following URL http://www.inaturalist.org/projects/state-flowers-of-the-united-states-eol-collection
 #'
 #'@examples \dontrun{
 #'  get_inat_obs_project(354, type = "observations")

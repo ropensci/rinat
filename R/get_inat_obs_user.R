@@ -1,7 +1,7 @@
 #' Download observations for a user
 #' 
-#' @description Get all the observations of a specific inaturalist user
-#' @param username Username of the inaturalist user to fetch records
+#' @description Get all the observations of a specific iNaturalist user
+#' @param username Username of the iNaturalist user to fetch records
 #' @param maxresults the maximum number of results to return
 #' @return a list with full details on a given record
 #' @examples \dontrun{

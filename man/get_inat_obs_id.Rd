@@ -7,7 +7,7 @@
 get_inat_obs_id(id)
 }
 \arguments{
-\item{id}{a single id for an inaturalist observation record}
+\item{id}{a single id for an iNaturalist observation record}
 }
 \value{
 a list with full details on a given record

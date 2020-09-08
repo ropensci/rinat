@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @import httr plyr jsonlite
-#' @param id a single id for an inaturalist observation record
+#' @param id a single id for an iNaturalist observation record
 #' @return a list with full details on a given record
 #' @examples \dontrun{
 #' m_obs <- get_inat_obs(query="Monarch Butterfly")

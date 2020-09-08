@@ -7,7 +7,7 @@
 get_inat_obs_user(username, maxresults = 100)
 }
 \arguments{
-\item{username}{Username of the inaturalist user to fetch records}
+\item{username}{Username of the iNaturalist user to fetch records}
 
 \item{maxresults}{the maximum number of results to return}
 }
@@ -15,7 +15,7 @@ get_inat_obs_user(username, maxresults = 100)
 a list with full details on a given record
 }
 \description{
-Get all the observations of a specific inaturalist user
+Get all the observations of a specific iNaturalist user
 }
 \examples{
 \dontrun{
