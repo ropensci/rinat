@@ -23,3 +23,7 @@ There was 1 NOTE:
 ## Downstream dependencies
 
 To my knowledge, no other package depends on rinat.
+
+## Submission comments
+
+Addressed Uwe's comments after submission (URL issues; single-quoting 'iNaturalist' in DESCRIPTION)

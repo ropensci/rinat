@@ -12,10 +12,10 @@ options(stringsAsFactors = FALSE)
 [![Build Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
 [![Build status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
 [![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/rinat)](https://cran.rstudio.com/web/packages/rinat/index.html)
+[![](https://cranlogs.r-pkg.org/badges/rinat)](https://CRAN.R-project.org/package=rinat)
 
 
-R wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of the API is available on [iNaturalist website](https://www.inaturalist.org/pages/api+reference) and is part of our larger species occurrence searching packages [SPOCC](https://github.com/ropensci/spocc).
+R wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of the API is available on the [iNaturalist website](https://www.inaturalist.org/pages/api+reference) and is part of our larger species occurrence searching packages [SPOCC](https://github.com/ropensci/spocc).
 
 
 ## Installation

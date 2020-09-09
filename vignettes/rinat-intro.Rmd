@@ -16,7 +16,7 @@ options(stringsAsFactors = FALSE)
 
 ## About
 
-rinat is a wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of the API is available on [iNaturalist website](http://www.inaturalist.org/pages/api+reference) and is part of our larger species occurrence searching packages [SPOCC](http://github.com/ropensci/spocc).
+rinat is a wrapper for iNaturalist APIs for accessing the observations. The detailed documentation of the API is available on the [iNaturalist website](https://www.inaturalist.org/pages/api+reference) and is part of our larger species occurrence searching packages [SPOCC](https://github.com/ropensci/spocc).
 
 
 ## Quickstart guide

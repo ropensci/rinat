@@ -1,8 +1,8 @@
 Package: rinat
 Type: Package
-Title: Access iNaturalist Data Through APIs
+Title: Access 'iNaturalist' Data Through APIs
 Version: 0.1.6
-Date: 2020-09-08
+Date: 2020-09-09
 Authors@R: c(
     person("Vijay", "Barve", role = "aut", email = "vijay.barve@gmail.com",
             comment = c(ORCID = "0000-0002-4852-2567")),
@@ -11,7 +11,7 @@ Authors@R: c(
     person("Stéphane", "Guillou", role = "cre", email = "stephane.guillou@member.fsf.org",
             comment = c(ORCID = "0000-0001-8992-0951"))
     )
-Description: A programmatic interface to the API provided by the iNaturalist website <https://inaturalist.org/> to download species occurrence data submitted by citizen scientists.
+Description: A programmatic interface to the API provided by the 'iNaturalist' website <https://www.inaturalist.org/> to download species occurrence data submitted by citizen scientists.
 License: MIT + file LICENSE
 Imports:
     httr,
