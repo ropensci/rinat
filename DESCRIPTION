@@ -2,7 +2,7 @@ Package: rinat
 Type: Package
 Title: Access 'iNaturalist' Data Through APIs
 Version: 0.1.6
-Date: 2020-09-09
+Date: 2020-10-13
 Authors@R: c(
     person("Vijay", "Barve", role = "aut", email = "vijay.barve@gmail.com",
             comment = c(ORCID = "0000-0002-4852-2567")),
