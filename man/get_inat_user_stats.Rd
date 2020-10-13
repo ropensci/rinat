@@ -17,7 +17,7 @@ get_inat_user_stats(
 
 \item{date_range}{a vector of dates, in the form YYYY-MM-DD}
 
-\item{place}{get taxon stats by place, you can find place id's on the iNaturalist page: http://www.inaturalist.org/places, must be a numeric ID}
+\item{place}{get taxon stats by place, you can find place id's on the iNaturalist page: https://www.inaturalist.org/places, must be a numeric ID}
 
 \item{project}{get taxon stats by project id}
 
@@ -27,10 +27,10 @@ get_inat_user_stats(
 a list with two data frames with of the 5 users with the most observations and the most species
 }
 \description{
-get stats on which users reported the most species or had tho most observations within a given range.  This range can be by user, place, project, day or date range.  Output will be a count of the total number of taxa observed at each taxonomic level.
+Get stats on which users reported the most species or had tho most observations within a given range. This range can be by user, place, project, day or date range. Output will be a count of the total number of taxa observed at each taxonomic level.
 }
 \examples{
 \dontrun{
- counts <- get_inat_user_stats(date="2010-06-14")
+ counts <- get_inat_user_stats(date = "2010-06-14")
 }
 }

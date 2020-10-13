@@ -7,24 +7,24 @@
 inat_map(data, map = "usa", subregion = ".", plot = TRUE)
 }
 \arguments{
-\item{data}{data frame of iNaturalist observations}
+\item{data}{data frame of iNaturalist observations.}
 
-\item{map}{the map region to plot, you can find full documentation in the \code{\link{map}} package, default is usa.}
+\item{map}{the map region to plot, you can find full documentation in the \code{\link{map}} package, default is USA.}
 
-\item{subregion}{the name of the subregion to plot, see full documentation in the \code{\link{map}} package}
+\item{subregion}{the name of the subregion to plot, see full documentation in the \code{\link{map}} package.}
 
-\item{plot}{a TRUE or FALSE variable, TRUE plots the map object and returns it, and FALSE returns a ggplot2 object that you can modify and plot later}
+\item{plot}{a logical value. TRUE plots the map object and returns it, and FALSE returns a ggplot object that you can modify and plot later.}
 }
 \value{
-a ggplot2 map object
+A ggplot map object.
 }
 \description{
-Plot observations from iNaturalist.  You have the option of automatically plotting, or returning a ggplot map object that you can add layers on to.
+Plot observations from iNaturalist. You have the option of automatically plotting, or returning a ggplot map object that you can add layers onto.
 }
 \examples{
 \dontrun{
   m_obs <- get_inat_obs(taxon_name = "Ambystoma maculatum")
-  salamander_map <- inat_map(m_obs,plot=FALSE)
+  salamander_map <- inat_map(m_obs, plot = FALSE)
   ### Now we can modify the returned map
   salamander_map + borders("state") + theme_bw()
 }

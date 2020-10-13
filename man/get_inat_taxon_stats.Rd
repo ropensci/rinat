@@ -17,20 +17,20 @@ get_inat_taxon_stats(
 
 \item{date_range}{a vector of dates, in the form YYYY-MM-DD}
 
-\item{place}{get taxon stats by place, you can find place id's on the iNaturalist page: http://www.inaturalist.org/places, must be a numeric ID}
+\item{place}{get taxon stats by place, you can find place id's on the iNaturalist page: https://www.inaturalist.org/places, must be a numeric ID}
 
 \item{project}{get taxon stats by project id (numeric ID)}
 
 \item{uid}{get taxon stats by user id (string)}
 }
 \value{
-a vector listing counts of observations at each level of identification possible (species, genus, etc..)
+a vector listing counts of observations at each level of identification possible (species, genus, etc.)
 }
 \description{
-get stats on taxa within a constrained range.  This range can be by user, place, project, day or date range.  Output will be a count of the total number of taxa observed at each taxonomic level.
+Get stats on taxa within a constrained range. This range can be by user, place, project, day or date range. Output will be a count of the total number of taxa observed at each taxonomic level.
 }
 \examples{
 \dontrun{
- counts <- get_inat_taxon_stats(date="2010-06-14")
+ counts <- get_inat_taxon_stats(date = "2010-06-14")
 }
 }
