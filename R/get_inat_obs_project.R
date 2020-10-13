@@ -23,7 +23,7 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
   ### Error handling for empty projects
   dat <- NULL
   if(is.null(recs))(return(dat))
-  cat(paste(recs," Records\n"))
+  message(paste(recs," records\n"))
 
   if(argstring == "info"){
     output <- list()
@@ -47,8 +47,8 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
       loopval <- recs %/% per_page
     }
     if (recs >= 10000) {
-      cat(
-        "Number of observations in project greater than current API limit\nreturning the first 10000\n"
+      warning(
+        "Number of observations in project greater than current API limit.\nReturning the first 10000.\n"
       )
       loopval <- 10000 / per_page
     }
@@ -64,10 +64,10 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
           "&per_page=", per_page
         )
       if (i == 1) {
-        cat(paste0("0-", per_page))
+        message(paste0("0-", per_page))
       }
       if (i > 1) {
-        cat(paste0("-", i * per_page))
+        message(paste0("-", i * per_page))
       }
       obs_list[[i]] <-
         fromJSON(content(GET(url1), as = "text"), flatten = TRUE)
