@@ -11,7 +11,6 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
-options(stringsAsFactors = FALSE)
 ```
 
 ## About

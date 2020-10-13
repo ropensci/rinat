@@ -46,7 +46,7 @@ monarchs <- get_inat_obs(query = "Monarch Butterfly")
 unique(monarchs$scientific_name)
 ```
 
-    ## [1] "Danaus plexippus" ""
+    ## [1] "Danaus plexippus" "Danaina"
 
 > Note that `get_inat_obs()` will return 100 observations by default.
 > This can be controlled with the `maxresults` argument.
@@ -61,8 +61,9 @@ vp_obs <- get_inat_obs(query = "vernal pool")
 head(vp_obs$scientific_name)
 ```
 
-    ## [1] "Quercus alba"  "Ephemeroptera" "Oxalis natans" "Oxalis dregei"
-    ## [5] "Oxalis dregei" "Oxalis dregei"
+    ## [1] "Micrathetis triplex"     "Sphaeropthalma unicolor"
+    ## [3] "Lepidoptera"             "Lepidoptera"            
+    ## [5] "Synchlora faseolaria"    "Lepidoptera"
 
 #### Taxon search
 
@@ -77,7 +78,7 @@ nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
 length(unique(nymphalidae$scientific_name))
 ```
 
-    ## [1] 67
+    ## [1] 79
 
 And to return only the Monarch butterfly observations that also mention
 the term “chrysalis”:
