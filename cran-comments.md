@@ -1,6 +1,13 @@
+## Resubmission
+
+This is a resubmission. In this version, I have:
+
+* Addressed Uwe's comments after 1st submission (URL issues; single-quoting 'iNaturalist' in DESCRIPTION)
+* Addressed Gregor Seyer's comments after 2nd submission (using warnings and messages over cat(); resetting options, or not modifying them at all)
+
 ## Test environments
 
-* local Ubuntu 18.04 install, R 4.0.2
+* local Ubuntu 18.04 install, R 4.0.3
 * win-builder with:
   * devtools::check_win_devel()
   * devtools::check_win_release()
@@ -11,19 +18,12 @@
 
 ## R CMD check results
 
-There were no ERRORs or WARNINGs. 
+Locally, there were no ERRORs, no WARNINGs, no NOTES.
 
-There was 1 NOTE:
+On R-hub's Windows environment, one NOTE:
 
-* checking for future file timestamps ... NOTE
-  unable to verify current time
-
-  This probably has to do with http://worldclockapi.com/ issuing a "Error 403 - This web app is stopped."
+* Possibly mis-spelled words in DESCRIPTION: APIs (3:42)
 
 ## Downstream dependencies
 
 To my knowledge, no other package depends on rinat.
-
-## Submission comments
-
-Addressed Uwe's comments after submission (URL issues; single-quoting 'iNaturalist' in DESCRIPTION)
