@@ -1,7 +1,7 @@
 #' Download observations for a user
 #' 
-#' @description Get all the observations of a specific iNaturalist user
-#' @param username Username of the iNaturalist user to fetch records
+#' @description Get all the observations of a specific iNaturalist user.
+#' @param username username of the iNaturalist user to fetch records
 #' @param maxresults the maximum number of results to return
 #' @return a list with full details on a given record
 #' @examples \dontrun{
@@ -13,29 +13,29 @@
 #' @export
 
 
-get_inat_obs_user <- function(username,maxresults=100){
+get_inat_obs_user <- function(username, maxresults = 100){
   
   base_url <- "http://www.inaturalist.org/"
-  q_path <- paste(username,".csv",sep="")
-  ping_path <- paste(username,".json",sep="")
+  q_path <- paste0(username, ".csv")
+  ping_path <- paste0(username, ".json")
   
-  ping_query <- paste("&per_page=1&page=1",sep="")
+  ping_query <- "&per_page=1&page=1"
   ### Make the first ping to the server to get the number of results
   ### easier to pull down if you make the query in json, but easier to arrange results
   ### that come down in CSV format
-  ping <-  GET(base_url,path = paste("observations/",ping_path,sep=""), query = ping_query)
+  ping <-  GET(base_url, path = paste0("observations/", ping_path), query = ping_query)
   total_res <- as.numeric(ping$headers$`x-total-entries`)
   
   if(total_res == 0){
-    stop("Your search returned zero results.  Perhaps your user does not exist")
+    stop("Your search returned zero results. Perhaps your user does not exist.")
   }
   page_query <-"&per_page=200&page=1"
-  dat <-  GET(base_url,path = paste("observations/",q_path,sep=""), query = page_query)
+  dat <-  GET(base_url, path = paste0("observations/", q_path), query = page_query)
   data_out <- read.csv(textConnection(content(dat, as = "text")))
   if(maxresults > 200){
     for(i in 2:ceiling(total_res/200)){
-      page_query <- paste("&per_page=200&page=",i,sep="")
-      dat <-  GET(base_url,path = paste("observations/",q_path,sep=""), query = page_query)
+      page_query <- paste0("&per_page=200&page=", i)
+      dat <-  GET(base_url, path = paste0("observations/", q_path), query = page_query)
       data_out <- rbind(data_out, read.csv(textConnection(content(dat, as = "text"))))
     }
     
