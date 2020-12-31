@@ -1,3 +1,7 @@
+# rinat 0.1.6.9000 (development version)
+
+* ...
+
 # rinat 0.1.6
 
 * New maintainer: Stéphane Guillou (@stragu)
