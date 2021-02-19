@@ -71,6 +71,9 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
       }
       obs_list[[i]] <-
         fromJSON(content(GET(url1), as = "text"), flatten = TRUE)
+      # break if < 200 rows, in case of mismatch between info and reality
+      # (problem has been observed)
+      if (nrow(obs_list[[i]]) != 200) break
     }
     project_obs <- do.call("rbind.fill", obs_list)
     return(project_obs)
