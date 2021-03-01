@@ -1,6 +1,7 @@
 # rinat 0.1.7.9000 (development version)
 
-* ...
+* Properly cater for mismatch in project observation numbers (attempt in previous version did not cover all cases)
+* Improve console messages in `get_inat_obs_project()`
 
 # rinat 0.1.7
 

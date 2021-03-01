@@ -23,7 +23,7 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
   ### Error handling for empty projects
   dat <- NULL
   if(is.null(recs))(return(dat))
-  message(paste(recs," records\n"))
+  message(paste(recs,"records\n"))
 
   if(argstring == "info"){
     output <- list()
@@ -40,8 +40,7 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
       output[["raw"]] <- xx
     }
     return(output)
-  }
-  else if (argstring == "obs") {
+  } else if (argstring == "obs") {
     per_page <- 200
     if (recs %% per_page == 0) {
       loopval <- recs %/% per_page
@@ -51,8 +50,7 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
         "Number of observations in project greater than current API limit.\nReturning the first 10000.\n"
       )
       loopval <- 10000 / per_page
-    }
-    else {
+    } else {
       loopval <- (recs %/% per_page) + 1
     }
     obs_list <- vector("list", loopval)
@@ -64,18 +62,24 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
           "&per_page=", per_page
         )
       if (i == 1) {
-        message(paste0("0-", per_page))
+        message(paste0("Getting records 0-", per_page))
       }
       if (i > 1) {
-        message(paste0("-", i * per_page))
+        message(paste0("Getting records up to ", i * per_page))
       }
       obs_list[[i]] <-
         fromJSON(content(GET(url1), as = "text"), flatten = TRUE)
-      # break if < 200 rows, in case of mismatch between info and reality
-      # (problem has been observed)
-      if (nrow(obs_list[[i]]) != 200) break
+    }
+    message("Done.\n")
+    # remove empty results, in case of mismatch between info and reality
+    # (problem has been observed)
+    if (length(obs_list[[loopval]]) == 0) {
+      obs_list[[i]] <- NULL
     }
     project_obs <- do.call("rbind.fill", obs_list)
+    if (recs != nrow(project_obs)) {
+      message("Note: mismatch between number of observations reported and returned by the API.")
+    }
     return(project_obs)
   }
 }
