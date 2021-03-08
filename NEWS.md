@@ -1,7 +1,8 @@
-# rinat 0.1.7.9000 (development version)
+# rinat 0.1.8
 
-* Properly cater for mismatch in project observation numbers (attempt in previous version did not cover all cases)
+* Properly cater for mismatch in project observation numbers to stay on CRAN (attempt in previous version did not cover all cases)
 * Improve console messages in `get_inat_obs_project()`
+* Skip tests that use the API on CRAN
 
 # rinat 0.1.7
 
