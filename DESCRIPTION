@@ -15,6 +15,7 @@ Description: A programmatic interface to the API provided by the 'iNaturalist' w
 License: MIT + file LICENSE
 Imports:
     httr,
+    curl,
     plyr,
     jsonlite,
     ggplot2,
