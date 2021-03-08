@@ -13,29 +13,42 @@
 #'  counts <- get_inat_taxon_stats(date = "2010-06-14")
 #' }
 #' @import httr jsonlite
+#' @importFrom curl has_internet
 #' @export
 
 
 get_inat_taxon_stats <- function(date = NULL, date_range = NULL, place = NULL, project = NULL, uid= NULL){
   
+  # check Internet connection
+  if (!curl::has_internet()) {
+    message("No Internet connection.")
+    return(invisible(NULL))
+  }
+  
   base_url <- "http://www.inaturalist.org/"
+  # check that iNat can be reached
+  if (httr::http_error(base_url)) { # TRUE: 400 or above
+    message("iNaturalist API is unavailable.")
+    return(invisible(NULL))
+  }
+  
   q_path <- "observations/taxon_stats.json"
-  search = ""
+  search <- ""
   
   if(!is.null(date)){
-    search = paste0(search, "&on=", date)
+    search <- paste0(search, "&on=", date)
   }
   if(!is.null(date_range)){
-    search = paste0(search, "d1=", date_range[1], "&d2=", date_range[2])
+    search <- paste0(search, "d1=", date_range[1], "&d2=", date_range[2])
   }
   if(!is.null(place)){
-    search = paste0(search, "place_id=", place)
+    search <- paste0(search, "place_id=", place)
   }
   if(!is.null(project)){
-    search = paste0(search, "projects=", project)
+    search <- paste0(search, "projects=", project)
   }
   if(!is.null(uid)){
-    search = paste0(search, "&user_id=", uid)
+    search <- paste0(search, "&user_id=", uid)
   }
   
   data <- fromJSON(content(GET(base_url, path = q_path, query = search), as = "text"))

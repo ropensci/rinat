@@ -13,14 +13,27 @@
 #'  counts <- get_inat_user_stats(date = "2010-06-14")
 #' }
 #' @import httr
+#' @importFrom curl has_internet
 #' @export
 
 
-get_inat_user_stats <- function(date = NULL, date_range = NULL, place = NULL, project = NULL, uid = NULL){
+get_inat_user_stats <- function(date = NULL, date_range = NULL, place = NULL, project = NULL, uid = NULL) {
+  
+  # check Internet connection
+  if (!curl::has_internet()) {
+    message("No Internet connection.")
+    return(invisible(NULL))
+  }
   
   base_url <- "http://www.inaturalist.org/"
+  # check that iNat can be reached
+  if (httr::http_error(base_url)) { # TRUE: 400 or above
+    message("iNaturalist API is unavailable.")
+    return(invisible(NULL))
+  }
+  
   q_path <- "observations/user_stats.json"
-  search = ""
+  search <- ""
   
   if(!is.null(date)){
     search = paste0(search, "&on=", date)

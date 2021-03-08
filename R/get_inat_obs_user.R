@@ -10,12 +10,25 @@
 #' }
 #' @import httr jsonlite
 #' @importFrom utils read.csv
+#' @importFrom curl has_internet
 #' @export
 
 
 get_inat_obs_user <- function(username, maxresults = 100){
   
+  # check Internet connection
+  if (!curl::has_internet()) {
+    message("No Internet connection.")
+    return(invisible(NULL))
+  }
+  
   base_url <- "http://www.inaturalist.org/"
+  # check that iNat can be reached
+  if (httr::http_error(base_url)) { # TRUE: 400 or above
+    message("iNaturalist API is unavailable.")
+    return(invisible(NULL))
+  }
+  
   q_path <- paste0(username, ".csv")
   ping_path <- paste0(username, ".json")
   

@@ -16,7 +16,7 @@
 #' @import maps ggplot2
 #' @export
 
-inat_map <- function(data, map = "usa", subregion=".", plot = TRUE){
+inat_map <- function(data, map = "usa", subregion = ".", plot = TRUE){
   map_df <- map_data(map, region = subregion)
   base_map <-
     ggplot(map_df, aes(x = long, y = lat)) +

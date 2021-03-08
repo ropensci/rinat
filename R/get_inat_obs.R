@@ -47,14 +47,27 @@
 #' }
 #' @import httr
 #' @importFrom utils read.csv
+#' @importFrom curl has_internet
 #' @export
 
 get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
                          place_id = NULL, quality = NULL, geo = NULL,
                          year = NULL, month = NULL, day = NULL, bounds = NULL,
-                         maxresults = 100, meta = FALSE)
-{
-
+                         maxresults = 100, meta = FALSE) {
+  
+  # check Internet connection
+  if (!curl::has_internet()) {
+    message("No Internet connection.")
+    return(invisible(NULL))
+  }
+  
+  base_url <- "http://www.inaturalist.org/"
+  # check that iNat can be reached
+  if (httr::http_error(base_url)) { # TRUE: 400 or above
+    message("iNaturalist API is unavailable.")
+    return(invisible(NULL))
+  }
+  
   ## Parsing and error-handling of input strings
   arg_list <- list(query, taxon_name, taxon_id, place_id, quality, geo,
                    year, month, day, bounds)
@@ -149,7 +162,6 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
     stop("Please provide a maxresults value <= 10000.")
   }
 
-  base_url <- "http://www.inaturalist.org/"
   q_path <- "observations.csv"
   ping_path <- "observations.json"
   ping_query <- paste0(search, "&per_page=1&page=1")
