@@ -1,5 +1,7 @@
 # rinat (development version)
 
+* Fix vignettes and test that would error because of reaching the observation limit
+
 # rinat 0.1.8
 
 * Properly cater for mismatch in project observation numbers to stay on CRAN (attempt in previous version did not cover all cases)
