@@ -6,3 +6,5 @@ rinat.Rproj
 .Rhistory
 server.pass.key
 inst/doc
+/doc/
+/Meta/

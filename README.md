@@ -33,37 +33,13 @@ remotes::install_github("ropensci/rinat")
 
 ### Get observations
 
-#### Text search
+`get_inat_obs()` is the primary function that retrieves observations
+from iNaturalist. The text or taxon search can be refined by observation
+date, record quality and location.
 
-You can search for observations by either common or scientific name. It
-will search the entire iNaturalist database, so the search below will
-return all entries that *mention* Monarch butterflies, not just Monarch
-observations.
-
-``` r
-library(rinat)
-monarchs <- get_inat_obs(query = "Monarch Butterfly")
-unique(monarchs$scientific_name)
-```
-
-    ## [1] "Danaus plexippus" "Danaina"
-
-> Note that `get_inat_obs()` will return 100 observations by default.
-> This can be controlled with the `maxresults` argument.
-
-Another use for a fuzzy search is searching for a habitat,
-e.g. searching for all observations that might happen in a vernal pool.
-We can then see all the taxon names found.
-
-``` r
-vp_obs <- get_inat_obs(query = "vernal pool")
-# see the first few taxa
-head(vp_obs$scientific_name)
-```
-
-    ## [1] "Micrathetis triplex"     "Sphaeropthalma unicolor"
-    ## [3] "Lepidoptera"             "Lepidoptera"            
-    ## [5] "Synchlora faseolaria"    "Lepidoptera"
+> It is recommended to set the `quality` argument to `"research"` in
+> order to get more reliable data that has been validated by several
+> contributors.
 
 #### Taxon search
 
@@ -73,15 +49,34 @@ from the Nymphalidae family, and restricting the search to the year
 2015:
 
 ``` r
+library(rinat)
 nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
 # how many unique taxa?
 length(unique(nymphalidae$scientific_name))
 ```
 
-    ## [1] 79
+    ## [1] 72
 
-And to return only the Monarch butterfly observations that also mention
-the term “chrysalis”:
+> Note that `get_inat_obs()` will return 100 observations by default.
+> This can be controlled with the `maxresults` argument.
+
+#### Text search
+
+You can also search observations with any string. It will search the
+entire iNaturalist database, so the search below will return all entries
+that *mention* Monarch butterflies, not just Monarch observations.
+
+``` r
+monarchs <- get_inat_obs(query = "Monarch Butterfly", year = 2021)
+# which taxa were returned?
+unique(monarchs$scientific_name)
+```
+
+    ## [1] "Danaus plexippus" "Danaina"
+
+You can combine the fuzzy search with the precise taxon search. For
+example, to get Monarch butterfly observations that also mention the
+term “chrysalis”:
 
 ``` r
 monarch_chrysalis <- get_inat_obs(taxon_name = "Danaus plexippus", query = "chrysalis")
@@ -99,17 +94,17 @@ deer <- get_inat_obs(query = "Mule Deer", bounds = bounds)
 plot(deer$longitude, deer$latitude)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ### Other functions
 
 More functions are available, notably to access:
 
-  - observations in a project with `get_inat_obs_project()`
-  - details of a single observation with `get_inat_obs_id()`
-  - observations from a single user with `get_inat_obs_user()`
-  - taxa statistics with `get_inat_taxon_stats()`
-  - user statistics with `get_inat_user_stats()`
+-   observations in a project with `get_inat_obs_project()`
+-   details of a single observation with `get_inat_obs_id()`
+-   observations from a single user with `get_inat_obs_user()`
+-   taxa statistics with `get_inat_taxon_stats()`
+-   user statistics with `get_inat_user_stats()`
 
 More detailed examples are included in the vignette:
 
@@ -119,27 +114,27 @@ vignette("rinat-intro", package = "rinat")
 
 #### Mapping
 
-Basic maps can be created as well to quickly visualize search results.
-Maps can either be plotted automatically with `plot = TRUE` (the
-default), or simply return a ggplot2 object with `plot = FALSE`. This
-works well with single species data, but more complicated plots are best
-made from scratch.
+Basic maps can be created with the `inat_map()` function to quickly
+visualize search results. The `plot = FALSE` option can be used to avoid
+displaying the initial plot when further customising it with ggplot2
+functions.
 
 ``` r
 library(ggplot2)
 
 ## Map 100 spotted salamanders
-a_mac <- get_inat_obs(taxon_name = "Ambystoma maculatum")
+a_mac <- get_inat_obs(taxon_name = "Ambystoma maculatum", year = 2021)
 salamander_map <- inat_map(a_mac, plot = FALSE)
 
-### Now we can modify the returned map
+### Further customise the returned ggplot object
 salamander_map + borders("state") + theme_bw()
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-9-1.png" width="672" />
+<img src="README_files/figure-gfm/unnamed-chunk-8-1.png" width="672" />
 
-`inat_map()` is useful for quickly mapping data obtained with rinat.
-Here is an example of customised map that does not make use of it. (Not
+`inat_map()` is useful for quickly mapping single-species data obtained
+with rinat. However, more complicated plots are best made from scratch.
+Here is an example of customised map that does not make use of it. (Note
 the use of `quality = "research"` to restrict the search to the more
 reliable observations.)
 
@@ -162,8 +157,8 @@ ggplot(data = colibri, aes(x = longitude,
   theme_bw()
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-10-1.png" width="672" />
+<img src="README_files/figure-gfm/unnamed-chunk-9-1.png" width="672" />
 
------
+------------------------------------------------------------------------
 
 [![](http://ropensci.org/public_images/github_footer.png)](https://ropensci.org/)

@@ -22,33 +22,45 @@ rinat is a wrapper for iNaturalist APIs for accessing the observations. The deta
 
 ### Get observations
 
+`get_inat_obs()` is the primary function that retrieves observations from iNaturalist. The text or taxon search can be refined by observation date, record quality and location.
+
+> It is recommended to set the `quality` argument to `"research"` in order to get more reliable data that has been validated by several contributors.
+
 #### Fuzzy search
 
-You can search for observations by either common or scientific name. It will search the entire iNaturalist database, so the search below will return all entries that mention Monarch butterflies, not just entries for Monarchs.
+You can search for observations by either common or scientific name. It will search the entire iNaturalist database, so the search below will return entries that _mention_ Monarch butterflies, not just Monarch observations.
 
 ```{r}
 library(rinat)
-butterflies <- get_inat_obs(query = "Monarch Butterfly")
+monarchs <- get_inat_obs(query = "Monarch Butterfly", year = 2021)
+unique(monarchs$scientific_name)
 ```
 
-Another use for a fuzzy search is searching for a common name or habitat, e.g. searching for all observations that might happen in a vernal pool. We can then see all the species names found.
+> Note that `get_inat_obs()` will return 100 observations by default. This can be controlled with the `maxresults` argument.
+
+Another use for a fuzzy search is searching for a habitat, e.g. searching for all observations that might happen in a [vernal pool](https://en.wikipedia.org/wiki/Vernal_pool). We can then explore the taxon names found.
 
 ```{r}
 vp_obs <- get_inat_obs(query = "vernal pool")
-head(vp_obs$species_guess)
+# see the first few taxa
+head(unique(vp_obs$scientific_name))
 ```
 
 
-#### Taxon query
+#### Taxon search
 
-To return only records for a specific species or taxonomic group, use the taxon option.
+To return only records of a specific species or taxonomic group, use the `taxon_name` argument. For example, to return observations of anything from the Nymphalidae family, and restricting the search to the year 2015:
 
 ```{r}
-## Return observations in the family Nymphalidae, for 2015 only
 nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
+# how many unique taxa?
+length(unique(nymphalidae$scientific_name))
+```
 
-## Return just Monarch Butterfly records, all years
-monarchs <- get_inat_obs(taxon_name = "Danaus plexippus")
+And to return only the Monarch butterfly observations that also mention the term "chrysalis":
+
+```{r}
+monarch_chrysalis <- get_inat_obs(taxon_name = "Danaus plexippus", query = "chrysalis")
 ```
 
 
@@ -83,11 +95,10 @@ vt_crows_obs <- get_inat_obs_project(vt_crows$id, type = "observations")
 
 #### Get observation details
 
-Detailed information about a specific observation can be retrieved by observation ID. The easiest way to get the ID is from a more general search.
+Detailed information about a specific observation can be retrieved by observation ID. The easiest way to get the ID is from a previous search for that taxon.
 
 ```{r}
-m_obs <- get_inat_obs(query = "Monarch Butterfly")
-head(get_inat_obs_id(m_obs$id[1]))
+head(get_inat_obs_id(monarch_chrysalis$id[1]))
 ```
 
 
@@ -96,7 +107,7 @@ head(get_inat_obs_id(m_obs$id[1]))
 If you just want all the observations by a user you can download all their observations by user ID. A word of warning though, this can be quite large (easily into the 1000's).
 
 ```{r}
-user_obs <- get_inat_obs_user(m_obs$user_login[1], maxresults = 20)
+user_obs <- get_inat_obs_user(monarch_chrysalis$user_login[1], maxresults = 20)
 head(user_obs)[,1:5]
 ```
 
@@ -140,18 +151,20 @@ place_counts$most_species[1:10,]
 
 ### Mapping
 
-Basic maps can be created as well to quickly visualize search results. Maps can either be plotted automatically with `plot = TRUE` (the default), or simply return a ggplot2 object with `plot = FALSE`.  This works well with single species data, but more complicated plots are best made from scratch.
+Basic maps can be created with the `inat_map()` function to quickly visualize search results. The `plot = FALSE` option can be used to avoid displaying the initial plot when further customising it with ggplot2 functions.
 
 ```{r fig.width=7, fig.height=4, fig.retina=3}
 library(ggplot2)
 
 ## Map 100 spotted salamanders
-a_mac <- get_inat_obs(taxon_name = "Ambystoma maculatum")
+a_mac <- get_inat_obs(taxon_name = "Ambystoma maculatum", year = 2021)
 salamander_map <- inat_map(a_mac, plot = FALSE)
 
-### Now we can modify the returned map
+### Further customise the returned ggplot object
 salamander_map + borders("state") + theme_bw()
 ```
+
+`inat_map()` is useful for quickly mapping single-species data obtained with rinat. However, more complicated plots are best made from scratch. Here is an example of customised map that does not make use of it. (Note the use of `quality = "research"` to restrict the search to the more reliable observations.)
 
 ```{r fig.width=7, fig.height=7, fig.retina=3}
 ## A more elaborate map of Colibri sp.

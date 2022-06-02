@@ -21,7 +21,7 @@ Imports:
     ggplot2,
     maps,
     sp
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 URL: https://docs.ropensci.org/rinat/ (website)
     https://github.com/ropensci/rinat (devel)
 Suggests: knitr, rmarkdown, testthat, sf
