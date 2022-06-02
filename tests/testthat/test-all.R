@@ -14,7 +14,7 @@ test_that("get_inat_obs search parameters work", {
   expect_equal(dim(get_inat_obs(taxon_id = 26790, day = 10, maxresults = 10))[1], 10)
   expect_equal(dim(get_inat_obs(taxon_id = 26790, year = 2016, maxresults = 10))[1], 10)
   expect_equal(dim(get_inat_obs(taxon_id = 26790, month = 7, maxresults = 10))[1], 10)
-  expect_equal(get_inat_obs(query = "Monarch Butterfly", meta = TRUE)$meta$returned, 100)
+  expect_equal(get_inat_obs(query = "Monarch Butterfly", year = 2021, meta = TRUE)$meta$returned, 100)
   expect_equal(dim(get_inat_obs(query = "Mule Deer", bounds = bounds, maxresults = 10))[1], 10)
 })
 
