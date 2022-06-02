@@ -5,3 +5,4 @@ rinat.Rproj
 .RData
 .Rhistory
 server.pass.key
+inst/doc
