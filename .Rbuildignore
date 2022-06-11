@@ -11,5 +11,5 @@ cran-comments.md
 ^CRAN-RELEASE$
 ^doc$
 ^Meta$
-*.Rmd.orig
+^.*\.Rmd\.orig
 vignettes/build_vignettes.R
