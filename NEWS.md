@@ -1,6 +1,7 @@
 # rinat (development version)
 
-* Fix vignettes and test that would error because of reaching the observation limit
+* Fix test that would error because of reaching the observation limit
+* Use .Rmd.orig technique to avoid issues when CRAN tests vignette code
 
 # rinat 0.1.8
 
