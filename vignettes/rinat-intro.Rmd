@@ -1,7 +1,7 @@
 ---
 title: "Access iNaturalist data through APIs"
 author: "Edmund Hart, Stéphane Guillou"
-date: "2022-06-11"
+date: "2022-06-13"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Access iNaturalist data through APIs}
@@ -45,8 +45,8 @@ Another use for a fuzzy search is searching for a habitat, e.g. searching for al
 vp_obs <- get_inat_obs(query = "vernal pool")
 # see the first few taxa
 head(unique(vp_obs$scientific_name))
-#> [1] "Calanoida"           "Scapholeberis"       "Naididae"            "Paramecium"         
-#> [5] "Ambystoma maculatum" "Cyclopidae"
+#> [1] "Lithobates sylvaticus"         "Euphorbia hooveri"             "Pseudognaphalium californicum"
+#> [4] "Calanoida"                     "Scapholeberis"                 "Naididae"
 ```
 
 
@@ -59,7 +59,7 @@ To return only records of a specific species or taxonomic group, use the `taxon_
 nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
 # how many unique taxa?
 length(unique(nymphalidae$scientific_name))
-#> [1] 79
+#> [1] 81
 ```
 
 And to return only the Monarch butterfly observations that also mention the term "chrysalis":
@@ -145,27 +145,20 @@ If you just want all the observations by a user you can download all their obser
 ```r
 user_obs <- get_inat_obs_user(monarch_chrysalis$user_login[1], maxresults = 20)
 head(user_obs)[,1:5]
-#>         scientific_name                  datetime
-#> 1      Danaus plexippus 2022-06-09 09:50:22 -0500
-#> 2       Gymnosporangium 2022-06-09 16:18:57 -0500
-#> 3         Araneomorphae 2022-06-09 10:39:55 -0500
-#> 4 Chrysopilus velutinus 2022-06-09 10:39:49 -0500
-#> 5        Lethe anthedon 2022-06-09 10:44:07 -0500
-#> 6               Tigrosa 2022-06-09 12:15:58 -0500
-#>                                                                                                      description
-#> 1          Hatched on 5/21, formed J and chrysalis both on 6/9 within about 12 hours, host was Asclepias syriaca
-#> 2                                                                            Host plant is Amelanchier arborea. 
-#> 3 Unknown spider species hiding in the stem/node leafy appendages on tulip tree eating a Chrysopilus velutinus. 
-#> 4              Being eaten by an unknown spider species hiding in the stem/node leafy appendages on tulip tree. 
-#> 5                                                                                                               
-#> 6                                                                Under a rock at the very edge of an urban creek
-#>                    place_guess latitude
-#> 1 Litzsinger Rd, Ladue, MO, US 38.62525
-#> 2 Litzsinger Rd, Ladue, MO, US 38.62386
-#> 3                Ladue, MO, US 38.62476
-#> 4                Ladue, MO, US 38.62476
-#> 5 Litzsinger Rd, Ladue, MO, US 38.62391
-#> 6                Ladue, MO, US 38.62664
+#>                scientific_name                  datetime                description
+#> 1                     Baptisia 2022-06-07 19:16:13 -0500   Large cultivar planting 
+#> 2                        Salix 2022-06-07 18:45:13 -0500             Dixon Prairie 
+#> 3        Tradescantia ohiensis 2022-06-07 18:46:09 -0500             Dixon Prairie 
+#> 4             Silene latifolia 2022-06-07 18:46:31 -0500             Dixon Prairie 
+#> 5                   Neuroterus 2022-06-07 18:48:00 -0500 Host plant Quercus bicolor
+#> 6 Symphyotrichum novae-angliae 2022-06-07 18:51:00 -0500             Dixon Prairie 
+#>                               place_guess latitude
+#> 1 Chicago Botanic Garden, Glencoe, IL, US 42.14471
+#> 2 Chicago Botanic Garden, Glencoe, IL, US 42.14246
+#> 3 Chicago Botanic Garden, Glencoe, IL, US 42.14241
+#> 4 Chicago Botanic Garden, Glencoe, IL, US 42.14238
+#> 5 Chicago Botanic Garden, Glencoe, IL, US 42.14238
+#> 6 Chicago Botanic Garden, Glencoe, IL, US 42.14263
 ```
 
 
@@ -178,7 +171,7 @@ Basic statistics are available for taxa counts by date, date range, place ID (nu
 ## By date
 counts <- get_inat_taxon_stats(date = "2020-06-14")
 counts$total
-#> [1] 25758
+#> [1] 25763
 ### Top 5 species
 counts$species_counts
 #>   count taxon.id           taxon.name taxon.rank taxon.rank_level taxon.default_name.id
@@ -186,7 +179,7 @@ counts$species_counts
 #> 2   332    56057 Leucanthemum vulgare    species               10                924783
 #> 3   330    52821 Achillea millefolium    species               10                942097
 #> 4   319    51875   Trifolium pratense    species               10                942055
-#> 5   303    55745     Trifolium repens    species               10                943715
+#> 5   304    55745     Trifolium repens    species               10                943715
 #>   taxon.default_name.name taxon.default_name.is_valid taxon.default_name.lexicon
 #> 1       Asian Lady Beetle                        TRUE                    English
 #> 2             oxeye daisy                        TRUE                    English
@@ -208,7 +201,7 @@ counts$species_counts
 ### Most common taxon ranks
 counts$rank_counts
 #> $species
-#> [1] 18883
+#> [1] 18886
 #> 
 #> $genus
 #> [1] 3645
@@ -229,7 +222,7 @@ counts$rank_counts
 #> [1] 233
 #> 
 #> $subgenus
-#> [1] 158
+#> [1] 159
 #> 
 #> $order
 #> [1] 120
@@ -241,7 +234,7 @@ counts$rank_counts
 #> [1] 85
 #> 
 #> $section
-#> [1] 83
+#> [1] 84
 #> 
 #> $subtribe
 #> [1] 80
@@ -364,19 +357,19 @@ vt_crows <- get_inat_obs_project("crows-in-vermont", type = "info", raw = FALSE)
 #> 206 records
 place_counts <- get_inat_user_stats(place = vt_crows$place_id)
 place_counts$total
-#> [1] 19054
+#> [1] 19103
 place_counts$most_observations[1:10,]
 #>    count user.id    user.login       user.name
-#> 1  89422   12158 erikamitchell  Erika Mitchell
-#> 2  41518    2179       charlie    Charlie Hohn
-#> 3  21049   12610  susanelliott   Susan Elliott
-#> 4  12339   20198 joshualincoln  Joshua Lincoln
-#> 5  11977   12045      larry522  Larry Clarfeld
-#> 6  11842 1168695       trscavo       Tom Scavo
-#> 7  10893  171529        nsharp Nathaniel Sharp
-#> 8  10826    6624   joannerusso                
+#> 1  89451   12158 erikamitchell  Erika Mitchell
+#> 2  41524    2179       charlie    Charlie Hohn
+#> 3  21073   12610  susanelliott   Susan Elliott
+#> 4  12340   20198 joshualincoln  Joshua Lincoln
+#> 5  11978   12045      larry522  Larry Clarfeld
+#> 6  11894 1168695       trscavo       Tom Scavo
+#> 7  10906  171529        nsharp Nathaniel Sharp
+#> 8  10832    6624   joannerusso                
 #> 9  10444  108365     judywelna                
-#> 10  9900     317   kpmcfarland  Kent McFarland
+#> 10  9906     317   kpmcfarland  Kent McFarland
 #>                                                                     user.user_icon_url
 #> 1    https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpg?1586465563
 #> 2     https://static.inaturalist.org/attachments/users/icons/2179/thumb.jpg?1569109298
@@ -392,13 +385,13 @@ place_counts$most_species[1:10,]
 #>    count user.id    user.login       user.name
 #> 1   3561   12158 erikamitchell  Erika Mitchell
 #> 2   2465   12610  susanelliott   Susan Elliott
-#> 3   2389   12045      larry522  Larry Clarfeld
+#> 3   2390   12045      larry522  Larry Clarfeld
 #> 4   2033    2179       charlie    Charlie Hohn
 #> 5   1926   13355        beeboy   Spencer Hardy
 #> 6   1877    6624   joannerusso                
 #> 7   1854  171529        nsharp Nathaniel Sharp
 #> 8   1830   20198 joshualincoln  Joshua Lincoln
-#> 9   1752 2860446      er-birds                
+#> 9   1753 2860446      er-birds                
 #> 10  1550     317   kpmcfarland  Kent McFarland
 #>                                                                     user.user_icon_url
 #> 1    https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpg?1586465563
