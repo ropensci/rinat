@@ -3,6 +3,7 @@
 ## New features
 
 * New `annotation` argument in `get_inat_obs()` to filter by annotation, e.g. by life stage, sex or phenology. See the [available annotations](https://forum.inaturalist.org/t/how-to-use-inaturalists-search-urls-wiki-part-2-of-2/18792#heading--annotations). (#53)
+* New vignette demonstrating processing and visualising data for species distribution: `vignette("species-distribution")`
 
 ## Others
 

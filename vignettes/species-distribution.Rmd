@@ -152,10 +152,10 @@ We can now reuse the same visualisation code as before, with the outliers filter
 
 
 ```r
-col_sp %>%
+col_clean <- col_sp %>%
   anti_join(col_dist %>% filter(as.integer(dist_nearest) > 1e6),
-            by = "id") %>% # filter outliers out
-  ggplot(aes(x = longitude, y = latitude,
+            by = "id") # filter outliers out
+ggplot(col_clean, aes(x = longitude, y = latitude,
              colour = scientific_name)) +
   geom_polygon(data = map_data("world"),
                    aes(x = long, y = lat, group = group),
@@ -170,8 +170,8 @@ col_sp %>%
                  label.fill = "transparent") +
   scale_x_continuous(expand = exp_fact) +
   scale_y_continuous(expand = exp_fact) +
-  coord_fixed(xlim = range(col_sp$longitude),
-              ylim = range(col_sp$latitude)) +
+  coord_fixed(xlim = range(col_clean$longitude),
+              ylim = range(col_clean$latitude)) +
   theme_bw() +
   theme(legend.position = "none")
 ```

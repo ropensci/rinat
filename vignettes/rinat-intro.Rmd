@@ -1,7 +1,7 @@
 ---
 title: "Access iNaturalist data through APIs"
 author: "Edmund Hart, Stéphane Guillou"
-date: "2022-06-13"
+date: "2022-06-14"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Access iNaturalist data through APIs}
@@ -357,17 +357,17 @@ vt_crows <- get_inat_obs_project("crows-in-vermont", type = "info", raw = FALSE)
 #> 206 records
 place_counts <- get_inat_user_stats(place = vt_crows$place_id)
 place_counts$total
-#> [1] 19103
+#> [1] 19115
 place_counts$most_observations[1:10,]
 #>    count user.id    user.login       user.name
-#> 1  89451   12158 erikamitchell  Erika Mitchell
+#> 1  89462   12158 erikamitchell  Erika Mitchell
 #> 2  41524    2179       charlie    Charlie Hohn
 #> 3  21073   12610  susanelliott   Susan Elliott
-#> 4  12340   20198 joshualincoln  Joshua Lincoln
+#> 4  12368   20198 joshualincoln  Joshua Lincoln
 #> 5  11978   12045      larry522  Larry Clarfeld
-#> 6  11894 1168695       trscavo       Tom Scavo
+#> 6  11906 1168695       trscavo       Tom Scavo
 #> 7  10906  171529        nsharp Nathaniel Sharp
-#> 8  10832    6624   joannerusso                
+#> 8  10848    6624   joannerusso                
 #> 9  10444  108365     judywelna                
 #> 10  9906     317   kpmcfarland  Kent McFarland
 #>                                                                     user.user_icon_url
@@ -391,7 +391,7 @@ place_counts$most_species[1:10,]
 #> 6   1877    6624   joannerusso                
 #> 7   1854  171529        nsharp Nathaniel Sharp
 #> 8   1830   20198 joshualincoln  Joshua Lincoln
-#> 9   1753 2860446      er-birds                
+#> 9   1754 2860446      er-birds                
 #> 10  1550     317   kpmcfarland  Kent McFarland
 #>                                                                     user.user_icon_url
 #> 1    https://static.inaturalist.org/attachments/users/icons/12158/thumb.jpg?1586465563
