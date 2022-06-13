@@ -11,6 +11,7 @@ test_that("get_inat_obs search parameters work", {
   expect_equal(dim(get_inat_obs(taxon_id = 26790, maxresults = 10))[1], 10)
   expect_equal(dim(get_inat_obs(taxon_id = 26790, quality = "research", maxresults = 10))[1], 10)
   expect_equal(dim(get_inat_obs(taxon_id = 26790, geo = TRUE, maxresults = 10))[1], 10)
+  expect_equal(dim(get_inat_obs(taxon_id = 26790, annotation = c(1, 7), maxresults = 10))[1], 10)
   expect_equal(dim(get_inat_obs(taxon_id = 26790, day = 10, maxresults = 10))[1], 10)
   expect_equal(dim(get_inat_obs(taxon_id = 26790, year = 2016, maxresults = 10))[1], 10)
   expect_equal(dim(get_inat_obs(taxon_id = 26790, month = 7, maxresults = 10))[1], 10)

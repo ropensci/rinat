@@ -12,6 +12,10 @@
 #' @param place_id Filter by iNat place ID.
 #' @param geo Flag for returning only results that are georeferenced, TRUE will exclude
 #' non-georeferenced results, but they cannot be excluded.
+#' @param annotation Filter by annotation. Vector of length 2, the first 
+#' element being the term ID (e.g. "1" for life stage) and the second 
+#' element being the value ID (e.g. "2" for adult). Refer to the 
+#' \href{https://forum.inaturalist.org/t/how-to-use-inaturalists-search-urls-wiki-part-2-of-2/18792#heading--annotations}{annotation documentation} to know which values to use.
 #' @param year Return observations only in that year (can only be one year, not a range of years).
 #' @param month Return observations only by month, must be numeric, 1...12
 #' @param day Return observations only on a given day of the month,  1...31
@@ -30,18 +34,21 @@
 #' use case it may be advisable to use the "taxon" field instead of the query field.
 #' @return A dataframe of the number of observations requested.
 #' @examples \dontrun{
-#'   ### Make a standard query
+#'   ## Make a standard query
 #'   get_inat_obs(query = "Monarch Butterfly")
+#'   
+#'   ## Restrict to juveniles thanks to annotations
+#'   get_inat_obs(query = "possum", annotation = c(1, 8))
 #'
-#'   ##Filter by a bounding box of Northern California
+#'   ## Filter by a bounding box of Northern California
 #'   bounds <- c(38.44047, -125, 40.86652, -121.837)
 #'   get_inat_obs(query = "Mule Deer", bounds = bounds)
 #'
-#'   ## Filter with by just taxon, allows higher order filtering,
+#'   ## Filter by taxon, allows higher order filtering,
 #'   ## Here we can search for just stone flies (order Plecoptera)
 #'   get_inat_obs(taxon_name = "Plecoptera")
 #'
-#'   ## get metadata (the number of results found on the server)
+#'   ## Get metadata (the number of results found on the server)
 #'   out <- get_inat_obs(query = "Monarch Butterfly", meta = TRUE)
 #'   out$meta
 #' }
@@ -52,7 +59,8 @@
 
 get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
                          place_id = NULL, quality = NULL, geo = NULL,
-                         year = NULL, month = NULL, day = NULL, bounds = NULL,
+                         annotation = NULL, year = NULL, month = NULL,
+                         day = NULL, bounds = NULL,
                          maxresults = 100, meta = FALSE) {
   
   # check Internet connection
@@ -82,9 +90,8 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
 
   if(!is.null(quality)){
     if(!sum(grepl(quality, c("casual", "research")))){
-      stop("Please enter a valid quality flag,'casual' or 'research'.")
+      stop("Please enter a valid quality flag, 'casual' or 'research'.")
     }
-
     search <- paste0(search, "&quality_grade=", quality)
   }
 
@@ -100,9 +107,28 @@ get_inat_obs <- function(query = NULL, taxon_name = NULL, taxon_id = NULL,
     search <-  paste0(search, "&place_id=", gsub(" ","+", place_id))
   }
 
-
   if(!is.null(geo) && geo){
     search <- paste0(search, "&has[]=geo")
+  }
+  
+  if(!is.null(annotation)){
+    if(length(annotation) != 2){
+      stop("annotation needs to be a vector of length 2.")
+    }
+    # convert to char as could be a vector of two integers
+    annotation <- as.character(annotation)
+    if(grepl("\\D", annotation[1])){
+      stop("The annotation's term ID can only contain digits.")
+    }
+    if(grepl("\\D", annotation[2])){
+      stop("The annotation's value ID can only contain digits.")
+    }
+    # old API doesn't seem to support several values
+    # if(!all(unlist(strsplit(annotation[2], "")) %in% unlist(strsplit("0123456789,", "")))) {
+    #   stop("The annotation value(s) can only contain digits and commas.")
+    # }
+    search <- paste0(search, "&term_id=", annotation[1])
+    search <- paste0(search, "&term_value_id=", annotation[2])
   }
 
   if(!is.null(year)){

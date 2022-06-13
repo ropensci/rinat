@@ -11,6 +11,7 @@ get_inat_obs(
   place_id = NULL,
   quality = NULL,
   geo = NULL,
+  annotation = NULL,
   year = NULL,
   month = NULL,
   day = NULL,
@@ -35,6 +36,11 @@ blank both will be returned.}
 
 \item{geo}{Flag for returning only results that are georeferenced, TRUE will exclude
 non-georeferenced results, but they cannot be excluded.}
+
+\item{annotation}{Filter by annotation. Vector of length 2, the first 
+element being the term ID (e.g. "1" for life stage) and the second 
+element being the value ID (e.g. "2" for adult). Refer to the 
+\href{https://forum.inaturalist.org/t/how-to-use-inaturalists-search-urls-wiki-part-2-of-2/18792#heading--annotations}{annotation documentation} to know which values to use.}
 
 \item{year}{Return observations only in that year (can only be one year, not a range of years).}
 
@@ -69,18 +75,21 @@ use case it may be advisable to use the "taxon" field instead of the query field
 }
 \examples{
 \dontrun{
-  ### Make a standard query
+  ## Make a standard query
   get_inat_obs(query = "Monarch Butterfly")
+  
+  ## Restrict to juveniles thanks to annotations
+  get_inat_obs(query = "possum", annotation = c(1, 8))
 
-  ##Filter by a bounding box of Northern California
+  ## Filter by a bounding box of Northern California
   bounds <- c(38.44047, -125, 40.86652, -121.837)
   get_inat_obs(query = "Mule Deer", bounds = bounds)
 
-  ## Filter with by just taxon, allows higher order filtering,
+  ## Filter by taxon, allows higher order filtering,
   ## Here we can search for just stone flies (order Plecoptera)
   get_inat_obs(taxon_name = "Plecoptera")
 
-  ## get metadata (the number of results found on the server)
+  ## Get metadata (the number of results found on the server)
   out <- get_inat_obs(query = "Monarch Butterfly", meta = TRUE)
   out$meta
 }

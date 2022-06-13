@@ -1,5 +1,11 @@
 # rinat (development version)
 
+## New features
+
+* New `annotation` argument in `get_inat_obs()` to filter by annotation, e.g. by life stage, sex or phenology. See the [available annotations](https://forum.inaturalist.org/t/how-to-use-inaturalists-search-urls-wiki-part-2-of-2/18792#heading--annotations). (#53)
+
+## Others
+
 * Fix test that would error because of reaching the observation limit
 * Use .Rmd.orig technique to avoid issues when CRAN tests vignette code
 
