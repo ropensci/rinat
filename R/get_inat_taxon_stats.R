@@ -1,14 +1,14 @@
 #' Get stats on taxon counts
 #' 
+#' Get stats on taxa within a constrained range. This range can be by user, place, project, day or date range. Output will be a count of the total number of taxa observed at each taxonomic level.
 #' 
-#' @description Get stats on taxa within a constrained range. This range can be by user, place, project, day or date range. Output will be a count of the total number of taxa observed at each taxonomic level.
-#' @param date retrieve observations on a specific date, must be a string in the form YYYY-MM-DD
-#' @param date_range a vector of dates, in the form YYYY-MM-DD
-#' @param place get taxon stats by place, you can find place id's on the iNaturalist page: https://www.inaturalist.org/places, must be a numeric ID
-#' @param project get taxon stats by project id (numeric ID)
-#' @param uid get taxon stats by user id (string)
+#' @param date Retrieve observations on a specific date. Must be a string in the form "YYYY-MM-DD".
+#' @param date_range A vector of two dates defining a date range, each in the form "YYYY-MM-DD".
+#' @param place Get taxon stats by place. You can find place IDs on the \href{https://www.inaturalist.org/places}{iNaturalist website}. Must be a numeric ID.
+#' @param project Get taxon stats by a project's numeric ID.
+#' @param uid Get taxon stats by user ID (string).
 #' 
-#' @return a vector listing counts of observations at each level of identification possible (species, genus, etc.)
+#' @return A vector listing counts of observations at each level of identification possible (species, genus, etc.)
 #' @examples \dontrun{
 #'  counts <- get_inat_taxon_stats(date = "2010-06-14")
 #' }
@@ -17,7 +17,8 @@
 #' @export
 
 
-get_inat_taxon_stats <- function(date = NULL, date_range = NULL, place = NULL, project = NULL, uid= NULL){
+get_inat_taxon_stats <- function(date = NULL, date_range = NULL, place = NULL,
+                                 project = NULL, uid = NULL){
   
   # check Internet connection
   if (!curl::has_internet()) {

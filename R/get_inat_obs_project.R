@@ -1,9 +1,11 @@
 #' Download observations or info from a project
-#' @description retrieve observations from a particular iNaturalist project. This function can be used to get either observations or information from a project by project name or ID
-#' @param grpid Name of the group as an iNaturalist slug or group id
-#' @param type character Either "observations" or "info"  Observations returns all observations, and "info" returns project details similar to what you can find on a project webpage.
-#' @param raw logical TRUE or FALSE. If TRUE and searching for project info, returns the raw output of parsed JSON for that project. Otherwise just some basic information is returned as a list
-#' @details An iNaturalist slug is usually the project as single string with words separated by hyphens. For instance, the project "State Flowers of the United States" has a slug of "state-flowers-of-the-united-states-eol-collection".  This can be extracted from the URL for the project usually. The state flowers project has the following URL http://www.inaturalist.org/projects/state-flowers-of-the-united-states-eol-collection
+#' 
+#' Retrieve observations from a particular iNaturalist project. This function can be used to get either observations or information from a project by project name or ID.
+#' 
+#' @param grpid Name of the group as an iNaturalist slug or group ID.
+#' @param type Character, either "observations" or "info". "observations" returns all observations, and "info" returns project details similar to what you can find on a project's page.
+#' @param raw Logical. If TRUE and searching for project info, returns the raw output of parsed JSON for that project. Otherwise just some basic information is returned as a list.
+#' @details An iNaturalist slug is usually the project name as a single string with words separated by hyphens. For instance, the project "World Oceans Week 2022" has a slug of "world-oceans-week-2022", which you can find by searching projects on iNaturalist and looking at the \href{https://www.inaturalist.org/projects/world-oceans-week-2022}{project's page's URL}.
 #'
 #' @examples \dontrun{
 #'  get_inat_obs_project(354, type = "observations")

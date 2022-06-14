@@ -13,21 +13,21 @@ get_inat_user_stats(
 )
 }
 \arguments{
-\item{date}{retrieve observations on a specific date, must be a string in the form YYYY-MM-DD}
+\item{date}{Retrieve observations on a specific date. Must be a string in the form "YYYY-MM-DD".}
 
-\item{date_range}{a vector of dates, in the form YYYY-MM-DD}
+\item{date_range}{A vector of dates defining a range, each in the form "YYYY-MM-DD".}
 
-\item{place}{get taxon stats by place, you can find place id's on the iNaturalist page: https://www.inaturalist.org/places, must be a numeric ID}
+\item{place}{Get taxon stats by place. You can find place IDs on the \href{https://www.inaturalist.org/places}{iNaturalist website}. Must be a numeric ID.}
 
-\item{project}{get taxon stats by project id}
+\item{project}{Get taxon stats by a project's numeric ID.}
 
-\item{uid}{get taxon stats by user id}
+\item{uid}{Get taxon stats by user ID (string).}
 }
 \value{
-a list with two data frames with of the 5 users with the most observations and the most species
+A list containing two data.frames, with users sorted by either number of observations or number of species observed.
 }
 \description{
-Get stats on which users reported the most species or had tho most observations within a given range. This range can be by user, place, project, day or date range. Output will be a count of the total number of taxa observed at each taxonomic level.
+Get stats on which users reported the most species or had the most observations within a given range. This range can be by user, place, project, day or date range. Output will be a count of the total number of taxa observed at each taxonomic level.
 }
 \examples{
 \dontrun{
