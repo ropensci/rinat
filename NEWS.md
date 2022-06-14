@@ -1,4 +1,4 @@
-# rinat (development version)
+# rinat 0.1.9
 
 ## New features
 
