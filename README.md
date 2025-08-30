@@ -3,10 +3,7 @@ rinat: Access iNaturalist data with R
 Edmund Hart, Stéphane Guillou
 
 [![Build
-Status](https://api.travis-ci.org/ropensci/rinat.png)](https://travis-ci.org/ropensci/rinat)
-[![Build
 status](https://ci.appveyor.com/api/projects/status/gv7s9um107bep4na/branch/master)](https://ci.appveyor.com/project/sckott/rinat/branch/master)
-[![codecov.io](https://codecov.io/github/ropensci/rinat/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rinat?branch=master)
 [![](https://cranlogs.r-pkg.org/badges/rinat)](https://CRAN.R-project.org/package=rinat)
 
 R wrapper for iNaturalist APIs for accessing the observations. The
@@ -55,7 +52,7 @@ nymphalidae <- get_inat_obs(taxon_name  = "Nymphalidae", year = 2015)
 length(unique(nymphalidae$scientific_name))
 ```
 
-    ## [1] 72
+    ## [1] 80
 
 > Note that `get_inat_obs()` will return 100 observations by default.
 > This can be controlled with the `maxresults` argument.
@@ -72,7 +69,8 @@ monarchs <- get_inat_obs(query = "Monarch Butterfly", year = 2021)
 unique(monarchs$scientific_name)
 ```
 
-    ## [1] "Danaus plexippus" "Danaina"
+    ## [1] "Danaus plexippus"           "Danaus plexippus plexippus"
+    ## [3] "Danaina"
 
 You can combine the fuzzy search with the precise taxon search. For
 example, to get Monarch butterfly observations that also mention the
@@ -100,11 +98,11 @@ plot(deer$longitude, deer$latitude)
 
 More functions are available, notably to access:
 
--   observations in a project with `get_inat_obs_project()`
--   details of a single observation with `get_inat_obs_id()`
--   observations from a single user with `get_inat_obs_user()`
--   taxa statistics with `get_inat_taxon_stats()`
--   user statistics with `get_inat_user_stats()`
+- observations in a project with `get_inat_obs_project()`
+- details of a single observation with `get_inat_obs_id()`
+- observations from a single user with `get_inat_obs_user()`
+- taxa statistics with `get_inat_taxon_stats()`
+- user statistics with `get_inat_user_stats()`
 
 More detailed examples are included in the vignette:
 
