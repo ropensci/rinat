@@ -1,7 +1,7 @@
 #' Download observations or info from a project
-#' 
+#'
 #' Retrieve observations from a particular iNaturalist project. This function can be used to get either observations or information from a project by project name or ID.
-#' 
+#'
 #' @param grpid Name of the group as an iNaturalist slug or group ID.
 #' @param type Character, either "observations" or "info". "observations" returns all observations, and "info" returns project details similar to what you can find on a project's page.
 #' @param raw Logical. If TRUE and searching for project info, returns the raw output of parsed JSON for that project. Otherwise just some basic information is returned as a list.
@@ -16,24 +16,24 @@
 #' @export
 
 get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = FALSE) {
-  
+
   # check Internet connection
   if (!curl::has_internet()) {
     message("No Internet connection.")
     return(invisible(NULL))
   }
-  
+
   base_url <- "http://www.inaturalist.org/"
   # check that iNat can be reached
   if (httr::http_error(base_url)) { # TRUE: 400 or above
     message("iNaturalist API is unavailable.")
     return(invisible(NULL))
   }
-  
+
   argstring <- switch(match.arg(type),
                       observations = "obs",
                       info = "info")
-  
+
   url <- paste0(base_url, "projects/", grpid, ".json")
   xx <- fromJSON(content(GET(url), as = "text"))
   recs <- xx$project_observations_count
@@ -89,11 +89,8 @@ get_inat_obs_project <- function(grpid, type = c("observations", "info"), raw = 
         fromJSON(content(GET(url1), as = "text"), flatten = TRUE)
     }
     message("Done.\n")
-    # remove empty results, in case of mismatch between info and reality
-    # (problem has been observed)
-    if (length(obs_list[[loopval]]) == 0) {
-      obs_list[[i]] <- NULL
-    }
+    # remove empty elements
+    obs_list <- obs_list[lengths(obs_list) >= 1]
     project_obs <- do.call("rbind.fill", obs_list)
     if (recs != nrow(project_obs)) {
       message("Note: mismatch between number of observations reported and returned by the API.")
