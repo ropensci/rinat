@@ -13,3 +13,4 @@ cran-comments.md
 ^Meta$
 ^.*\.Rmd\.orig
 vignettes/build_vignettes.R
+^CRAN-SUBMISSION$
