@@ -24,7 +24,7 @@
 #' within.  It is a vector in the form of southern latitude, western longitude, northern latitude,
 #' and eastern longitude. Alternatively supply an sf or sp object from which the bounding box will
 #' be derived.
-#' @param photo_license Filter by photo license. Values can be CC variations ('CC0' or 'CC-BY').
+#' @param photo_license Filter by photo license. Values can be CC variations ("CC0", "CC-BY", CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"), "any" (any CC licence), or "none" (all rights reserved). Note that an observation and its photos don't necessarily have the same licence.
 #' @param maxresults The maximum number of results to return. Should not be
 #' a number higher than 10000.
 #' @param meta (logical) If TRUE, the output of this function is a list with metadata on the output

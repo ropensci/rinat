@@ -2,7 +2,7 @@
 
 ## New features
 
-* `get_inat_obs()` can now filter photo licences with the new `photo_license` argument. For example, `get_inat_obs(taxon_name  = "Burhinus grallarius", photo_license = "CC-BY")` will only return photos licensed under a Creative Commons - Attribution. (Thank you @beausoleilmo)
+* `get_inat_obs()` can now filter observations by photo licences with the new `photo_license` argument. For example, `get_inat_obs(taxon_name  = "Burhinus grallarius", photo_license = "CC-BY")` will only return observations with photos licensed under Creative Commons - Attribution. (Thank you @beausoleilmo)
 
 ## Bug fixes
 

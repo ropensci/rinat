@@ -54,7 +54,7 @@ within.  It is a vector in the form of southern latitude, western longitude, nor
 and eastern longitude. Alternatively supply an sf or sp object from which the bounding box will
 be derived.}
 
-\item{photo_license}{Filter by photo license. Values can be CC variations ('CC0' or 'CC-BY').}
+\item{photo_license}{Filter by photo license. Values can be CC variations ("CC0", "CC-BY", CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"), "any" (any CC licence), or "none" (all rights reserved). Note that an observation and its photos don't necessarily have the same licence.}
 
 \item{maxresults}{The maximum number of results to return. Should not be
 a number higher than 10000.}
