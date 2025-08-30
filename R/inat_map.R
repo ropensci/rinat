@@ -2,8 +2,8 @@
 #'
 #' @description Plot observations from iNaturalist. You have the option of automatically plotting, or returning a ggplot map object that you can add layers onto.
 #' @param data data frame of iNaturalist observations.
-#' @param map the map region to plot, you can find full documentation in the \code{\link{map}} package, default is USA.
-#' @param subregion the name of the subregion to plot, see full documentation in the \code{\link{map}} package.
+#' @param map the map area to plot, default is USA. See the same \code{map} argument in \code{\link[ggplot2]{map_data}} for available areas.
+#' @param subregion the name of the subregion to plot. See the \code{region} argument in \code{\link[ggplot2]{map_data}} for more details.
 #' @param plot a logical value. TRUE plots the map object and returns it, and FALSE returns a ggplot object that you can modify and plot later.
 #'
 #' @return A ggplot map object.

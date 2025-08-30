@@ -9,9 +9,9 @@ inat_map(data, map = "usa", subregion = ".", plot = TRUE)
 \arguments{
 \item{data}{data frame of iNaturalist observations.}
 
-\item{map}{the map region to plot, you can find full documentation in the \code{\link{map}} package, default is USA.}
+\item{map}{the map area to plot, default is USA. See the same \code{map} argument in \code{\link[ggplot2]{map_data}} for available areas.}
 
-\item{subregion}{the name of the subregion to plot, see full documentation in the \code{\link{map}} package.}
+\item{subregion}{the name of the subregion to plot. See the \code{region} argument in \code{\link[ggplot2]{map_data}} for more details.}
 
 \item{plot}{a logical value. TRUE plots the map object and returns it, and FALSE returns a ggplot object that you can modify and plot later.}
 }
